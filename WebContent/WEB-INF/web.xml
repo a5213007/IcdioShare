@@ -20,14 +20,14 @@
     <url-pattern>/servlet/LoginServlet</url-pattern>
   </servlet-mapping>
   
-  <!-- ManageINdexServlet  -->
+  <!-- ManagerINdexServlet  -->
   <servlet>
-    <servlet-name>ManageINdexServlet</servlet-name>
-    <servlet-class>servlet.ManageINdexServlet</servlet-class>
+    <servlet-name>ManagerINdexServlet</servlet-name>
+    <servlet-class>servlet.ManagerINdexServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ManageINdexServlet</servlet-name>
-    <url-pattern>/servlet/ManageINdexServlet</url-pattern>
+    <servlet-name>ManagerINdexServlet</servlet-name>
+    <url-pattern>/servlet/ManagerINdexServlet</url-pattern>
   </servlet-mapping>
   
   <!-- PermissionsServlet  -->
