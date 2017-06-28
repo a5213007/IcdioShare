@@ -4,9 +4,6 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 	padding:0;
 	margin:0;
 }
-h3{
-	color:#fff;
-}
 body{
 
 }
@@ -20,12 +17,12 @@ body{
 .actAndTey{
 	margin: 0 auto 0 auto;
 	width:1160px;
-	height: 642px;
+	height: 672px;
 }
 .activeDis{
 	width:560px;
 	height:560px;
-	margin-top:72px;
+	margin-top:102px;
 	float:left;
 	background-color: #000;
     opacity: 0.3;
@@ -33,14 +30,14 @@ body{
 .activeDis_cover{
 	width:560px;
 	height:560px;
-	top:72px;
+	top:102px;
 	float:left;
 	position: absolute
 	
 }
 .TeyDis{
 	width:560px;
-	margin-top:72px;
+	margin-top:102px;
 	height:560px;
 	float:right;
     background-color: #000;
@@ -48,27 +45,26 @@ body{
 }
 .TeyDis_cover{
 	width:560px;
-	top:72px;
+	top:102px;
 	height:560px;
 	margin-left: 600px;
 	position: absolute
 }
 .exit{
 	position: absolute;
-	z-index: 1;
-	top: 105px;
-	right: 20px;
-	width:50px;
-	height: 20px;
-	font-size:20px;
-	color:yellow;
-	cursor: pointer;
+    z-index: 1;
+    top: 62px;
+    margin-left: 1120px;
+    width: 40px;
+    height: 20px;
+    font-size: 20px;
+    color: yellow;
+    cursor: pointer;
 }
 .mime{
-	position: absolute;
+    position: absolute;
     z-index: 1;
-    top: 72px;
-    right: 13px;
+    top: 62px;
     width: 80px;
     height: 25px;
     font-size: 20px;
@@ -108,7 +104,7 @@ body{
 .add{
 	color: #ade2df;
     font-family: "等线";
-    width: 100px;
+    width: 35px;
     height: 20px;
     font-size: 16px;
     position: absolute;
@@ -117,9 +113,23 @@ body{
     margin-left: 59px;
     cursor:pointer;
 }
+.page{
+	color: #fff;
+    font-family: "等线";
+    width: 220px;
+    height: 20px;
+    font-size: 16px;
+    position: absolute;
+    margin-bottom: 10px;
+    top: 520px;
+    margin-left: 33%;  
+}
+.page span{
+    cursor:pointer;
+}
 .logo{
 	position: absolute;
-    top: 10px;
+    top: 25px;
     height: 42px;
     right: 46.5%;
 }
@@ -144,4 +154,8 @@ body{
 	color:#bd9e24;
 	border-bottom:none;
 	border-color:#bd9e24;
+	cursor:pointer;
+}
+.cantEdit{
+	color:#ccc;
 }
