@@ -1,0 +1,65 @@
+@charset "UTF-8";
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,img,u,i {
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+h3{
+	color:#fff;
+}
+body{
+
+}
+.backgroundImg{
+	width:100%;
+	height: 100%;
+	position: absolute;
+	z-index: -1;
+	background-size: 100% 100%;
+}
+.actAndTey{
+	margin: 0 auto 0 auto;
+	width:1160px;
+	height: 642px;
+}
+.activeDis{
+	width:560px;
+	height:560px;
+	margin-top:72px;
+	float:left;
+	background-color: #000;
+    opacity: 0.3;
+}
+.TeyDis{
+	width:560px;
+	margin-top:72px;
+	height:560px;
+	float:right;
+    background-color: #000;
+    opacity: 0.3;
+}
+.exit{
+	position: absolute;
+	z-index: 1;
+	top: 72px;
+	right: 20px;
+	width:50px;
+	height: 20px;
+	font-size:20px;
+	color:yellow;
+	cursor: pointer;
+}
+.activeDisHead{
+	width:560px;
+}
+.headSpan{
+	position:relative;
+	color: #fff;
+	font-size: 20px;
+	margin:0 auto 0 auto;
+	display: block;
+	width: 100px;
+	line-height: 40px;
+}
+
+
