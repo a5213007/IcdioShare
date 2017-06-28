@@ -1,6 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>IcdioShare</display-name>
+  <filter>
+    <filter-name>IsLoginFilter</filter-name>
+    <filter-class>filter.IsLoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>IsLoginFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- LoginServlet  -->
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/servlet/LoginServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- ManageINdexServlet  -->
+  <servlet>
+    <servlet-name>ManageINdexServlet</servlet-name>
+    <servlet-class>servlet.ManageINdexServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageINdexServlet</servlet-name>
+    <url-pattern>/servlet/ManageINdexServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- PermissionsServlet  -->
+  <servlet>
+    <servlet-name>PermissionsServlet</servlet-name>
+    <servlet-class>servlet.PermissionsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PermissionsServlet</servlet-name>
+    <url-pattern>/servlet/PermissionsServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- RoleServlet  -->
+  <servlet>
+    <servlet-name>RoleServlet</servlet-name>
+    <servlet-class>servlet.RoleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RoleServlet</servlet-name>
+    <url-pattern>/servlet/RoleServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- UserServlet  -->
+  <servlet>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>servlet.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/servlet/UserServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- TechnologyServlet  -->
+  <servlet>
+    <servlet-name>TechnologyServlet</servlet-name>
+    <servlet-class>servlet.TechnologyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TechnologyServlet</servlet-name>
+    <url-pattern>/servlet/TechnologyServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- ActiveServlet  -->
+  <servlet>
+    <servlet-name>ActiveServlet</servlet-name>
+    <servlet-class>servlet.ActiveServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ActiveServlet</servlet-name>
+    <url-pattern>/servlet/ActiveServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- QuesAndAnswServlet  -->
+  <servlet>
+    <servlet-name>QuesAndAnswServlet</servlet-name>
+    <servlet-class>servlet.QuesAndAnswServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QuesAndAnswServlet</servlet-name>
+    <url-pattern>/servlet/QuesAndAnswServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- EvaluationServlet  -->
+  <servlet>
+    <servlet-name>EvaluationServlet</servlet-name>
+    <servlet-class>servlet.EvaluationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EvaluationServlet</servlet-name>
+    <url-pattern>/servlet/EvaluationServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- ProcessServlet  -->
+  <servlet>
+    <servlet-name>ProcessServlet</servlet-name>
+    <servlet-class>servlet.ProcessServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProcessServlet</servlet-name>
+    <url-pattern>/servlet/ProcessServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- DisplayIndexServlet  -->
+  <servlet>
+    <servlet-name>DisplayIndexServlet</servlet-name>
+    <servlet-class>servlet.DisplayIndexServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayIndexServlet</servlet-name>
+    <url-pattern>/servlet/DisplayIndexServlet</url-pattern>
+  </servlet-mapping>
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
