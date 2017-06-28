@@ -30,6 +30,14 @@ body{
 	background-color: #000;
     opacity: 0.3;
 }
+.activeDis_cover{
+	width:560px;
+	height:560px;
+	top:72px;
+	float:left;
+	position: absolute
+	
+}
 .TeyDis{
 	width:560px;
 	margin-top:72px;
@@ -38,10 +46,17 @@ body{
     background-color: #000;
     opacity: 0.3;
 }
+.TeyDis_cover{
+	width:560px;
+	top:72px;
+	height:560px;
+	margin-left: 600px;
+	position: absolute
+}
 .exit{
 	position: absolute;
 	z-index: 1;
-	top: 72px;
+	top: 105px;
 	right: 20px;
 	width:50px;
 	height: 20px;
@@ -49,17 +64,84 @@ body{
 	color:yellow;
 	cursor: pointer;
 }
+.mime{
+	position: absolute;
+    z-index: 1;
+    top: 72px;
+    right: 13px;
+    width: 80px;
+    height: 25px;
+    font-size: 20px;
+    color: yellow;
+    cursor: pointer;
+}
 .activeDisHead{
 	width:560px;
 }
+
 .headSpan{
 	position:relative;
 	color: #fff;
 	font-size: 20px;
-	margin:0 auto 0 auto;
+	margin:0 auto 25px auto;
 	display: block;
-	width: 100px;
+	width: 81px;	
 	line-height: 40px;
+	font-family: "幼圆";
 }
-
-
+.item{
+	font-family: "幼圆";
+	margin: 24px 0 24px 0;
+	color:#fff;
+	font-size:16px;
+	height:20px;
+	width:100%;
+}
+.itemFl{
+	float:left;
+	margin-left:59px;
+}
+.itemFr{
+	float:right;
+	margin-right:101px;
+}
+.add{
+	color: #ade2df;
+    font-family: "等线";
+    width: 100px;
+    height: 20px;
+    font-size: 16px;
+    position: absolute;
+    margin-bottom: 10px;
+    top: 520px;
+    margin-left: 59px;
+    cursor:pointer;
+}
+.logo{
+	position: absolute;
+    top: 10px;
+    height: 42px;
+    right: 46.5%;
+}
+.control{
+	margin: 20px auto 0 auto;
+	width:1160px;
+}
+.mainCtr{
+	width:560px;
+	float:left;
+}
+.secondCtr{
+	width:560px;
+	float:right;
+}
+.control button{
+	width:130px;
+	margin-right:6.2px;
+	height:37px;
+	font-size:18px;
+	background:none;
+	color:#bd9e24;
+	border-bottom:none;
+	border-color:#bd9e24;
+}
