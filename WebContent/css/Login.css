@@ -1,0 +1,125 @@
+@charset "UTF-8";
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,img,u,i {
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+
+.background_Img { 
+	z-index: -1; 
+	width:100%;
+	height:100%;
+	background-size:100% 100%;
+	position: absolute;
+}
+
+.body {
+	width: auto;
+	height: auto;
+}
+
+.login1 {
+	position: absolute;
+    top: 16%;
+    left: 35%;
+    height: 75%;
+    width: 30%;
+    background-size: 100% 100%;
+    z-index: 0;
+}
+
+.login {
+	position: absolute;
+	top: 19%;
+	left: 36%;
+	height: 69%;
+	width: 28%;
+}
+
+.login_img {
+	height: 8%;
+    width: 22%;
+    padding-left: 39%;
+    padding-right: 39%;
+    margin-bottom: 5%;
+    margin-top: 1%;
+}
+
+.login_div {
+	width: 100%;
+}
+
+.login_div_left {
+	height: 100%;
+	width: 25%;
+	float: left;
+}
+
+.login_div_right {
+	height: 100%;
+	width: 75%;
+	float: left;
+}
+
+.account_label, .password_label {
+	float: right;
+	margin-right: 5%;
+	display: inline-block;
+	height: 100%;
+	line-height: 33px;
+	color: white;
+	font-size: 14pt;
+	font-family:等线;
+	font-style: normal;
+}
+
+.account_input, .password_input {
+	width: 80%;
+	height: 90%;
+	padding:1px 1px 1px 1px;
+	background: none;
+	border:1px solid #fff;
+	color: #fff !important;
+}
+
+.tip {
+	color: #d3cece;
+    font-size: 12px;
+    display: inline-block;
+    width: 100%;
+    height: 50%;
+    margin-top: 4%;
+    font-family:等线;
+}
+
+.slogan {
+	display: inline-block;
+	text-align: center;
+    line-height: 33px;
+    color: white;
+    font-family:等线;
+    font-size: 16pt;
+    font-style: normal;
+    font-weight: 500;
+    cursor: default;
+}
+
+.login_button {
+	width: 40%;
+	height: 33%;
+	margin-left: 30%;
+	margin-right: 30%;
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+
+
+/*enter.html*/
+.enter {
+    position: absolute;
+    top: 71%;
+    left: 44%;
+    width: 170px;
+    height: 170px;
+}
