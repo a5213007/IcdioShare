@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class ManageIndexServlet
  */
 @WebServlet("/ManageIndexServlet")
-public class ManagerINdexServlet extends HttpServlet {
+public class ManageINdexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ManagerINdexServlet() {
+    public ManageINdexServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
