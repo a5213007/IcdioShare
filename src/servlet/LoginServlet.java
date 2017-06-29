@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONArray;
 import service.User.UserService;
@@ -53,6 +54,9 @@ public class LoginServlet extends HttpServlet {
 			try {
 				JSONArray json = JSONArray.fromObject(list);
 				SendToHtml.send(json, response);
+				HttpSession session = request.getSession();
+				session.setAttribute("user", list.get(0));
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new ServletException();

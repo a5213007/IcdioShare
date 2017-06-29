@@ -49,7 +49,7 @@ public class IsLoginFilter implements Filter {
 		
 		if(url.equals("/servlet/LoginServlet")){
 			chain.doFilter(request, response);
-		}else if(url.indexOf("/servlet/") == -1){
+		}else if(url.indexOf("/servlet/") == 0){
 			
 			if(session == null || session.getAttribute("user") == null)
 				return ;
