@@ -35,4 +35,9 @@ public class UserDao extends CommonDAO implements IBaseDao{
 		executeSql(sql);
 		return 1;
 	}
+	
+	public List<Map<String, Object>> getInfoByAccount(String account) throws Exception{
+		String sql = "select * from user where account = " + account;
+		return excuteQuery(sql, null);
+	}
 }

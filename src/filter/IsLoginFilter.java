@@ -11,6 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet Filter implementation class IsLogin
@@ -44,14 +45,19 @@ public class IsLoginFilter implements Filter {
 		String url = httpServletRequest.getServletPath();
 		// 静态资源直接放行
 		
+		HttpSession session = httpServletRequest.getSession();
+		
 		if(url.equals("/servlet/LoginServlet")){
 			chain.doFilter(request, response);
 		}else if(url.indexOf("/servlet/") == -1){
+			
+			if(session == null || session.getAttribute("user") == null)
+				return ;
+			
 			chain.doFilter(request, response);
 		}else {
 			chain.doFilter(request, response);
 		}
-		chain.doFilter(request, response);
 	}
 
 	/**
