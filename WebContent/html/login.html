@@ -5,6 +5,7 @@
 <title>icdio内部分享平台</title>
 <link rel="stylesheet" type="text/css" href="../css/Login.css">
 <script type="text/javascript" src="../js/login.js"></script>
+<script type="text/javascript" src="../js/jquery.js"></script>
 </head>
 <body>
 	<img class="background_Img" src="../image/displayLogin/background.png">
@@ -22,7 +23,7 @@
 			<div class="login_div_left">
 			</div>
 			<div class="login_div_right">
-				<span class="tip">本实验室暂时不存在此账号，期待你的加入哦！</span>
+				<span class="tip" id="account_tip"></span>
 			</div>
 		</div>
 		<div class="login_div" style="height: 6%">
@@ -30,7 +31,7 @@
 				<span class="account_label">账号</span>
 			</div>
 			<div class="login_div_right">
-				<input id="account" class="account_input" type="text" name="账号">
+				<input id="account" onblur="checkAccount()" onkeyup="if(!/^\d+$/.test(this.value)) account_tip.innerHTML='账号必须输入数字，且不能有空格。'; else account_tip.innerHTML='';" class="account_input" type="text" name="账号">
 			</div>
 		</div>
 		<div class="login_div" style="height: 6%">
@@ -38,7 +39,7 @@
 				
 			</div>
 			<div class="login_div_right">
-				<span class="tip">你的输入有误！</span>
+				<span class="tip" id="password_tip"></span>
 			</div>
 		</div>
 		<div class="login_div" style="height: 6%">	
@@ -46,10 +47,10 @@
 				<span class="password_label">密码</span>
 			</div>
 			<div class="login_div_right">
-				<input id="password" class="password_input" type="password" name="密码">
+				<input id="password" onkeydown="checkPassword()" class="password_input" maxlength="18" type="password" name="密码">
 			</div>
 		</div>
-		<img onclick="turnToManagerIndex()" class="login_button" src="../image/displayLogin/login_button.png">
+		<img onclick="Submit()" class="login_button" src="../image/displayLogin/login_button.png">
 	</div>
 </body>
 </html>
