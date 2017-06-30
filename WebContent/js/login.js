@@ -18,13 +18,13 @@ function Submit() {
 			'account' : account, 'password' : password
 		},
 		success: function(data) {
-			if(data == undefined) {
+			if(data == undefined || data == '') {
 				alert('账号密码错误或无此账号！');
 			}
 			else {
 				var user = eval(data);
 				sessionStorage.user = JSON.stringify(user);
-				window.location.href="ManagerIndex.html";
+				window.location.href="ManagerIndex.html?activeIndex=1&technologyIndex=1";
 			}			
 		},
 		error : function(data){
@@ -54,4 +54,10 @@ function checkPassword() {
 		$('#password_tip').html("密码不能超过18位!");
 	else
 		$('#password_tip').html("");
+}
+
+function isLogin() {
+	if (sessionStorage.user != undefined) {
+		window.location.href = 'ManagerIndex.html?activeIndex=1&technologyIndex=1';
+	}
 }

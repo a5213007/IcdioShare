@@ -5,91 +5,44 @@
 	<link rel="stylesheet" type="text/css" href="../css/ManagerIndex.css">	
 	<script type="text/javascript" src="../js/jquery.js"></script>
 	<script type="text/javascript" src="../js/laydate.js"></script>
+	<script type="text/javascript" src="../js/util.js"></script>
 	<script type="text/javascript" src="../js/ManagerIndex.js"></script>	
 </head>
-<body>
+<body onload="loadManager()">
 	<img class="backgroundImg" src="../image/ManagerIndex/background.png">
 	<img class="logo" src="../image/ManagerIndex/icdio.png" />
 	<div class="actAndTey">
 		<div class="activeDis"></div>
 		<div class="activeDis_cover">
 			<div class="activeDisHead">			
-				<span class="headSpan">活动通知<span>										
+				<span class="headSpan">活动通知</span>										
 			</div>
-			
-			<div class="item">
-				<span class="itemFl">●暑假放假通知</span>
-				<span class="itemFr">2017-06-22</span>
+			<div id="activeDisplay">
 			</div>
-			<div class="item">
-				<span class="itemFl">●暑假留校通知</span>
-				<span class="itemFr">2017-06-22</span>
-			</div>
-			
 			<div class="add" onclick="openActive()">添加</div>
 			<div class="page">
-				<span class="cantEdit">首页</span> <span class="cantEdit">上一页</span> 
-				<span>1</span>/<span>2</span> <span class="canEdit">下一页</span> 
-				<span class="canEdit">尾页</span>
+				<span id="activeFirstPage" onclick="turnToActiveFirstPage()">首页</span> <span id="activePreviousPage" onclick="turnToActivePreviousPage()">上一页</span> 
+				<span id="currentActivePage"></span>/<span id="activePages"></span> <span id="activeNextPage" onclick="turnToActiveNextPage()">下一页</span> 
+				<span id="activeLastPage" onclick="turnToActiveLastPage()">尾页</span>
 			</div>
 		</div>
 		
 		<div class="TeyDis"></div>
 		<div class="TeyDis_cover">
 			<div class="activeDisHead">			
-				<span class="headSpan">技术分享<span>										
+				<span class="headSpan">技术分享</span>										
 			</div>
-			
-			<div class="item">
-				<span class="itemFl">●css移动网页设计基础</span>
-				<span class="itemFr">2017-06-22</span>
+			<div id="technologyDisplay">
 			</div>
-			<div class="item">
-				<span class="itemFl">●css移动网页设计基础</span>
-				<span class="itemFr">2017-06-22</span>
-			</div>
-			<div class="item">
-				<span class="itemFl">●css移动网页设计基础</span>
-				<span class="itemFr">2017-06-22</span>
-			</div>
-			<div class="item">
-				<span class="itemFl">●css移动网页设计基础</span>
-				<span class="itemFr">2017-06-22</span>
-			</div>
-			<div class="item">
-				<span class="itemFl">●css移动网页设计基础</span>
-				<span class="itemFr">2017-06-22</span>
-			</div>
-			<div class="item">
-				<span class="itemFl">●css移动网页设计基础</span>
-				<span class="itemFr">2017-06-22</span>
-			</div>
-			<div class="item">
-				<span class="itemFl">●css移动网页设计基础</span>
-				<span class="itemFr">2017-06-22</span>
-			</div>
-			<div class="item">
-				<span class="itemFl">●css移动网页设计基础</span>
-				<span class="itemFr">2017-06-22</span>
-			</div>
-			<div class="item">
-				<span class="itemFl">●css移动网页设计基础</span>
-				<span class="itemFr">2017-06-22</span>
-			</div>
-			<div class="item">
-				<span class="itemFl">●css移动网页设计基础</span>
-				<span class="itemFr">2017-06-22</span>
-			</div>
-			
 			<div class="add" onclick="openTechnology()">添加</div>
 			<div class="page">
-				<span class="cantEdit">首页</span> <span class="cantEdit">上一页</span> 
-				<span>1</span>/<span>2</span> <span class="canEdit">下一页</span> 
-				<span class="canEdit">尾页</span>
+				<span id="technologyFirstPage" onclick="turnToTechnologyFirstPage()">首页</span> <span id="technologyPreviousPage" onclick="turnToTechnologyPreviousPage()">上一页</span> 
+				<span id="currentTechnologyPage"></span>/<span id="technologyPages"></span> <span id="technologyNextPage" onclick="turnToTechnologyNextPage()">下一页</span> 
+				<span id="technologyLastPage" onclick="turnToTechnologyLastPage()">尾页</span>
 			</div>
 		</div>
-		<div class="mime">我的信息</div>
-		<div class="exit">退出</div>
+		<div class="mime" id="name">我的信息</div>
+		<div class="exit" onclick="exit()">退出</div>
 		
 		<div id="technologyCover" class="addTechnologyCover"></div>
 		<div id="technology" class="addTechnology">
@@ -122,7 +75,7 @@
 			</div>
 			
 			<div class="addActiveBody">
-				<div class="btFl"><button class="addBt" onclicl="submitTechnology()">发布</button></div>
+				<div class="btFl"><button class="addBt" onclick="submitTechnology()">发布</button></div>
 				<div class="btFr"><button class="addBt" onclick="closeTechnology()">取消</button></div>				
 			</div>		
 		</div>
@@ -178,7 +131,7 @@
 			</div>
 			
 			<div class="addActiveBody">
-				<div class="btFl"><button class="addBt" onclicl="">发布</button></div>
+				<div class="btFl"><button class="addBt" onclick="">发布</button></div>
 				<div class="btFr"><button class="addBt" onclick="closeActive()">取消</button></div>				
 			</div>
 		</div>		

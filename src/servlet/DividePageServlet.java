@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,23 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import oracle.net.aso.a;
+import com.sun.org.apache.bcel.internal.generic.Type;
+
 import net.sf.json.JSONArray;
 import service.Tel_And_Act.Tel_And_ActService;
 import util.sendToHtml.SendToHtml;
-import action.Tel_And_Act.Tel_And_ActAction;
 
 /**
- * Servlet implementation class ManageIndexServlet
+ * Servlet implementation class DividePageServlet
  */
-@WebServlet("/ManageIndexServlet")
-public class ManagerINdexServlet extends HttpServlet {
+@WebServlet("/DividePageServlet")
+public class DividePageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ManagerINdexServlet() {
+    public DividePageServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,15 +48,17 @@ public class ManagerINdexServlet extends HttpServlet {
 		response.setContentType("textml;charset=utf-8");		
 		response.setContentType("text/html");
 		response.setHeader("Content-type", "text/html;charset=UTF-8");
-		
-		int activeIndex = Integer.parseInt(request.getParameter("activeIndex"));
-		int technologyIndex = Integer.parseInt(request.getParameter("technologyIndex"));
-		Tel_And_ActService tel_And_ActService = new Tel_And_ActService();
-		List<Map<String, Object>> activeList = tel_And_ActService.getAllActiveInfoByIndex(activeIndex);
-		List<Map<String, Object>> technologyList = tel_And_ActService.getAllTechnologyInfoByIndex(technologyIndex);
-		activeList.addAll(technologyList);
-		JSONArray json = JSONArray.fromObject(activeList);
-		SendToHtml.send(json, response);
+		String type = request.getParameter("type");
+		if(type.equals("AllPage")) {
+			Tel_And_ActService tel_And_ActService = new Tel_And_ActService();
+			List<Map<String, Object>> activeList = tel_And_ActService.getAllActiveInfo();
+			List<Map<String, Object>> technologyList = tel_And_ActService.getAllTechnologyInfo();
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("活动通知", (activeList.size() / 10) + 1);
+			map.put("技术分享", (technologyList.size() / 10) + 1);
+			JSONArray json = JSONArray.fromObject(map);
+			SendToHtml.send(json, response);
+		}
 	}
 
 }

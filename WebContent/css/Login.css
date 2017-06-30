@@ -81,6 +81,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 	background: none;
 	border:1px solid #fff;
 	color: #fff !important;
+	font-size:16px;
 }
 
 .tip {

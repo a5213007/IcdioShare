@@ -2,6 +2,7 @@ package dao.Tel_And_Act;
 
 import java.util.List;
 import java.util.Map;
+
 import dao.baseDao.IBaseDao;
 import util.connectUtil.*;
 import util.operateObject.ObjectToSQL;
@@ -35,4 +36,32 @@ public class Tel_And_ActDao extends CommonDAO implements IBaseDao{
 		executeSql(sql);
 		return 1;
 	}
+	
+	public List<Map<String, Object>> getAllActiveInfo() throws Exception{
+		String sql = "select * from v_active";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
+	} 
+	
+	public List<Map<String, Object>> getAllActiveInfoByIndex(int index) throws Exception{
+		String sql = "select * from v_active limit " + (index - 1) * 10 + ",10";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
+	} 
+	
+	public List<Map<String, Object>> getAllTechnologyByIndex(int index) throws Exception{
+		String sql = "select * from v_technology limit " + (index - 1) * 10 + ",10";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
+	} 
+	
+	public List<Map<String, Object>> getAllTechnologyInfo() throws Exception{
+		String sql = "select * from v_technology";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
+	} 
 }

@@ -7,7 +7,7 @@
 <script type="text/javascript" src="../js/login.js"></script>
 <script type="text/javascript" src="../js/jquery.js"></script>
 </head>
-<body>
+<body onload="isLogin()">
 	<img class="background_Img" src="../image/displayLogin/background.png">
 	<img class="login1" src="../image/displayLogin/login_frame.png">
 	<div class="login">
@@ -47,7 +47,7 @@
 				<span class="password_label">密码</span>
 			</div>
 			<div class="login_div_right">
-				<input id="password" onkeydown="checkPassword()" class="password_input" maxlength="18" type="password" name="密码">
+				<input id="password" onkeyup="checkPassword()" class="password_input" maxlength="18" type="password" name="密码">
 			</div>
 		</div>
 		<img onclick="Submit()" class="login_button" src="../image/displayLogin/login_button.png">
