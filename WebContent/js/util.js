@@ -22,6 +22,5 @@ function getId(){
 	ID += date.getDate();  //天
 	ID += date.toString().substring(16,18) + date.toString().substring(19,21);
 	ID += date.toString().substring(22,24);
-
 	return ID;
 }
