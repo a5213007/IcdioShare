@@ -10,28 +10,38 @@ public class UserDao extends CommonDAO implements IBaseDao{
 
 	public int save(Object object) throws Exception{
 		String sql = ObjectToSQL.toSqlForSave(object);
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
 		executeSql(sql);
 		return 1;		
 	}
 	
 	public int update(Object object) throws Exception{
 		String sql = ObjectToSQL.toSqlForUpdate(object);
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
 		executeSql(sql);
 		return 1;
 	}
 	
 	public List<Map<String, Object>> getAllInfo() throws Exception{
 		String sql = "select * from user";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	}
 	
 	public List<Map<String, Object>> getInfoById(Long id) throws Exception{
 		String sql = "select * from user where id = " + id;
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	}
 	
 	public int delete(Long id) throws Exception{
 		String sql = "delete from user where id = " + id;
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
 		executeSql(sql);
 		return 1;
 	}
