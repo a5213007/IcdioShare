@@ -52,4 +52,31 @@ public class UserService implements IBaseService{
 			throw new Exception();
 		}		
 	}
+	
+	public List<Map<String, Object>> getInfoByAccount(String account){
+		try {
+			return userDao.getInfoByAccount(account);
+		} catch (Exception e) {
+			e.printStackTrace();			
+		}
+		return null;
+	}
+	
+	public List<Map<String, Object>> login(String account, String password){
+		try {
+			List<Map<String, Object>> list = getInfoByAccount(account);
+			
+			if(list.size() == 0)
+				return null;
+			
+			if(password.equals(list.get(0).get("password"))){
+				list.get(0).remove("password");
+				return list;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

@@ -2,7 +2,10 @@
 <html><head>
 <meta charset="UTF-8">
 	<title>Icdio内部分享平台管理</title>
-	<link rel="stylesheet" type="text/css" href="../css/ManagerIndex.css">
+	<link rel="stylesheet" type="text/css" href="../css/ManagerIndex.css">	
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/laydate.js"></script>
+	<script type="text/javascript" src="../js/ManagerIndex.js"></script>	
 </head>
 <body>
 	<img class="backgroundImg" src="../image/ManagerIndex/background.png">
@@ -23,7 +26,12 @@
 				<span class="itemFr">2017-06-22</span>
 			</div>
 			
-			<div class="add">添加</div>
+			<div class="add" onclick="openActive()">添加</div>
+			<div class="page">
+				<span class="cantEdit">首页</span> <span class="cantEdit">上一页</span> 
+				<span>1</span>/<span>2</span> <span class="canEdit">下一页</span> 
+				<span class="canEdit">尾页</span>
+			</div>
 		</div>
 		
 		<div class="TeyDis"></div>
@@ -73,10 +81,107 @@
 				<span class="itemFr">2017-06-22</span>
 			</div>
 			
-			<div class="add">添加</div>
+			<div class="add" onclick="openTechnology()">添加</div>
+			<div class="page">
+				<span class="cantEdit">首页</span> <span class="cantEdit">上一页</span> 
+				<span>1</span>/<span>2</span> <span class="canEdit">下一页</span> 
+				<span class="canEdit">尾页</span>
+			</div>
 		</div>
 		<div class="mime">我的信息</div>
-		<div class="exit">退出</div>		
+		<div class="exit">退出</div>
+		
+		<div id="technologyCover" class="addTechnologyCover"></div>
+		<div id="technology" class="addTechnology">
+			<div class="addActiveHead">
+				<span class="headSpan" style="width:120px;">添加技术分享</span>
+			</div>
+			
+			<div class="addActiveBody">
+				<div class="bodyFl"><span class="addSpan"><span class="redTip">*</span>标题</span></div>
+				<div class="bodyFr">
+					<input type="text" id="teyTitle" class="addInput"></input>
+				</div>
+			</div>
+			<div class="addActiveBody2">
+				<div class="bodyFl"><span class="addSpan"><span class="redTip">*</span>内容</span></div>
+				<div class="bodyFr">
+					<textarea class="addTextarea" id="teyContent"></textarea>
+				</div>
+			</div>
+			<div class="addActiveBody">
+				<input type="file" id="teyFile" class="addFile" value="附件上传"/>
+				<div class="fileCover"><span style="padding-left:60px;">附件上传</span> <span id="fileTip"></span></div>
+				
+				<script>
+					$("#teyFile").change(function(){
+						if($("#teyFile").val() != "")
+							$("#fileTip").html("√");
+					})
+				</script>
+			</div>
+			
+			<div class="addActiveBody">
+				<div class="btFl"><button class="addBt" onclicl="submitTechnology()">发布</button></div>
+				<div class="btFr"><button class="addBt" onclick="closeTechnology()">取消</button></div>				
+			</div>		
+		</div>
+		
+		<div id="activeCover" class="addActiveCover"></div>
+		<div id="active" class="addActive">
+			<div class="addActiveHead">
+				<span class="headSpan" style="width:120px;">添加活动通知</span>
+			</div>
+			
+			<div class="addActiveBody">
+				<div class="bodyFl"><span class="addSpan"><span class="redTip">*</span>标题</span></div>
+				<div class="bodyFr">
+					<input type="text" id="actTitle" class="addInput"></input>
+				</div>
+			</div>
+			<div class="addActiveBody2">
+				<div class="bodyFl"><span class="addSpan"><span class="redTip">*</span>内容</span></div>
+				<div class="bodyFr">
+					<textarea class="addTextarea" id="actContent"></textarea>
+				</div>
+			</div>
+			
+			<div class="addActiveBody">
+				<div class="bodyFl"><span class="addSpan"><span class="redTip">*</span>时间</span></div>
+				<div class="bodyFr">
+					<!-- <input id="actTime">
+					<span class="laydate-icon addInput" ></span> -->
+					<input id="actTime" type="text" class="addInput" onclick="laydate({elem: '#actTime'});"></input>
+				</div>
+			</div>
+			
+			<div class="addActiveBody">
+				<div class="bodyFl"><span class="addSpan"><span class="redTip">*</span>地点</span></div>
+				<div class="bodyFr">
+					<input type="text" id="actPlace" class="addInput"></input>
+				</div>
+			</div>
+			
+			<div class="addActiveBody">
+				<div class="bodyFl"><span class="addSpan"><span class="redTip">*</span>类型</span></div>
+				<div class="bodyFr">
+					<select id="actType" class="addSelect">
+						<option>请选择</option>
+						<option>辩论会</option>
+						<option>演讲</option>
+						<option>放假通知</option>
+						<option>座谈会</option>
+						<option>娱乐活动</option>
+						<option>体育活动</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="addActiveBody">
+				<div class="btFl"><button class="addBt" onclicl="">发布</button></div>
+				<div class="btFr"><button class="addBt" onclick="closeActive()">取消</button></div>				
+			</div>
+		</div>		
 	</div>
 	
 	<div class="control">
@@ -94,5 +199,7 @@
 			<button>活动通知管理</button>
 		</div>
 	</div>
+	
+	<div id="cover" class="cover"></div>
 </body>
 </html>
