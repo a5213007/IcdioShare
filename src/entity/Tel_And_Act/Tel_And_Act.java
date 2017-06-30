@@ -7,25 +7,25 @@ public class Tel_And_Act{
 	@Column(name="id", chineseName="技术及日常活动id",nullAble=false, note="id", type="String", length=14)
 	private String id;
 
-	@Column(name="userID", chineseName="人员ID", nullAble=true, note="人员ID", type="String", length=14)
+	@Column(name="userID", chineseName="人员ID", nullAble=false, note="人员ID", type="String", length=14)
 	private String userID;
 	 
-	@Column(name="releaseDate", chineseName="发布日期", nullAble=true, note="发布日期", type="String", length=-1)
+	@Column(name="releaseDate", chineseName="发布日期", nullAble=false, note="发布日期", type="String", length=-1)
 	private String releaseDate;
 	 
-	@Column(name="title", chineseName="标题", nullAble=true, note="标题", type="String", length=-1)
+	@Column(name="title", chineseName="标题", nullAble=false, note="标题", type="String", length=-1)
 	private String title;
 	 
-	@Column(name="content", chineseName="内容", nullAble=true, note="内容", type="String", length=-1)
+	@Column(name="content", chineseName="内容", nullAble=false, note="内容", type="String", length=-1)
 	private String content;
 	 
 	@Column(name="contentType", chineseName="内容类型", nullAble=true, note="辩论、演讲等(技术发布专属)", type="String", length=-1)
 	private String contentType;
 	 
-	@Column(name="type", chineseName="类型", nullAble=true, note="技术发布或日常活动", type="String", length=-1)
+	@Column(name="type", chineseName="类型", nullAble=false, note="技术发布或日常活动", type="String", length=-1)
 	private String type;
 	 
-	@Column(name="attachment", chineseName="附件", nullAble=false, note="文件形式", type="String", length=-1)
+	@Column(name="attachment", chineseName="附件", nullAble=true, note="文件形式", type="String", length=-1)
 	private String attachment;
 	 
 	@Column(name="state", chineseName="状态", nullAble=true, note="状态", type="String", length=-1)
