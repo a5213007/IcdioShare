@@ -13,7 +13,7 @@ public class CodeGenerate {
 	
 	public static String getPath(String type) throws Exception{
 		//文件真实路径
-        String fileName="D:/angular/workspace/EntityGenerate/config.properties";
+        String fileName="D:/angular/workspace/IcdioShare/config.properties";
         Properties p = new Properties();
         
         InputStream is = new FileInputStream(new File(fileName));
