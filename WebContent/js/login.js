@@ -36,9 +36,9 @@ function Submit() {
 function checkSubmit(data) {
 	if(data['account'].length < 11 || data['account'].length > 11) {
 		alert("账号必须为11位数字！");
-		return true;
+		return false;
 	}
-	return false;
+	return true;
 
 }
 
