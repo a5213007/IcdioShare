@@ -9,16 +9,17 @@ import java.io.StringWriter;
 import java.util.List;
 import java.util.Properties;
 
+import util.sendToHtml.SendToHtml;
+
 public class CodeGenerate {
 	
 	public static String getPath(String type) throws Exception{
 		//文件真实路径
-        String fileName="D:/angular/workspace/IcdioShare/config.properties";
+        String fileName= new CodeGenerate().getClass().getResource("/").getPath()+"/util/config.properties";
         Properties p = new Properties();
-        
+      
         InputStream is = new FileInputStream(new File(fileName));
-		p.load(is);
-		
+		p.load(is);	
 		return p.get(type).toString();
 
     }
