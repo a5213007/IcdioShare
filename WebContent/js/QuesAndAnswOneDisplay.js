@@ -135,8 +135,8 @@ function exitQuestion(){
 
 function addAnswer(id){
 	sessionStorage.questionId = id;
-	$("#answersQues").html($("#ques_1").html().substring(44));
-	$("#answersQues").attr('title', $("#ques_1").html().substring(44));
+	$("#answersQues").html($("#ques_" + id).html().substring(44));
+	$("#answersQues").attr('title', $("#ques_" + id).html().substring(44));
 	$("#cover").css("display", "block");
 	$("#addAnswer").css("display", "block");
 	$("#answerTextarea").val("");

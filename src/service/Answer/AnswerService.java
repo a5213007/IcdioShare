@@ -1,8 +1,12 @@
 package service.Answer;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import oracle.net.aso.q;
 import service.baseService.IBaseService;
 import dao.Answer.AnswerDao;
 
@@ -54,9 +58,16 @@ public class AnswerService implements IBaseService{
 		}		
 	}
 	
-	public List<Map<String, Object>> getInfoByQuestionId(Long questionId){
+	public List<Map<String, Object>> getInfoByQuestionId(Set<Long> questionIdSet){
 		try {
-			return answerDao.getInfoByQuestionId(questionId);
+			Iterator<Long> iterator = questionIdSet.iterator();
+			List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+			
+			while(iterator.hasNext()){
+				List<Map<String, Object>> temp = answerDao.getInfoByQuestionId(iterator.next());
+				list.addAll(temp);
+			}
+			return list;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,8 +1,11 @@
 package service.Tel_And_Act;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import oracle.net.aso.q;
 import service.Answer.AnswerService;
@@ -119,10 +122,14 @@ public class Tel_And_ActService implements IBaseService{
 			
 			List<Map<String, Object>> teyList = tel_and_actDao.getTechnologyAndUserById(id);
 			List<Map<String, Object>> questionList = questionService.getInfoByTechnologyId(id);
+			Set<Long> quesSet = new HashSet<Long>();
+			
+			for (int i = 0; i < questionList.size(); i ++) {
+				quesSet.add(Long.parseLong(questionList.get(i).get("id")+""));
+			}
 			
 			if(questionList.size() != 0){
-				List<Map<String, Object>> answerList = answerService.getInfoByQuestionId(
-						Long.parseLong(questionList.get(0).get("id")+""));
+				List<Map<String, Object>> answerList = answerService.getInfoByQuestionId(quesSet);
 				teyList.addAll(questionList);
 				teyList.addAll(answerList);
 			}
