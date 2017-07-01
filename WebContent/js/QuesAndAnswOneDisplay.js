@@ -7,6 +7,36 @@ $(window).resize(function(){
 		
 });
 
+function addQuestion(){
+	$("#cover").css("display", "block");
+	$("#addQuestion").css("display", "block");
+	$("#questionTextarea").val("");
+}
+
+function exitQuestion(){
+	$("#cover").css("display", "none");
+	$("#addQuestion").css("display", "none");
+}
+
+function addAnswer(id){
+	$("#cover").css("display", "block");
+	$("#addAnswer").css("display", "block");
+	$("#answerTextarea").val("");
+}
+
+function exitAnswer(){
+	$("#cover").css("display", "none");
+	$("#addAnswer").css("display", "none");
+}
+
+function reManager(){
+	window.location.href = "ManagerIndex.html?activeIndex=1&technologyIndex=1";
+}
+
+function exit(){
+	window.location.href = "index.html";
+}
+
 function resizeContent(){
 	var width = $(window).width();
 	if(width < 1000 && width >= 870){

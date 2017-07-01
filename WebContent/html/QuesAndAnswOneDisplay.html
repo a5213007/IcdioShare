@@ -37,45 +37,97 @@ box-shadows与gradients往往都是页面的性能杀手，尤其是在一个元
     尽可能的让动画元素不在文档流中，以减少重排对方加速度快佛挡杀佛绝对是卡积分，完！！！！！</textarea>			
 				</div>				
 			</div>
-			<div class="quesAndAnsw">
-				<div class="separate"></div>
-				<div class="question">
-					<div class="btAnswer">
-						<span class="addQuestion">添加提问</span>
+			
+			<div class="btQuestion">
+				<span class="addQuestion" onclick="addQuestion()">我要提问</span>
+			</div>
+			
+			<div>
+				<div class="quesAndAnsw">
+					<div class="separate"></div>
+					<div class="question">					
+						<div class="theQuestion">
+							<span  class="quesSpan">&nbsp;&nbsp;<span class="redTip">★</span>提问：请问一下那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额？</span>
+						</div>	
+						<div class="theUser">
+							<span class="quesUserSpanFr">2017-06-30</span>
+							<span class="quesUserSpan">小严露</span>
+						</div>	
+						<div class="btAnswer">
+							<span class="answer" onclick="addAnswer('1')">我要回答</span>
+						</div>
 					</div>
-					<div class="theQuestion">
-						<span  class="quesSpan">&nbsp;&nbsp;<span class="redTip">★</span>提问：请问一下那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额？</span>
+					
+					<div class="question">
+						<div class="theQuestion">
+							<span class="quesSpan">&nbsp;&nbsp;<span class="redTip">☆</span>答案1：这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个。</span>
+						</div>
+						<div class="theUser">
+							<span class="quesUserSpanFr">2017-06-30</span>
+							<span class="quesUserSpan">小严露</span>
+						</div>
 					</div>	
-					<div class="theUser">
-						<span class="quesUserSpanFr">2017-06-30</span>
-						<span class="quesUserSpan">小严露</span>
-					</div>	
-					<div class="btAnswer">
-						<span class="addQuestion">回答</span>
-					</div>
 				</div>
-				
-				<div class="question">
-					<div class="theQuestion">
-						<span class="quesSpan">&nbsp;&nbsp;<span class="redTip">☆</span>答案1：这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个。</span>
+				<div class="quesAndAnsw">
+					<div class="separate"></div>
+					<div class="question">			
+						<div class="theQuestion">
+							<span  class="quesSpan">&nbsp;&nbsp;<span class="redTip">★</span>提问：请问一下那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额？</span>
+						</div>	
+						<div class="theUser">
+							<span class="quesUserSpanFr">2017-06-30</span>
+							<span class="quesUserSpan">小严露</span>
+						</div>	
+						<div class="btAnswer">
+							<span class="answer">我要回答</span>
+						</div>
 					</div>
-					<div class="theUser">
-						<span class="quesUserSpanFr">2017-06-30</span>
-						<span class="quesUserSpan">小严露</span>
-					</div>
-				</div>	
+					
+					<div class="question">
+						<div class="theQuestion">
+							<span class="quesSpan">&nbsp;&nbsp;<span class="redTip">☆</span>答案1：这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个这个那个。</span>
+						</div>
+						<div class="theUser">
+							<span class="quesUserSpanFr">2017-06-30</span>
+							<span class="quesUserSpan">小严露</span>
+						</div>
+					</div>	
+				</div>
+			</div>
+						
+		</div>
+		
+		<div class="ret" onclick="reManager()">返回</div>
+		<div class="exit" onclick="exit()">退出</div>
+	</div>
+	
+	<div id="cover" class="cover"></div>
+	<div id="addQuestion" class="AddQuestion">
+		<div class="addTitle">问题</div>
+		<div class="addQuestionDiv"><textarea id="questionTextarea" class="addTextarea"></textarea></div>
+		<div class="addQuestionBody">
+			<div class="btFl"><button class="addBt" onclick="">发布</button></div>
+			<div class="btFr"><button class="addBt" onclick="exitQuestion()">取消</button></div>				
+		</div>
+	</div>
+	<div id="addAnswer" class="addAnswer">
+		<div class="addTitle1">答案</div>
+		<div class="answQues">
+			<span class="quesFl">问题</span>
+			<div class="quesFr" title="我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥">
+				我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥
 			</div>
 		</div>
 		
-		<div class="ret">返回</div>
-		<div class="exit">退出</div>
-	</div>
-	
-	<div class="cover"></div>
-	<div class="AddQuestion">
-		<div class="addTitle">问题</div>
-		<div><textarea class="addTextarea"></textarea></div>
+		<div class="answQues1">
+			<span class="quesFl">答案</span>
+			<textarea class="quesArea" id="answerTextarea"></textarea>
+		</div>
 		
+		<div class="addAnswerBody">
+			<div class="btFl"><button class="addBt" onclick="">发布</button></div>
+			<div class="btFr"><button class="addBt" onclick="exitAnswer()">取消</button></div>				
+		</div>
 	</div>
 </body>
 </html>
