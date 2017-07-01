@@ -2,6 +2,7 @@ package dao.Question;
 
 import java.util.List;
 import java.util.Map;
+
 import dao.baseDao.IBaseDao;
 import util.connectUtil.*;
 import util.operateObject.ObjectToSQL;
@@ -34,5 +35,13 @@ public class QuestionDao extends CommonDAO implements IBaseDao{
 		String sql = "delete from question where id = " + id;
 		executeSql(sql);
 		return 1;
+	}
+	
+	public List<Map<String, Object>>  getInfoByTechnologyId(Long technologyId){
+		String sql = "select question.id, user.id as userID, telAndActID, user.name, questionContent, askDate from" + 
+				" question  left join user on(user.id = question.userID) where telAndActID = " + technologyId;		
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
 	}
 }

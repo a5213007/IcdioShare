@@ -9,12 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import oracle.net.aso.a;
 import net.sf.json.JSONArray;
 import service.Tel_And_Act.Tel_And_ActService;
 import util.sendToHtml.SendToHtml;
-import action.Tel_And_Act.Tel_And_ActAction;
+
 
 /**
  * Servlet implementation class ManageIndexServlet

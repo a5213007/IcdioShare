@@ -1,5 +1,56 @@
 function getTextAreaRow(){
-	resizeContent();
+	var id = GetRequest();
+	
+	if(id['id'] != undefined){
+		$.ajax({
+			type:'post',
+			url:'../servlet/QuesAndAnswServlet',
+			async:false,
+			data:{
+				'id':id['id']
+			},
+			success:function(data){
+				var info = eval(data);
+				var ques = 0;
+				
+				if(info != undefined || info != ""){
+					for(var i = 0; i < info.length; i ++){
+						if(i == 0){
+							$("#title").html(info[i]['title']);
+							$("#user").html(info[i]['user']);
+							$("#releaseDate").html(info[i]['releaseDate']);
+							$("#content").val(info[i]['content']);
+						}else{
+							if(info[i]['questionContent'] != undefined){
+								var display = 
+									'<div><div  id="question_' + info[i]['id'] + '" class="quesAndAnsw">'+
+									'<div class="separate"></div><div class="question"><div class="theQuestion">'+
+									'<span  class="quesSpan">&nbsp;&nbsp;<span class="redTip">★</span>提问：' + 
+									info[i]['questionContent'] + '</span></div><div class="theUser">'+
+									'<span class="quesUserSpanFr">' + info[i]['askDate'] + '</span><span class="quesUserSpan">'+
+									info[i]['name'] + '</span></div><div class="btAnswer"><span class="answer" ' + 
+									'onclick="addAnswer(\'' + info[i]['id'] + '\')">我要回答</span></div></div></div></div>';
+								
+								$("#questionAndAnswer").append(display);								
+							}else {
+								var display = '<div class="question"><div class="theQuestion"><span class="quesSpan">'+
+								'&nbsp;&nbsp;<span class="redTip">☆</span>答案：' + info[i]['answerContent'] + '</div>'+
+								'<div class="theUser"><span class="quesUserSpanFr">' + info[i]['answerDate'] + '</span>'+
+								'<span class="quesUserSpan">' + info[i]['name'] + '</span></div></div>';
+								
+								$("#question_" + info[i]['questionID']).append(display);
+							}
+						}
+					}
+				}
+				
+			},
+			error:function(data){
+				
+			},
+		});
+		resizeContent();
+	}	
 }
 
 $(window).resize(function(){

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import oracle.net.aso.q;
+import service.Answer.AnswerService;
+import service.Question.QuestionService;
 import service.baseService.IBaseService;
 import dao.Tel_And_Act.Tel_And_ActDao;
 
@@ -106,6 +109,29 @@ public class Tel_And_ActService implements IBaseService{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
+	}
+	
+	public List<Map<String, Object>> getTechnologyWithQuestionAndAnswer(Long id){
+		try {
+			QuestionService questionService = new QuestionService();
+			AnswerService answerService = new AnswerService();
+			
+			List<Map<String, Object>> teyList = tel_and_actDao.getTechnologyAndUserById(id);
+			List<Map<String, Object>> questionList = questionService.getInfoByTechnologyId(id);
+			
+			if(questionList.size() != 0){
+				List<Map<String, Object>> answerList = answerService.getInfoByQuestionId(
+						Long.parseLong(questionList.get(0).get("id")+""));
+				teyList.addAll(questionList);
+				teyList.addAll(answerList);
+			}
+			
+			return teyList;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 }

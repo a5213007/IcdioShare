@@ -25,10 +25,10 @@ function loadManager(){
 					var technologyDisplay = "";
 					for(var i = 0; i < info.length; i++) {
 						if(info[i]['type'] == "活动通知")
-							activeDisplay += "<div class='item'><span class='itemFl'>" + info[i]['title'] +
+							activeDisplay += "<div class='item'><span class='itemFl' onclick=''>" + info[i]['title'] +
 							 "</span><span class='itemFr'>" + info[i]['releaseDate'] + "</span></div>";
 						else if(info[i]['type'] == "技术分享")
-							technologyDisplay += "<div class='item'><span class='itemFl'>" + info[i]['title'] +
+							technologyDisplay += "<div class='item'><span class='itemFl' onclick='turnTechnology(" + info[i]['id'] + ")'>" + info[i]['title'] +
 							 "</span><span class='itemFr'>" + info[i]['releaseDate'] + "</span></div>";
 					}
 				}
@@ -184,6 +184,10 @@ function turnToTechnologyPreviousPage() {
 	var pages = eval(sessionStorage.pages);
 	if(parseInt(page['technologyIndex']) > 1 && parseInt(page['technologyIndex']) <= pages[0]['技术分享'])
 		window.location.href = "ManagerIndex.html?activeIndex=" + page['activeIndex'] + "&technologyIndex=" + (parseInt(page['technologyIndex']) - 1);
+}
+
+function turnTechnology(id){
+	window.location.href = "QuesAndAnswOneDisplay.html?id=" + id;
 }
 
 function turnToTechnologyNextPage() {

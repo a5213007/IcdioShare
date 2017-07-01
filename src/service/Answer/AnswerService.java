@@ -2,6 +2,7 @@ package service.Answer;
 
 import java.util.List;
 import java.util.Map;
+
 import service.baseService.IBaseService;
 import dao.Answer.AnswerDao;
 
@@ -51,5 +52,14 @@ public class AnswerService implements IBaseService{
 			e.printStackTrace();
 			throw new Exception();
 		}		
+	}
+	
+	public List<Map<String, Object>> getInfoByQuestionId(Long questionId){
+		try {
+			return answerDao.getInfoByQuestionId(questionId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
