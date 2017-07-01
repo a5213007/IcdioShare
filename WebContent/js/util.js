@@ -37,3 +37,13 @@ function getId(){
 	ID += date.toString().substring(22,24);
 	return ID;
 }
+
+function getNowTime(){
+	var date = new Date();
+	var time = date.toString().substring(11, 15) + "/";
+	time += (parseInt(date.getMonth()) + 1) + "/"; //月
+	time += date.getDate() + " ";  //天
+	time += date.toString().substring(16,18) + ":" + date.toString().substring(19,21) + ":";
+	time += date.toString().substring(22,24);
+	return time;
+}

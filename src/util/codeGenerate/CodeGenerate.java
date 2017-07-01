@@ -15,9 +15,10 @@ public class CodeGenerate {
 	
 	public static String getPath(String type) throws Exception{
 		//文件真实路径
-        String fileName= new CodeGenerate().getClass().getResource("/").getPath()+"/util/config.properties";
+        String fileName= new String((new CodeGenerate().getClass().getResource("/").getPath() +
+        		"util/config.properties").getBytes("UTF-8"),"utf-8");
         Properties p = new Properties();
-      
+
         InputStream is = new FileInputStream(new File(fileName));
 		p.load(is);	
 		return p.get(type).toString();

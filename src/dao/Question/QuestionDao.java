@@ -11,6 +11,8 @@ public class QuestionDao extends CommonDAO implements IBaseDao{
 
 	public int save(Object object) throws Exception{
 		String sql = ObjectToSQL.toSqlForSave(object);
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
 		executeSql(sql);
 		return 1;		
 	}
@@ -39,7 +41,8 @@ public class QuestionDao extends CommonDAO implements IBaseDao{
 	
 	public List<Map<String, Object>>  getInfoByTechnologyId(Long technologyId){
 		String sql = "select question.id, user.id as userID, telAndActID, user.name, questionContent, askDate from" + 
-				" question  left join user on(user.id = question.userID) where telAndActID = " + technologyId;		
+				" question  left join user on(user.id = question.userID) where telAndActID = " + technologyId +
+				" ORDER BY askDate asc";		
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);

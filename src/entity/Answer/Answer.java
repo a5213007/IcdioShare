@@ -19,6 +19,14 @@ public class Answer{
 	@Column(name="answerDate", chineseName="回答时间", nullAble=true, note="回答时间", type="String", length=-1)
 	private String answerDate;
 	 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setQuestionID(String questionID){
 		this.questionID = questionID;	
 	}

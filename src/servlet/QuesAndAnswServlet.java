@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
+import service.Answer.AnswerService;
 import service.Question.QuestionService;
 import service.Tel_And_Act.Tel_And_ActService;
+import util.operateObject.JsonToObject;
 import util.sendToHtml.SendToHtml;
 
 /**
@@ -45,12 +47,37 @@ public class QuesAndAnswServlet extends HttpServlet {
 		response.setContentType("text/html");
 		response.setHeader("Content-type", "text/html;charset=UTF-8");
 		
-		Long technologyId = Long.parseLong(request.getParameter("id")+"");
-		Tel_And_ActService tel_And_ActService = new Tel_And_ActService();
+		if("tid".equals(request.getParameter("type"))){
+			Long technologyId = Long.parseLong(request.getParameter("id")+"");
+			Tel_And_ActService tel_And_ActService = new Tel_And_ActService();
+			
+			List<Map<String, Object>> list = tel_And_ActService.getTechnologyWithQuestionAndAnswer(technologyId);
+			JSONArray json = JSONArray.fromObject(list);
+			SendToHtml.send(json, response);
+		}else if("addQuestion".equals(request.getParameter("type"))) {
+			JSONArray json = JSONArray.fromObject("[" + request.getParameter("object") +"]");
+			
+			try {
+				Object question = JsonToObject.jsonToObj("Question", json);
+				QuestionService questionService = new QuestionService();
+				questionService.save(question);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new ServletException();
+			}
+		}else if("addAnswer".equals(request.getParameter("type"))){
+			JSONArray json = JSONArray.fromObject("[" + request.getParameter("object") +"]");
+			
+			try {
+				Object answer = JsonToObject.jsonToObj("Answer", json);
+				AnswerService answerService = new AnswerService();
+				answerService.save(answer);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new ServletException();
+			}
+		}
 		
-		List<Map<String, Object>> list = tel_And_ActService.getTechnologyWithQuestionAndAnswer(technologyId);
-		JSONArray json = JSONArray.fromObject(list);
-		SendToHtml.send(json, response);
 	}
 
 }

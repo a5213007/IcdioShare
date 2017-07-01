@@ -11,8 +11,7 @@ public class JsonToObject {
 	/**
 	 * 将传来的josn字符串还原成对象
 	 * */
-	public static Object jsonToObj(String actionName, JSONArray json) throws Exception{
-		String entityName = actionName.substring(0, actionName.length() - 6);
+	public static Object jsonToObj(String entityName, JSONArray json) throws Exception{
 		Class clazz = Class.forName("entity." + entityName + "." + entityName);
 		Object object = clazz.newInstance();
 		Map<String, Object> map = (Map<String, Object>) json.get(0);
@@ -21,7 +20,7 @@ public class JsonToObject {
 		for (Field field : fields) {
 			if(field.getName().equals("id")){
 				Method method = hasSetMethod(field, clazz);
-				method.invoke(object, Long.parseLong(map.get("id") + ""));
+				method.invoke(object, map.get("id") + "");
 				
 			}else {			
 				Column column = field.getAnnotation(Column.class);

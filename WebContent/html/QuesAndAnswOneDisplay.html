@@ -113,7 +113,7 @@ box-shadows与gradients往往都是页面的性能杀手，尤其是在一个元
 		<div class="addTitle">问题</div>
 		<div class="addQuestionDiv"><textarea id="questionTextarea" class="addTextarea"></textarea></div>
 		<div class="addQuestionBody">
-			<div class="btFl"><button class="addBt" onclick="">发布</button></div>
+			<div class="btFl"><button class="addBt" onclick="submitQuestion()">发布</button></div>
 			<div class="btFr"><button class="addBt" onclick="exitQuestion()">取消</button></div>				
 		</div>
 	</div>
@@ -121,7 +121,7 @@ box-shadows与gradients往往都是页面的性能杀手，尤其是在一个元
 		<div class="addTitle1">答案</div>
 		<div class="answQues">
 			<span class="quesFl">问题</span>
-			<div class="quesFr" title="我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥">
+			<div id="answersQues" class="quesFr" title="我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥">
 				我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥我那个啥
 			</div>
 		</div>
@@ -132,7 +132,7 @@ box-shadows与gradients往往都是页面的性能杀手，尤其是在一个元
 		</div>
 		
 		<div class="addAnswerBody">
-			<div class="btFl"><button class="addBt" onclick="">发布</button></div>
+			<div class="btFl"><button class="addBt" onclick="submitAnswer()">发布</button></div>
 			<div class="btFr"><button class="addBt" onclick="exitAnswer()">取消</button></div>				
 		</div>
 	</div>

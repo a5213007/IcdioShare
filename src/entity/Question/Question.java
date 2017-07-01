@@ -18,7 +18,15 @@ public class Question{
 	 
 	@Column(name="askDate", chineseName="提问时间", nullAble=true, note="提问时间", type="String", length=-1)
 	private String askDate;
-	 
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setTelAndActID(String telAndActID){
 		this.telAndActID = telAndActID;	
 	}

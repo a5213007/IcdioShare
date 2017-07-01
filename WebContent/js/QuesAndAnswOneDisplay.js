@@ -7,7 +7,7 @@ function getTextAreaRow(){
 			url:'../servlet/QuesAndAnswServlet',
 			async:false,
 			data:{
-				'id':id['id']
+				'id':id['id'], 'type':'tid'
 			},
 			success:function(data){
 				var info = eval(data);
@@ -25,8 +25,8 @@ function getTextAreaRow(){
 								var display = 
 									'<div><div  id="question_' + info[i]['id'] + '" class="quesAndAnsw">'+
 									'<div class="separate"></div><div class="question"><div class="theQuestion">'+
-									'<span  class="quesSpan">&nbsp;&nbsp;<span class="redTip">★</span>提问：' + 
-									info[i]['questionContent'] + '</span></div><div class="theUser">'+
+									'<span id="ques_' + info[i]['id'] + '" class="quesSpan">&nbsp;&nbsp;<span class="redTip">'+
+									'★</span>提问：' + info[i]['questionContent'] + '</span></div><div class="theUser">'+
 									'<span class="quesUserSpanFr">' + info[i]['askDate'] + '</span><span class="quesUserSpan">'+
 									info[i]['name'] + '</span></div><div class="btAnswer"><span class="answer" ' + 
 									'onclick="addAnswer(\'' + info[i]['id'] + '\')">我要回答</span></div></div></div></div>';
@@ -53,6 +53,70 @@ function getTextAreaRow(){
 	}	
 }
 
+function submitQuestion(){
+	var technologyId = GetRequest();
+	var object = {};
+	object['id'] = getId();
+	object['telAndActID'] = technologyId['id'];
+	object['questionContent'] = $("#questionTextarea").val();
+	object['askDate'] = getNowTime();
+	object['userID'] = eval(sessionStorage.user)[0]['id'];
+	
+	if($("#questionTextarea").val().length != 0){
+		$.ajax({
+			type:'post',
+			async:false,
+			url:'../servlet/QuesAndAnswServlet',
+			data:{
+				'type' : 'addQuestion', 'object':JSON.stringify(object) 
+				
+			},
+			success:function(data){
+				exitQuestion();
+				alert("提问成功！");
+				window.location.reload(); 
+			},
+			error:function(data){
+				alert("服务器出错！");
+			},
+		});
+	}else {
+		alert("问题不能为空！");
+	}
+}
+
+function submitAnswer(){
+	var object = {};
+	object['id'] = getId();
+	object['questionID'] = sessionStorage.questionId;
+	object['answerContent'] = $("#answerTextarea").val();
+	object['answerDate'] = getNowTime();
+	object['userID'] = eval(sessionStorage.user)[0]['id'];
+	
+	if($("#answerTextarea").val().length != 0){
+		$.ajax({
+			type:'post',
+			async:false,
+			url:'../servlet/QuesAndAnswServlet',
+			data:{
+				'type' : 'addAnswer', 'object':JSON.stringify(object) 
+				
+			},
+			success:function(data){
+				exitAnswer();
+				alert("回答成功！");
+				sessionStorage.removeItem('questionId');
+				window.location.reload(); 
+			},
+			error:function(data){
+				alert("服务器出错！");
+			},
+		});
+	}else {
+		alert("答案不能为空！");
+	}
+}
+
 $(window).resize(function(){
 	resizeContent();
 		
@@ -70,6 +134,9 @@ function exitQuestion(){
 }
 
 function addAnswer(id){
+	sessionStorage.questionId = id;
+	$("#answersQues").html($("#ques_1").html().substring(44));
+	$("#answersQues").attr('title', $("#ques_1").html().substring(44));
 	$("#cover").css("display", "block");
 	$("#addAnswer").css("display", "block");
 	$("#answerTextarea").val("");

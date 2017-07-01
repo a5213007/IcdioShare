@@ -16,7 +16,7 @@ public class Tel_And_Act{
 	@Column(name="title", chineseName="标题", nullAble=false, note="标题", type="String", length=-1)
 	private String title;
 	 
-	@Column(name="content", chineseName="内容", nullAble=false, note="内容", type="String", length=-1)
+	@Column(name="content", chineseName="内容", nullAble=false, note="内容", type="String", length=8000)
 	private String content;
 	 
 	@Column(name="contentType", chineseName="内容类型", nullAble=true, note="辩论、演讲等(技术发布专属)", type="String", length=-1)
