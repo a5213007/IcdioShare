@@ -51,6 +51,7 @@ function loadActive(){
 }
 
 function submitEvaluation(){
+	var activeId = GetRequest();
 	var object = {};
 	object['id'] = getId();
 	object['telAndActID'] = activeId['id'];
@@ -59,24 +60,26 @@ function submitEvaluation(){
 	object['evalutionDate'] = getNowTime();
 	object['Type'] = 'active';
 	
-	$.ajax({
-		type:'post',
-		async:'false',
-		url:'../servlet/EvaluationServlet',
-		data:{
-			'object': JSON.stringify(object)
-		},
-		success:function(data){
-
-			exitEvaluation();
-			alert("提问成功！");
-			window.location.reload();
-			
-		},
-		error:function(data){
-			alert("服务器访问失败！");
-		},
-	});
+	if($("#evaluationTextarea").val().length != 0){
+		$.ajax({
+			type:'post',
+			async:'false',
+			url:'../servlet/EvaluationServlet',
+			data:{
+				'object': JSON.stringify(object),'info':'addEvaluation'
+			},
+			success:function(data){
+				exitEvaluation();
+				alert("提问成功！");
+				window.location.reload();
+				
+			},
+			error:function(data){
+				alert("服务器访问失败！");
+			},
+		});
+	}
+	
 }
 
 function addEvaluation(){

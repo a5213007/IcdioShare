@@ -21,7 +21,7 @@ function loadManager(){
 				var technologyDisplay = "";
 				for(var i = 0; i < info.length; i++) {
 					if(info[i]['type'] == "活动通知")
-						activeDisplay += "<div class='item'><span class='itemFl' onclick=''>" + info[i]['title'] +
+						activeDisplay += "<div class='item'><span class='itemFl' onclick='turnToActive(" + info[i]['id'] + ")'>" + info[i]['title'] +
 						 "</span><span class='itemFr'>" + info[i]['releaseDate'] + "</span></div>";
 					else if(info[i]['type'] == "技术分享")
 						technologyDisplay += "<div class='item'><span class='itemFl' onclick='turnTechnology(" + info[i]['id'] + ")'>" + info[i]['title'] +
@@ -159,6 +159,10 @@ function turnToTechnologyFirstPage() {
 	var pages = eval(sessionStorage.pages);
 	if(parseInt(page['technologyIndex']) > 1 && parseInt(page['technologyIndex']) <= pages[0]['技术分享'])
 		window.location.href = "ManagerIndex.html?activeIndex=" + page['activeIndex'] + "&technologyIndex=1";
+}
+
+function turnToActive(id){
+	window.location.href = "ActiveOneDisplay.html?id=" + id;
 }
 
 function turnToActivePreviousPage() {
