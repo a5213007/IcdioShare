@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
+import service.Tel_And_Act.Tel_And_ActService;
+import util.sendToHtml.SendToHtml;
 
 /**
  * Servlet implementation class TechnologyServlet
@@ -39,7 +44,15 @@ public class TechnologyServlet extends HttpServlet {
 		response.setContentType("text/html");
 		response.setHeader("Content-type", "text/html;charset=UTF-8");
 		
-		Map<String, String[]> map = request.getParameterMap();
+		if("withQuestionAndAnswer".equals(request.getParameter("info"))){
+			Long technologyId = Long.parseLong(request.getParameter("id")+"");
+			Tel_And_ActService tel_And_ActService = new Tel_And_ActService();
+			
+			List<Map<String, Object>> list = tel_And_ActService.getTechnologyWithQuestionAndAnswer(technologyId);
+			JSONArray json = JSONArray.fromObject(list);
+			SendToHtml.send(json, response);
+		}
+		
 	}
 
 }

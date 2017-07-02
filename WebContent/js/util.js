@@ -15,6 +15,32 @@ function hasPerssions(userId){
 	})
 }
 
+function isLogin(){
+	if(sessionStorage.user == undefined){
+		alert('请先登录！');
+		window.location.href = "login.html";
+	}
+}
+
+function reManager(){
+	window.history.go(-1);
+}
+
+function exit() {
+	sessionStorage.removeItem('user');
+	$.ajax({
+		type : "post",
+		url : "../servlet/ExitLogin",
+		async : false,
+		data :{
+		},
+		success: function(data) {
+			window.location.href="index.html";	
+		},
+		error : function(data){
+		},
+	});
+}
 function GetRequest() {  
 	   var url = location.search; //获取url中"?"符后的字串  
 	   var theRequest = new Object();   

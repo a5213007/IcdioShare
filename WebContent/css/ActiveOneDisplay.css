@@ -71,11 +71,19 @@ body{
 	height:30px;
 	margin:30px 0 40px 0;
 }
+.small{
+	font-size: 16px;
+    font-family: "仿宋";
+    color: red;
+    margin-left: 7%;
+    position: absolute;
+    font-weight: bold;
+}
 .headFl{
 	margin-left:150px;
 	float:left;
 	color:#fff;
-	font-size:20px;
+	font-size:16px;
 	line-height:30px;
 	font-family:"宋体";
 }
@@ -83,7 +91,7 @@ body{
 	margin-right:150px;
 	float:right;
 	color:#fff;
-	font-size:20px;
+	font-size:16px;
 	font-family:"宋体";
 	line-height:30px;
 }
@@ -98,9 +106,150 @@ body{
 	outline:none;
     overflow: hidden;
 }
-
-
-
+.tail{
+	width:80%;
+	color:#fff;
+	font-size:20px;
+	font-family:"宋体";
+	line-height:30px;
+	margin: 10px 0;
+}
+.btEvaluation{
+    width: 80%;
+    height: 30px;	
+}
+.addEvaluation{
+	width:100px;
+	height:30px;
+	cursor:pointer;
+	line-height:30px;
+	font-family:"幼圆";
+	color:#ccc;
+	font-size:25px;
+	text-align:center;	
+}
+.evaluationBody{
+	margin:0 auto;
+   	padding-bottom: 10px;
+    width: 90%;
+    color: #fff;
+    font-size: 20px;
+    font-family: "宋体";
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.separate{
+	width:100%;
+	background-color: rgba(0, 0, 0, 0);
+}
+.evaluation{
+	width: 80%;
+    margin: 20px auto 0 auto;
+    line-height: 25px;
+    font-family: "仿宋";
+    font-size:16px;
+    padding: 0 0 10px 0;
+    padding-top: 10px;	
+}
+.theEvaluation{
+	margin:5px 0;
+}
+.evaSpan{
+	word-break:normal; 
+	width:auto; 
+	display:block; 
+	white-space:pre-wrap;
+	word-wrap : break-word ;
+	overflow: hidden ;	
+}
+.theUser{
+	height:30px;
+	margin:5px 0;
+}
+.UserSpanFr{
+	float:right;
+	padding-left:20px;
+}
+.UserSpan{
+	float:right;
+}
+.redTip{
+	color:red;
+}
+.cover{
+	position: fixed;
+    z-index: 1000;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color:rgba(0, 0, 0, 0.52);
+    display:none;	
+}
+.addEvaluation2{
+    position: fixed;
+    z-index: 1001;
+    top: 15%;
+    bottom: 15%;
+    left: 30%;
+    right: 30%;
+    background-color: rgba(0, 0, 0,0.7);
+    display:none;
+}
+.addTitle{
+	color: #fff;
+    text-align: center;
+    margin: 20px 0 20px 0;
+    font-size: 25px;
+    font-family: "幼圆";	
+}
+.addEvaluationDiv{
+	height:70%;
+	margin-top:20px;
+	margin-bottom:20px;		
+}
+.addTextarea{
+	background: none;
+    width: 70%;
+    position: absolute;
+    z-index: 1009;
+    left: 15%;
+    right: 15%;
+    height: 70%;
+    font-size:18px;
+	font-family:"幼圆";
+	line-height:32px;
+	color:#fff;
+	padding:0 4px;	
+}
+.addEvaluationBody{
+	width:100%;
+	color:#fff;
+	font-family:"幼圆";
+	font-size:18px;
+	height:32px;
+	margin:20px 0 20px 0;	
+}
+.btFl{
+	float:left;
+	padding-left:30%;
+}
+.btFr{
+	float:right;
+	padding-right:30%;
+	
+}
+.addBt{
+	width:100px;
+	height:32px;
+	font-family:"幼圆";
+	line-height:32px;
+	font-size:18px;
+	background:none;
+	border:1px solid #fff;
+	color:#fff;
+	outline:none;
+	cursor:pointer;
+}
 
 
 

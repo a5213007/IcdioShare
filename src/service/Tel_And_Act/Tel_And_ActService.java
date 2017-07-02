@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import oracle.net.aso.e;
 import oracle.net.aso.q;
 import service.Answer.AnswerService;
+import service.Evaluation.EvaluationService;
 import service.Question.QuestionService;
 import service.baseService.IBaseService;
 import dao.Tel_And_Act.Tel_And_ActDao;
@@ -135,6 +137,24 @@ public class Tel_And_ActService implements IBaseService{
 			}
 			
 			return teyList;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public List<Map<String, Object>> getActiveWithEvaluation(Long id){
+		try {
+			EvaluationService evaluationService = new EvaluationService();
+			List<Map<String, Object>> list = tel_and_actDao.getActiveAndUserById(id);
+			
+			if(list.size() != 0){
+				List<Map<String, Object>> evaluationList = evaluationService.getInfoByActiveId(id);
+				list.addAll(evaluationList);
+				return list;
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

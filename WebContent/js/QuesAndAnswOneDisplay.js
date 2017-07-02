@@ -1,19 +1,20 @@
 function getTextAreaRow(){
+	isLogin();
 	var id = GetRequest();
 	
 	if(id['id'] != undefined){
 		$.ajax({
 			type:'post',
-			url:'../servlet/QuesAndAnswServlet',
+			url:'../servlet/TechnologyServlet',
 			async:false,
 			data:{
-				'id':id['id'], 'type':'tid'
+				'id':id['id'], 'info':'withQuestionAndAnswer'
 			},
 			success:function(data){
 				var info = eval(data);
 				var ques = 0;
 				
-				if(info != undefined || info != ""){
+				if(info != undefined && info != ""){
 					for(var i = 0; i < info.length; i ++){
 						if(i == 0){
 							$("#title").html(info[i]['title']);
@@ -145,14 +146,6 @@ function addAnswer(id){
 function exitAnswer(){
 	$("#cover").css("display", "none");
 	$("#addAnswer").css("display", "none");
-}
-
-function reManager(){
-	window.history.go(-1);
-}
-
-function exit(){
-	window.location.href = "index.html";
 }
 
 function resizeContent(){
