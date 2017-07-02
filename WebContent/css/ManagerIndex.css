@@ -15,46 +15,54 @@ body{
 	background-size: 100% 100%;
 }
 .actAndTey{
-	margin: 0 auto 0 auto;
-	width:1160px;
-	height: 672px;
+    width: 80%;
+    height: 100%;
+    position: absolute;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 .activeDis{
-	width:560px;
-	height:560px;
-	margin-top:102px;
-	float:left;
-	background-color: #000;
-    opacity: 0.3;
-}
-.activeDis_cover{
-	width:560px;
-	height:560px;
-	top:102px;
-	float:left;
-	position: absolute
-	
-}
-.TeyDis{
-	width:560px;
-	margin-top:102px;
-	height:560px;
-	float:right;
+    width: 48%;
+    height: 73%;
+    margin-top: 10%;
+    float: left;
     background-color: #000;
     opacity: 0.3;
 }
+.activeDis_cover{
+    height: 73%;
+    margin-top: 10%;
+    float: left;
+    position: absolute;
+    width: 48%;
+	
+}
+#activeDisplay, #technologyDisplay{
+	    height: 78%;
+}
+.TeyDis{
+    margin-top: 10%;
+    /* height: 560px; */
+    float: right;
+    background-color: #000;
+    opacity: 0.3;
+    width: 48%;
+    height: 73%;
+}
 .TeyDis_cover{
-	width:560px;
-	top:102px;
-	height:560px;
-	margin-left: 600px;
-	position: absolute
+    margin-top: 10%;
+    height: 560px;
+    right: 0;
+    position: absolute;
+    width: 48%;
+    height: 73%;
 }
 .exit{
-	position: absolute;
+    position: absolute;
     z-index: 1;
     top: 62px;
-    margin-left: 1120px;
+    /* margin-left: 1120px; */
+    right: 0;
     width: 40px;
     height: 25px;
     font-size: 20px;
@@ -72,7 +80,7 @@ body{
     cursor: pointer;
 }
 .activeDisHead{
-	width:560px;
+	width:100%;
 }
 
 .headSpan{
@@ -87,73 +95,90 @@ body{
 }
 .item{
 	font-family: "幼圆";
-	margin: 24px 0 24px 0;
-	color:#fff;
-	font-size:16px;
-	height:20px;
-	width:100%;
+    /* margin: 24px 0 24px 0; */
+    color: #fff;
+    font-size: 16px;
+    height: 7.6%;
+    width: 100%;
+    /* position: absolute; */
+    /* height: 6%; */
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 .itemFl{
-	cursor:pointer;
-	float:left;
-	margin-left:59px;
+    cursor: pointer;
+    float: left;
+    margin-left: 10%;
 }
 .itemFr{
 	float:right;
-	margin-right:101px;
+	margin-right:10%;
 }
 .add{
-	outline:none;
-	color: #ade2df;
+    outline: none;
+    color: #ade2df;
     font-family: "等线";
     width: 35px;
     height: 20px;
     font-size: 16px;
     position: absolute;
-    margin-bottom: 10px;
-    top: 520px;
+    margin-top: 3%;
+    /* top: 520px; */
     margin-left: 59px;
-    cursor:pointer;
+    cursor: pointer;
 }
 .page{
-	color: #fff;
+    color: #fff;
     font-family: "等线";
     width: 220px;
     height: 20px;
     font-size: 16px;
     position: absolute;
     margin-bottom: 10px;
-    top: 520px;
-    margin-left: 33%;  
+    /* top: 86%; */
+    /* margin-top: 90%; */
+    margin-top: 3%;
+    margin-left: 33%; 
 }
 .logo{
     position: absolute;
-    top: 17px;
-    height: 80px;
+    top: 4%;
+    height: 10%;
     right: 43.5%;
 }
 .control{
-	margin: 20px auto 0 auto;
-	width:1160px;
+    width: 80%;
+    position: absolute;
+    bottom: 1%;
+    left: 10%;
+    height: 10%;
+    right: 10%;
 }
 .mainCtr{
-	width:560px;
-	float:left;
+    width: 48%;
+    float: left;
+	margin-top: 2%;
+    height: 50%;
+    text-align: center;
 }
 .secondCtr{
-	width:560px;
-	float:right;
+    width: 48%;
+    float: right;
+	margin-top: 2%;
+    height: 50%;
+    text-align: center;
 }
 .control button{
-	width:130px;
-	margin-right:6.2px;
-	height:37px;
-	font-size:18px;
-	background:none;
-	color:#bd9e24;
-	border-bottom:none;
-	border-color:#bd9e24;
-	cursor:pointer;
+	width: 22%;
+    margin-right: 6.2px;
+    /* height: 122%; */
+    /* font-size: 2%; */
+    background: none;
+    color: #bd9e24;
+    border-bottom: none;
+    border-color: #bd9e24;
+    cursor: pointer;
+    height: 100%;
 }
 .control button:focus{
 	outline:none;
@@ -176,7 +201,7 @@ body{
     top: 0;
     opacity: 0.4;
 }
-.addActiveCover{
+.add_cover{
     position: absolute;
     z-index: 1001;
     width: 516px;

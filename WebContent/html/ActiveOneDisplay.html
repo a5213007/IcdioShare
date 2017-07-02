@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>日常活动展示</title>
+	<link rel="stylesheet" type="text/css" href="../css/ActiveOneDisplay.css">
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/util.js"></script>
+	<script type="text/javascript" src="../js/ActiveOneDisplay.js"></script>
+</head>
+<body onload="loadActive()">
+	<img class="logo" id="logo" src="../image/ManagerIndex/icdio.png" />
+	<div class="active">
+		<div class="divCover">
+			<div class="title" id="title">放假通知</div>
+			<div class="activeBody">
+				<div class="head">
+					<div class="headFl" id="user">发布人：小严露</div>
+					<div class="headFr" id="releaseDate">发布时间：2017-06-22</div>
+				</div>
+				<div contenteditable=true>
+					<textarea id="content"readonly="readonly" class="content">    学校放假时间为：2017年七月初到八月底，实验室轮休。轮休表如附件所示。暑假期间按正常时间运行，不得无故迟到，有事需请假。
+    学校放假时间为：2017年七月初到八月底，实验室轮休。轮休表如附件所示。暑假期间按正常时间运行，不得无故迟到，有事需请假。
+    学校放假时间为：2017年七月初到八月底，实验室轮休。轮休表如附件所示。暑假期间按正常时间运行，不得无故迟到，有事需请假。
+    
+					</textarea>			
+				</div>				
+			</div>			
+		</div>
+		<div class="ret" onclick="reManager()">返回</div>
+		<div class="exit" onclick="exit()">退出</div>
+	</div>
+</body>
+</html>

@@ -17,8 +17,8 @@ function getTextAreaRow(){
 					for(var i = 0; i < info.length; i ++){
 						if(i == 0){
 							$("#title").html(info[i]['title']);
-							$("#user").html(info[i]['user']);
-							$("#releaseDate").html(info[i]['releaseDate']);
+							$("#user").html("分享者：" + info[i]['user']);
+							$("#releaseDate").html("分享时间：" + info[i]['releaseDate']);
 							$("#content").val(info[i]['content']);
 						}else{
 							if(info[i]['questionContent'] != undefined){
@@ -148,7 +148,7 @@ function exitAnswer(){
 }
 
 function reManager(){
-	window.location.href = "ManagerIndex.html?activeIndex=1&technologyIndex=1";
+	window.history.go(-1);
 }
 
 function exit(){
@@ -183,3 +183,4 @@ function resizeContent(){
 		$("#content").css("height",row * 35);
 	}
 }
+

@@ -1,0 +1,111 @@
+@charset "UTF-8";
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,img,u,i {
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+.backgroundImg{
+	width:100%;
+	height: 100%;
+	position: absolute;
+	z-index: -1;
+	background-size: 100% 100%;
+}
+body{
+	background:url("../image/ManagerIndex/background.png") repeat 0 0;
+}
+.logo{
+    position: absolute;
+    top: 17px;
+    height: 80px;
+    right: 43.5%;
+}
+.active{
+	width:80%;
+	padding-top:120px;
+	margin:0 auto 0 auto;
+}
+.divCover{
+	width:80%;
+	position:absolute;
+	z-index:5;
+	background-color:rgba(0, 0, 0, 0.1);
+	margin-bottom: 25px;
+}
+.title{
+	width: 100%;
+    height: 40px;
+    color: #fff;
+    line-height: 40px;
+    font-size: 25px;
+    font-family: "幼圆";
+    text-align: center;
+    padding: 10px 0;
+}
+.activeBody{
+	width:80%;
+	margin:10px auto 10px auto;
+}
+.ret{
+	position: absolute;
+    z-index: 1;
+    top: 82px;
+    width: 40px;
+    height: 20px;
+    font-size: 20px;
+    color: yellow;
+    cursor: pointer;
+}
+.exit{
+	position: absolute;
+    z-index: 1;
+    top: 82px;
+    margin-left: 77%;
+    width: 40px;
+    height: 20px;
+    font-size: 20px;
+    color: yellow;
+    cursor: pointer;
+}
+.head{
+	height:30px;
+	margin:30px 0 40px 0;
+}
+.headFl{
+	margin-left:150px;
+	float:left;
+	color:#fff;
+	font-size:20px;
+	line-height:30px;
+	font-family:"宋体";
+}
+.headFr{
+	margin-right:150px;
+	float:right;
+	color:#fff;
+	font-size:20px;
+	font-family:"宋体";
+	line-height:30px;
+}
+.content{
+	width:100%;
+	color:#fff;
+	font-size:20px;
+	font-family:"宋体";
+	line-height:30px;
+	background:none;
+	border:none;
+	outline:none;
+    overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
