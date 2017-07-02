@@ -47,14 +47,7 @@ public class QuesAndAnswServlet extends HttpServlet {
 		response.setContentType("text/html");
 		response.setHeader("Content-type", "text/html;charset=UTF-8");
 		
-		if("tid".equals(request.getParameter("type"))){
-			Long technologyId = Long.parseLong(request.getParameter("id")+"");
-			Tel_And_ActService tel_And_ActService = new Tel_And_ActService();
-			
-			List<Map<String, Object>> list = tel_And_ActService.getTechnologyWithQuestionAndAnswer(technologyId);
-			JSONArray json = JSONArray.fromObject(list);
-			SendToHtml.send(json, response);
-		}else if("addQuestion".equals(request.getParameter("type"))) {
+		if("addQuestion".equals(request.getParameter("type"))) {
 			JSONArray json = JSONArray.fromObject("[" + request.getParameter("object") +"]");
 			
 			try {

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>日常活动展示</title>
+	<link rel="stylesheet" type="text/css" href="../css/ActiveOneDisplay.css">
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/util.js"></script>
+	<script type="text/javascript" src="../js/ActiveOneDisplay.js"></script>
+</head>
+<body onload="loadActive()">
+	<img class="logo" id="logo" src="../image/ManagerIndex/icdio.png" />
+	<div class="active">
+		<div class="divCover">
+			<div class="title"><span id="title">放假通知</span><span id="type "class="small">类别：放假通知</span></div>
+			<div class="activeBody">
+				<div class="head">
+					<div class="headFl" id="user">发布人：小严露</div>
+					<div class="headFr" id="releaseDate">发布时间：2017-06-22</div>
+					
+				</div>
+				<div contenteditable=true>
+					<textarea id="content"readonly="readonly" class="content">    学校放假时间为：2017年七月初到八月底，实验室轮休。轮休表如附件所示。暑假期间按正常时间运行，不得无故迟到，有事需请假。
+    学校放假时间为：2017年七月初到八月底，实验室轮休。轮休表如附件所示。暑假期间按正常时间运行，不得无故迟到，有事需请假。
+    学校放假时间为：2017年七月初到八月底，实验室轮休。轮休表如附件所示。暑假期间按正常时间运行，不得无故迟到，有事需请假。
+    
+					</textarea>			
+				</div>
+				
+				<div class="tail">
+					<div class="tailFl" id="activePlace">活动地点：实验室</div>
+					<div class="taildFl" id="activeDate">活动时间：2017-07-22</div>					
+				</div>	
+				
+				<div class="btEvaluation">
+					<span class="addEvaluation" onclick="addEvaluation()">发表评价</span>
+				</div>			
+			</div>	
+			
+			<div id="allEvaluation">
+				<!-- <div id="evaluation_1">
+					<div class="evaluationBody">
+						<div class="separate"></div>
+						<div class="evaluation">					
+							<div class="theEvaluation">
+								<span  class="evaSpan">&nbsp;&nbsp;<span class="redTip">★</span>那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额？</span>
+							</div>	
+							<div class="theUser">
+								<span class="UserSpanFr">2017-06-30</span>
+								<span class="UserSpan">小严露</span>
+							</div>	
+						</div>					
+					</div>
+				</div>
+				<div id="evaluation_1">
+					<div class="evaluationBody">
+						<div class="separate"></div>
+						<div class="evaluation">					
+							<div class="theEvaluation">
+								<span  class="evaSpan">&nbsp;&nbsp;<span class="redTip">★</span>那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额那个这个额我那个不会不知道额啊额？</span>
+							</div>	
+							<div class="theUser">
+								<span class="UserSpanFr">2017-06-30</span>
+								<span class="UserSpan">小严露</span>
+							</div>	
+						</div>					
+					</div>
+				</div> -->
+			</div>
+					
+		</div>
+		<div class="ret" onclick="reManager()">返回</div>
+		<div class="exit" onclick="exit()">退出</div>
+	</div>
+	
+	<div id="cover" class="cover"></div>
+	<div id="addEvaluation" class="addEvaluation2">
+		<div class="addTitle">评论</div>
+		<div class="addEvaluationDiv"><textarea id="evaluationTextarea" class="addTextarea"></textarea></div>
+		<div class="addEvaluationBody">
+			<div class="btFl"><button class="addBt" onclick="submitEvaluation()">发布</button></div>
+			<div class="btFr"><button class="addBt" onclick="exitEvaluation()">取消</button></div>				
+		</div>
+	</div>
+</body>
+</html>

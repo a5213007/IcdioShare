@@ -15,46 +15,54 @@ body{
 	background-size: 100% 100%;
 }
 .actAndTey{
-	margin: 0 auto 0 auto;
-	width:1160px;
-	height: 672px;
+    width: 80%;
+    height: 100%;
+    position: absolute;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 .activeDis{
-	width:560px;
-	height:560px;
-	margin-top:102px;
-	float:left;
-	background-color: #000;
-    opacity: 0.3;
-}
-.activeDis_cover{
-	width:560px;
-	height:560px;
-	top:102px;
-	float:left;
-	position: absolute
-	
-}
-.TeyDis{
-	width:560px;
-	margin-top:102px;
-	height:560px;
-	float:right;
+    width: 48%;
+    height: 73%;
+    margin-top: 11%;
+    float: left;
     background-color: #000;
     opacity: 0.3;
 }
+.activeDis_cover{
+    height: 73%;
+    margin-top: 11%;
+    float: left;
+    position: absolute;
+    width: 48%;
+	
+}
+#activeDisplay, #technologyDisplay{
+	    height: 78%;
+}
+.TeyDis{
+    margin-top: 11%;
+    /* height: 560px; */
+    float: right;
+    background-color: #000;
+    opacity: 0.3;
+    width: 48%;
+    height: 73%;
+}
 .TeyDis_cover{
-	width:560px;
-	top:102px;
-	height:560px;
-	margin-left: 600px;
-	position: absolute
+    margin-top: 11%;
+    height: 560px;
+    right: 0;
+    position: absolute;
+    width: 48%;
+    height: 73%;
 }
 .exit{
-	position: absolute;
+    position: absolute;
     z-index: 1;
-    top: 62px;
-    margin-left: 1120px;
+    top: 11%;
+    /* margin-left: 1120px; */
+    right: 0;
     width: 40px;
     height: 25px;
     font-size: 20px;
@@ -64,7 +72,7 @@ body{
 .mime{
     position: absolute;
     z-index: 1;
-    top: 62px;
+    top: 11%;
     width: 200px;
     height: 25px;
     font-size: 20px;
@@ -72,88 +80,119 @@ body{
     cursor: pointer;
 }
 .activeDisHead{
-	width:560px;
+	width:100%;
 }
 
 .headSpan{
-	position:relative;
-	color: #fff;
-	font-size: 20px;
-	margin:0 auto 25px auto;
-	display: block;
-	width: 81px;	
-	line-height: 40px;
-	font-family: "幼圆";
+    position: relative;
+    color: #fff;
+    font-size: 20px;
+    /* margin: 0 auto 25px auto; */
+    display: block;
+    width: 25%;
+    text-align: center;
+    line-height: 40px;
+    font-family: "幼圆";
+    margin-left: 37%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .item{
 	font-family: "幼圆";
-	margin: 24px 0 24px 0;
-	color:#fff;
-	font-size:16px;
-	height:20px;
-	width:100%;
+    /* margin: 24px 0 24px 0; */
+    color: #fff;
+    font-size: 16px;
+    height: 7.6%;
+    width: 100%;
+    /* position: absolute; */
+    /* height: 6%; */
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 .itemFl{
-	cursor:pointer;
-	float:left;
-	margin-left:59px;
+    cursor: pointer;
+    float: left;
+    margin-left: 10%;
+    width: 40%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .itemFr{
-	float:right;
-	margin-right:101px;
+    float: right;
+    margin-right: 10%;
+    width: 37%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: right;
 }
 .add{
-	outline:none;
-	color: #ade2df;
+    outline: none;
+    color: #ade2df;
     font-family: "等线";
     width: 35px;
     height: 20px;
     font-size: 16px;
     position: absolute;
-    margin-bottom: 10px;
-    top: 520px;
+    margin-top: 3%;
+    /* top: 520px; */
     margin-left: 59px;
-    cursor:pointer;
+    cursor: pointer;
 }
 .page{
-	color: #fff;
+    color: #fff;
     font-family: "等线";
     width: 220px;
     height: 20px;
     font-size: 16px;
     position: absolute;
     margin-bottom: 10px;
-    top: 520px;
-    margin-left: 33%;  
+    /* top: 86%; */
+    /* margin-top: 90%; */
+    margin-top: 3%;
+    margin-left: 33%; 
 }
 .logo{
     position: absolute;
-    top: 17px;
-    height: 80px;
+    top: 1%;
+    height: 10%;
     right: 43.5%;
 }
 .control{
-	margin: 20px auto 0 auto;
-	width:1160px;
+    width: 80%;
+    position: absolute;
+    bottom: 1%;
+    left: 10%;
+    height: 10%;
+    right: 10%;
 }
 .mainCtr{
-	width:560px;
-	float:left;
+    width: 48%;
+    float: left;
+	margin-top: 2%;
+    height: 50%;
+    text-align: center;
 }
 .secondCtr{
-	width:560px;
-	float:right;
+    width: 48%;
+    float: right;
+	margin-top: 2%;
+    height: 50%;
+    text-align: center;
 }
 .control button{
-	width:130px;
-	margin-right:6.2px;
-	height:37px;
-	font-size:18px;
-	background:none;
-	color:#bd9e24;
-	border-bottom:none;
-	border-color:#bd9e24;
-	cursor:pointer;
+	width: 22%;
+    margin-right: 6.2px;
+    /* height: 122%; */
+    /* font-size: 2%; */
+    background: none;
+    color: #bd9e24;
+    border-bottom: none;
+    border-color: #bd9e24;
+    cursor: pointer;
+    height: 100%;
 }
 .control button:focus{
 	outline:none;
@@ -176,7 +215,7 @@ body{
     top: 0;
     opacity: 0.4;
 }
-.addActiveCover{
+.add_cover{
     position: absolute;
     z-index: 1001;
     width: 516px;
@@ -189,136 +228,214 @@ body{
     display:none;
 }
 .addTechnologyCover{
-	display:none;
+    display:none;
     position: absolute;
     z-index: 1001;
-    width: 516px;
-    height: 530px;
+    width: 52%;
+    height: 70%;
     top: 126px;
-    margin-left: 324px;
+    /* margin-left: 324px; */
     background-color: #000;
     opacity: 0.7;
     box-shadow: 1px 1px 20px 6px #fff;
+    left: 24%;
+    right: 24%;
+    top: 15%;
+    bottom: 15%;
+}
+.addActiveCover{
+	display: none;
+    position: absolute;
+    z-index: 1001;
+    width: 52%;
+    height: 96%;
+    background-color: #000;
+    opacity: 0.7;
+    box-shadow: 1px 1px 20px 6px #fff;
+    left: 24%;
+    right: 24%;
+    top: 2%;
+    bottom: 2%;
 }
 .addActive{
-	position: absolute;
+    position: absolute;
     z-index: 1002;
-    width: 516px;
-    height: 630px;
-    top: 87px;
-    margin-left: 324px;
-    display:none;
+    width: 52%;
+    height: 96%;
+	display: none;
+    left: 24%;
+    right: 24%;
+    top: 2%;
+    bottom: 2%;
 }
 .addTechnology{
 	position: absolute;
     z-index: 1002;
-    width: 516px;
-    height: 530px;
-    top: 126px;
-    margin-left: 324px;
+    width: 52%;
+    height: 70%;
     display:none;
+    left: 24%;
+    right: 24%;
+    top: 15%;
+    bottom: 15%;
 }
 .addActiveHead{
-	width:100%;
-	color:#fff;
-	font-family:"幼圆";
-	font-size:20px;
-	line-height:40px;
-	margin:10px 0 10px 0;
+    width: 100%;
+    height: 7%;
+    color: #fff;
+    font-family: "幼圆";
+    font-size: 20px;
+    line-height: 40px;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 .addActiveBody{
-	width:100%;
-	color:#fff;
-	font-family:"幼圆";
-	font-size:18px;
-	height:32px;
-	margin:20px 0 20px 0;
+    width: 100%;
+    color: #fff;
+    font-family: "幼圆";
+    font-size: 18px;
+    /* LINE-HEIGHT: normal; */
+   height: 8%;
 }
 .addActiveBody2{
 	width:100%;
 	color:#fff;
 	font-family:"幼圆";
 	font-size:18px;
-	height:280px;
-	margin:20px 0 20px 0;
+    height:60%;
+}
+.addActiveBody3{
+    width: 100%;
+    color: #fff;
+    font-family: "幼圆";
+    font-size: 18px;
+    height: 8%;
+    bottom: 13%;
+    position: absolute;
+    z-index: 1007;
+}
+.addActiveBody4{
+    width: 100%;
+    color: #fff;
+    font-family: "幼圆";
+    font-size: 18px;
+    height: 7%;
+    bottom: 4%;
+    position: absolute;
+    z-index: 1007;
+}
+.addActiveBody5{
+	width: 100%;
+    color: #fff;
+    font-family: "幼圆";
+    font-size: 18px;
+    height: 53%;
 }
 .addSpan{
-	line-height: 32px;
-	padding-left:25px;
+    padding-left: 35%;
 }
 .addInput{
-	width:403px;
-	background:none;
-	border:1px solid #fff;
-	color:#fff;
-	font-size:18px;
-	line-height:32px;
-	height:32px;
-	margin-right:25px;
-	padding:0 4px;
+    width: 85%;
+    background: none;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 18px;
+    line-height: 32px;
+    height: 94%;
+    /* margin-right: 25px; */
+    margin: 1% 0;
+    padding: 0 4px;
+    /* line-height: 162%; */
+    margin-left: 0;
 }
 .redTip{
 	color:red;
 }
 .addSelect{
-	width:413px;
-	background:none;
-	border:1px solid #fff;
-	color:#fff;
-	font-size:18px;
-	line-height:32px;
-	height:32px;
-	margin-right:25px;
-	padding:0 4px;
+    width: 87%;
+    background: none;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 18px;
+    line-height: 32px;
+    height: 100%;
+    /* margin-right: 25px; */
+    padding: 0 4px;
 }
 .addSelect:focus{
 	background:#000;
 }
 .addTextarea{
-	width:403px;
-	background:none;
-	border:1px solid #fff;
-	color:#fff;
-	font-size:18px;
-	font-family:"幼圆";
-	line-height:32px;
-	height:280px;
-	margin-right:25px;
-	padding:0 4px;
-	resize:none;
+    width: 85%;
+    background: none;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 18px;
+    font-family: "幼圆";
+    line-height: 32px;
+    height: 100%;
+    margin-right: 25px;
+    padding: 0 4px;
+    resize: none;
+}
+.addTextarea2{
+	width: 85%;
+    background: none;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 18px;
+    font-family: "幼圆";
+    line-height: 32px;
+    height: 102%;
+    margin-right: 25px;
+    padding: 0 4px;
+    resize: none;
 }
 .addFile{
-	width:200px;
-	margin-left:155px;
-	height:32px;
-	font-family:"幼圆";
-	line-height:32px;
-	outline:none;
-	position:absolute;
-	z-index:1008;
-	opacity:0;
+    width: 40%;
+    margin-left: 30%;
+    height: 80%;
+    font-family: "幼圆";
+    line-height: 32px;
+    outline: none;
+    position: absolute;
+    z-index: 1010;
+    opacity: 0;
 }
 .fileCover{
-	width:200px;
-	margin-left:155px;
-	height:32px;
-	font-family:"幼圆";
-	line-height:32px;
-	outline:none;
-	background:none;
-	position:absolute;
-	z-index:1005;
-	border:1px solid #fff;	
+    width: 40%;
+    margin-left: 30%;
+    height: 80%;
+    font-family: "幼圆";
+    line-height: 32px;
+    outline: none;
+    background: none;
+    position: absolute;
+    z-index: 1005;
+    border: 1px solid #fff;	
 }
 .bodyFl{
-	float:left;
+    float: left;
+    width: 20%;
+    margin: 3% 0 0 0;
+    height: 44%;
 }
 .bodyFr{
-	float:right;
+    float: left;
+    width: 80%;
+    margin-top: 1%;
+    height: 70%;
+}
+.bodyFr2{
+	float: right;
+    width: 80%;
+    height: 90%;
+    margin: 1% 0;
+    margin-top: 3%;
 }
 .btFl{
-	float:left;
-	padding-left:30%;
+    float: left;
+    padding-left: 30%;
 }
 .btFr{
 	float:right;

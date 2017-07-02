@@ -21,7 +21,15 @@ public class Evaluation{
 	 
 	@Column(name="Type", chineseName="类型", nullAble=true, note="类型", type="String", length=-1)
 	private String Type;
-	 
+	 	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setTelAndActID(String telAndActID){
 		this.telAndActID = telAndActID;	
 	}

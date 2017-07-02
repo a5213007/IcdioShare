@@ -8,48 +8,62 @@ import dao.Evaluation.EvaluationDao;
 public class EvaluationService implements IBaseService{
 	private EvaluationDao evaluationDao = new EvaluationDao();
 
-	public int save(Object object) throws Exception{
+	public int save(Object object) {
 		try {
 			return evaluationDao.save(object);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new Exception();
-		}				
+			
+		}	
+		return -1;
 	}
 	
-	public int update(Object object) throws Exception{		
+	public int update(Object object) {		
 		try {
 			return evaluationDao.update(object);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new Exception();
+			
 		}
+		return -1;
 	}
 	
-	public List<Map<String, Object>> getAllInfo() throws Exception{
+	public List<Map<String, Object>> getAllInfo() {
 		try {
 			return evaluationDao.getAllInfo();	
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new Exception();
+			
 		}
+		return null;
 	}
 	
-	public List<Map<String, Object>> getInfoById(Long id) throws Exception{		
+	public List<Map<String, Object>> getInfoById(Long id){		
 		try {
 			return evaluationDao.getInfoById(id);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new Exception();
+
 		}
+		return null;
 	}
 	
-	public int delete(Long id) throws Exception{
+	public int delete(Long id){
 		try {
 			return evaluationDao.delete(id);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new Exception();
-		}		
+		}
+		return -1;
+	}
+	
+	public List<Map<String, Object>>  getInfoByActiveId(Long id){
+		try {
+			return evaluationDao.getInfoByActiveId(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 }

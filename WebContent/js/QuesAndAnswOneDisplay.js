@@ -1,24 +1,25 @@
 function getTextAreaRow(){
+	isLogin();
 	var id = GetRequest();
 	
 	if(id['id'] != undefined){
 		$.ajax({
 			type:'post',
-			url:'../servlet/QuesAndAnswServlet',
+			url:'../servlet/TechnologyServlet',
 			async:false,
 			data:{
-				'id':id['id'], 'type':'tid'
+				'id':id['id'], 'info':'withQuestionAndAnswer'
 			},
 			success:function(data){
 				var info = eval(data);
 				var ques = 0;
 				
-				if(info != undefined || info != ""){
+				if(info != undefined && info != ""){
 					for(var i = 0; i < info.length; i ++){
 						if(i == 0){
 							$("#title").html(info[i]['title']);
-							$("#user").html(info[i]['user']);
-							$("#releaseDate").html(info[i]['releaseDate']);
+							$("#user").html("分享者：" + info[i]['user']);
+							$("#releaseDate").html("分享时间：" + info[i]['releaseDate']);
 							$("#content").val(info[i]['content']);
 						}else{
 							if(info[i]['questionContent'] != undefined){
@@ -147,14 +148,6 @@ function exitAnswer(){
 	$("#addAnswer").css("display", "none");
 }
 
-function reManager(){
-	window.location.href = "ManagerIndex.html?activeIndex=1&technologyIndex=1";
-}
-
-function exit(){
-	window.location.href = "index.html";
-}
-
 function resizeContent(){
 	var width = $(window).width();
 	if(width < 1000 && width >= 870){
@@ -183,3 +176,4 @@ function resizeContent(){
 		$("#content").css("height",row * 35);
 	}
 }
+
