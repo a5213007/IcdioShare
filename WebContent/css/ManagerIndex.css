@@ -582,8 +582,8 @@ body{
 .changeInfo {
 	height: 36px;
 	border: 1px solid #6caecc;
-	margin-left: 40%;
-    width: 8%;
+	margin-left: 55%;
+    width: 10%;
     text-align: center;
     line-height: 36px;
     cursor: pointer;
@@ -594,7 +594,7 @@ body{
 }
 
 .Changebg2 {
-	background-color: none;
+	background: none;
 	color: white;
 }
 

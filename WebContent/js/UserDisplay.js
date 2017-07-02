@@ -2,18 +2,13 @@
  * 
  */
 function init() {
-	if(sessionStorage.user == undefined){
-		alert('请先登录！');
-		window.location.href = "login.html";
-	}
-	else {
-		var user = eval(sessionStorage.user);
-		$('#account').val(user[0]['account']);
-		$('#name').val(user[0]['name']);
-		$('#sex').val(user[0]['sex']);
-		$('#age').val(user[0]['age']);
-		$('#phoneNum').val(user[0]['phoneNum']);
-	}
+	isLogin();
+	var user = eval(sessionStorage.user);
+	$('#account').val(user[0]['account']);
+	$('#name').val(user[0]['name']);
+	$('#sex').val(user[0]['sex']);
+	$('#age').val(user[0]['age']);
+	$('#phoneNum').val(user[0]['phoneNum']);
 }
 
 function changeButton() {
