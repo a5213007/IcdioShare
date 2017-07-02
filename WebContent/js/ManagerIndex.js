@@ -5,7 +5,7 @@ function loadManager(){
 	}
 	else {
 		var user = eval(sessionStorage.user);
-		$("#name").html('欢迎你，<a>' + user[0]['name'] + '</a>');
+		$("#name").html('欢迎你，<a onclick="turnToUserInfo()">' + user[0]['name'] + '</a>');
 
 		var page = GetRequest();
 		$.ajax ({
@@ -271,4 +271,8 @@ function exit() {
 		error : function(data){
 		},
 	});
+}
+
+function turnToUserInfo() {
+	window.location.href="UserDisplay.html";
 }

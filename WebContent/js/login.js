@@ -1,4 +1,5 @@
-function turnToLogin(){
+
+	function turnToLogin(){
 	window.location.href = "login.html";
 }
 
@@ -34,7 +35,11 @@ function Submit() {
 }
 
 function checkSubmit(data) {
-	if(data['account'].length < 11 || data['account'].length > 11) {
+	if(data['account'].length == 0 || data['account'] == undefined || data['account'] == ''){
+		alert("账号密码不能为空！");
+		return false;
+	}
+	else if(data['account'].length < 11 || data['account'].length > 11) {
 		alert("账号必须为11位数字！");
 		return false;
 	}
@@ -61,3 +66,10 @@ function isLogin() {
 		window.location.href = 'ManagerIndex.html?activeIndex=1&technologyIndex=1';
 	}
 }
+
+function submitByEnter() {
+	if(event.keyCode == "13") {
+		Submit();
+	}
+}
+

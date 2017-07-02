@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>icdio分享平台</title>
+<link rel="stylesheet" type="text/css" href="../css/ManagerIndex.css">
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/UserDisplay.js"></script>
+</head>
+<body onload="init()">
+	<img class="background_Img" src="../image/ManagerIndex/background.png">
+	<img class="userDisplay_logo" id="logo" src="../image/ManagerIndex/icdio.png" />	
+	<div class="userDisplay">
+		<div class="userDisplay_divCover">
+			<div class="userDisplay_title" id="title">信息查看</div>
+			<div class="userDisplay_technologyBody">
+				<div class="userDisplay_li" style="padding-top: 5%">
+					<div class="userDisplay_span">账号</div>
+					<div class="userDisplay_text">
+						<input id="account" class="userDisplay_input userDisplay_inputBorder1" type="text" name="account" class="userDisplay_text" disabled>
+					</div>
+				</div>
+				<div class="userDisplay_li">
+					<div class="userDisplay_span">姓名</div>
+					<div class="userDisplay_text">
+						<input id="name" class="userDisplay_input userDisplay_inputBorder1" type="text" name="name" class="userDisplay_text" disabled>
+					</div>
+				</div>
+				<div class="userDisplay_li">
+					<div class="userDisplay_span">性别</div>
+					<div class="userDisplay_text">
+						<input id="sex" class="userDisplay_input userDisplay_inputBorder1" type="text" name="sex" class="userDisplay_text" disabled>
+					</div>
+				</div>
+				<div class="userDisplay_li">
+					<div class="userDisplay_span">年龄</div>
+					<div class="userDisplay_text">
+						<input id="age" class="userDisplay_input userDisplay_inputBorder1" type="text" name="age" class="userDisplay_text" disabled>
+					</div>
+				</div>
+				<div class="userDisplay_li">
+					<div class="userDisplay_span">电话</div>
+					<div class="userDisplay_text">
+						<input id="phoneNum" class="userDisplay_input userDisplay_inputBorder1" type="text" name="phoneNum" class="userDisplay_text" disabled>
+					</div>
+				</div>
+				<div class="userDisplay_li UserDisplay_buttons">
+					<button class="changeInfo Changebg2" id="changeInfo" onclick="changeButton()">修改信息</button>
+					<button class="insure Changebg2 displayNone" id="insure" onclick="changeButton()">确认</button>
+					<button class="return Changebg2 displayNone" id="return" onclick="User_return()">返回</button>
+				</div>
+			</div>			
+		</div>
+		<div class="userDisplay_ret" onclick="reManager()">返回</div>
+		<div class="userDisplay_exit" onclick="exit()">退出</div>
+	</div>
+</body>
+</html>
