@@ -38,7 +38,7 @@ public class Tel_And_ActDao extends CommonDAO implements IBaseDao{
 	}
 	
 	public List<Map<String, Object>> getAllActiveInfo() throws Exception{
-		String sql = "select * from v_active" + "where state = '已同意'";
+		String sql = "select * from v_active" + " where state = '已同意'";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
