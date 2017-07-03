@@ -2,6 +2,7 @@ package service.User;
 
 import java.util.List;
 import java.util.Map;
+
 import service.baseService.IBaseService;
 import dao.User.UserDao;
 
@@ -15,6 +16,24 @@ public class UserService implements IBaseService{
 			e.printStackTrace();
 			throw new Exception();
 		}				
+	}
+	
+	public int updateTo(Map<String, Object> map) throws Exception{		
+		try {
+			return userDao.updateTo(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception();
+		}
+	}
+	
+	public int updatePd(String account, String password) throws Exception{		
+		try {
+			return userDao.updatePd(account,password);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception();
+		}
 	}
 	
 	public int update(Object object) throws Exception{		

@@ -21,39 +21,61 @@
 						<input id="account" class="userDisplay_input userDisplay_inputBorder1" type="text" name="account" class="userDisplay_text" disabled>
 					</div>
 				</div>
+				<div class="tip" id="AccountTip"></div>
 				<div class="userDisplay_li">
 					<div class="userDisplay_span">姓名</div>
 					<div class="userDisplay_text">
-						<input id="name" class="userDisplay_input userDisplay_inputBorder1" type="text" name="name" class="userDisplay_text" disabled>
+						<input id="name" onblur="checkName()" class="userDisplay_input userDisplay_inputBorder1" type="text" name="name" class="userDisplay_text" disabled>
 					</div>
 				</div>
+				<div class="tip" id="nameTip"></div>
 				<div class="userDisplay_li">
 					<div class="userDisplay_span">性别</div>
 					<div class="userDisplay_text">
-						<input id="sex" class="userDisplay_input userDisplay_inputBorder1" type="text" name="sex" class="userDisplay_text" disabled>
+						<input id="sex" onblur="checkSex()" class="userDisplay_input userDisplay_inputBorder1" type="text" name="sex" class="userDisplay_text" disabled>
 					</div>
 				</div>
+				<div class="tip" id="sexTip"></div>
 				<div class="userDisplay_li">
 					<div class="userDisplay_span">年龄</div>
 					<div class="userDisplay_text">
-						<input id="age" class="userDisplay_input userDisplay_inputBorder1" type="text" name="age" class="userDisplay_text" disabled>
+						<input id="age" onblur="checkAge()" class="userDisplay_input userDisplay_inputBorder1" type="text" name="age" class="userDisplay_text" disabled>
 					</div>
 				</div>
+				<div class="tip" id="ageTip"></div>
 				<div class="userDisplay_li">
 					<div class="userDisplay_span">电话</div>
 					<div class="userDisplay_text">
-						<input id="phoneNum" class="userDisplay_input userDisplay_inputBorder1" type="text" name="phoneNum" class="userDisplay_text" disabled>
+						<input id="phoneNum" onblur="checkPhoneNum()" class="userDisplay_input userDisplay_inputBorder1" type="text" name="phoneNum" class="userDisplay_text" disabled>
 					</div>
 				</div>
+				<div class="tip" id="phoneNumTip"></div>
 				<div class="userDisplay_li UserDisplay_buttons">
 					<button class="changeInfo Changebg2" id="changeInfo" onclick="changeButton()">修改信息</button>
-					<button class="insure Changebg2 displayNone" id="insure" onclick="changeButton()">确认</button>
+					<button class="changePd Changebg2" id="changePd" onclick="changePd()">修改密码</button>
+					<button class="insure Changebg2 displayNone" id="insure" onclick="submit()">确认</button>
 					<button class="return Changebg2 displayNone" id="return" onclick="User_return()">返回</button>
 				</div>
 			</div>			
 		</div>
 		<div class="userDisplay_ret" onclick="reManager()">返回</div>
 		<div class="userDisplay_exit" onclick="exit()">退出</div>
+	</div>
+	<div class="modifyPassword displayNone" id="pdFrame">
+		<div class="modifyPasswordFr" style="margin-top: 22%;">
+			<div class="modifyPasswordLabel">新密码</div>
+			<input id="newPd" onkeyup="checkPassword()" maxlength="18" class="modifyPasswordInput" type="password" name="password">
+		</div>
+		<div class="pdTip" id="newPdTip"></div>
+		<div  class="modifyPasswordFr">
+			<div class="modifyPasswordLabel">重复密码</div>
+			<input id="rePd" onblur="checkPdIsEqual()" maxlength="18" class="modifyPasswordInput" type="password" name="password">
+		</div>
+		<div class="pdTip"  id="rePdTip"></div>
+		<div class="pdButton">
+			<button class="pdInsure" id="pdInsure" onclick="pdSubmit()">确认</button>
+			<button class="pdReturn" id="pdReturn" onclick="pdReturn()">返回</button>
+		</div>
 	</div>
 </body>
 </html>

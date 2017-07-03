@@ -2,6 +2,7 @@ package dao.User;
 
 import java.util.List;
 import java.util.Map;
+
 import dao.baseDao.IBaseDao;
 import util.connectUtil.*;
 import util.operateObject.ObjectToSQL;
@@ -49,5 +50,23 @@ public class UserDao extends CommonDAO implements IBaseDao{
 	public List<Map<String, Object>> getInfoByAccount(String account) throws Exception{
 		String sql = "select * from user where account = " + account;
 		return excuteQuery(sql, null);
+	}
+	
+	public int updateTo(Map<String, Object> map) throws Exception{
+		String sql = "update user set name='" + map.get("name") + "',sex = '" + 
+				map.get("sex") + "',age = '" + map.get("age") + "',phoneNum = '"
+				+map.get("phoneNum") + "' where account = '" + map.get("account") + "'";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		executeSql(sql);
+		return 1;
+	}
+	
+	public int updatePd(String account, String password) throws Exception{
+		String sql = "update user set password='" + password + "' where account = " +account + "";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		executeSql(sql);
+		return 1;
 	}
 }
