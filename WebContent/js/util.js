@@ -15,6 +15,10 @@ function hasPerssions(userId){
 	})
 }
 
+function goWhere(tip){
+	window.location.href = tip + ".html";
+}
+
 //将编码转换成字符  
 function utf8ToChar(str) {  
     var iCode, iCode1, iCode2;  

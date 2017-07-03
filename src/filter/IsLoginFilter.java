@@ -51,8 +51,8 @@ public class IsLoginFilter implements Filter {
 			chain.doFilter(request, response);
 		}else if(url.indexOf("/servlet/") == 0){
 			
-//			if(session == null || session.getAttribute("user") == null)
-//				return ;
+			if(session == null || session.getAttribute("user") == null)
+				return ;
 			
 			chain.doFilter(request, response);
 		}else {
