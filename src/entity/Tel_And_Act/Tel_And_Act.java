@@ -36,7 +36,15 @@ public class Tel_And_Act{
 	 
 	@Column(name="activePlace", chineseName="活动地点", nullAble=true, note="活动地点", type="String", length=-1)
 	private String activePlace;
-	 
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setUserID(String userID){
 		this.userID = userID;	
 	}

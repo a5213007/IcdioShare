@@ -15,6 +15,15 @@ function hasPerssions(userId){
 	})
 }
 
+//将编码转换成字符  
+function utf8ToChar(str) {  
+    var iCode, iCode1, iCode2;  
+    iCode = parseInt("0x" + str.substr(1, 2));  
+    iCode1 = parseInt("0x" + str.substr(4, 2));  
+    iCode2 = parseInt("0x" + str.substr(7, 2));  
+    return String.fromCharCode(((iCode & 0x0F) << 12) | ((iCode1 & 0x3F) << 6) | (iCode2 & 0x3F));  
+} 
+
 function isLogin(){
 	if(sessionStorage.user == undefined){
 		alert('请先登录！');

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.Evaluation.EvaluationService;
+import util.operateObject.JsonToObject;
 import net.sf.json.JSONArray;
 
 /**
@@ -42,7 +44,15 @@ public class EvaluationServlet extends HttpServlet {
 		
 		if("addEvaluation".equals(request.getParameter("info"))){
 			JSONArray json = JSONArray.fromObject("[" + request.getParameter("object") + "]");
-			
+			try {
+				Object object = JsonToObject.jsonToObj("Evaluation", json);
+				EvaluationService evaluationService = new EvaluationService();
+				evaluationService.save(object);
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				throw new ServletException();
+			}
 		}
 	}
 

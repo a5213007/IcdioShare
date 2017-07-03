@@ -1,25 +1,35 @@
 package service.Tel_And_Act;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import oracle.net.aso.e;
-import oracle.net.aso.q;
 import service.Answer.AnswerService;
 import service.Evaluation.EvaluationService;
 import service.Question.QuestionService;
 import service.baseService.IBaseService;
+import util.operateObject.Tool;
 import dao.Tel_And_Act.Tel_And_ActDao;
+import entity.Tel_And_Act.Tel_And_Act;
 
 public class Tel_And_ActService implements IBaseService{
 	private Tel_And_ActDao tel_and_actDao = new Tel_And_ActDao();
 
 	public int save(Object object) throws Exception{
 		try {
+			//将英文双引号转化为中文双引号		
+			((Tel_And_Act)object).setTitle(Tool.replace(((Tel_And_Act)object).getTitle()));
+			((Tel_And_Act)object).setContent(Tool.replace(((Tel_And_Act)object).getContent()));
+			
+			if("活动通知".equals(((Tel_And_Act)object).getType())){
+				((Tel_And_Act)object).setActivePlace(Tool.replace(((Tel_And_Act)object).getActivePlace()));
+			}
+			
+			//增加状态
+			((Tel_And_Act)object).setState("已提交");
+			
 			return tel_and_actDao.save(object);
 		} catch (Exception e) {
 			e.printStackTrace();

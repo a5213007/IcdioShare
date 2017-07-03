@@ -11,6 +11,8 @@ public class EvaluationDao extends CommonDAO implements IBaseDao{
 
 	public int save(Object object) throws Exception{
 		String sql = ObjectToSQL.toSqlForSave(object);
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);	
 		executeSql(sql);
 		return 1;		
 	}

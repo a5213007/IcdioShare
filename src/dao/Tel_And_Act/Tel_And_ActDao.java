@@ -11,6 +11,8 @@ public class Tel_And_ActDao extends CommonDAO implements IBaseDao{
 
 	public int save(Object object) throws Exception{
 		String sql = ObjectToSQL.toSqlForSave(object);
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
 		executeSql(sql);
 		return 1;		
 	}
@@ -45,14 +47,16 @@ public class Tel_And_ActDao extends CommonDAO implements IBaseDao{
 	} 
 	
 	public List<Map<String, Object>> getAllActiveInfoByIndex(int index) throws Exception{
-		String sql = "select * from v_active where state = '已同意' limit " + (index - 1) * 10 + ",10";
+		String sql = "select * from v_active where state = '已同意' order by releaseDate desc  limit " 
+				+ (index - 1) * 10 + ",10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	} 
 	
 	public List<Map<String, Object>> getAllTechnologyByIndex(int index) throws Exception{
-		String sql = "select * from v_technology where state = '已提交' limit " + (index - 1) * 10 + ",10";
+		String sql = "select * from v_technology where state = '已提交' order by releaseDate desc limit " 
+				+ (index - 1) * 10 + ",10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);

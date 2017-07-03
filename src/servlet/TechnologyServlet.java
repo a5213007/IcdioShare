@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
 import service.Tel_And_Act.Tel_And_ActService;
+import util.operateObject.JsonToObject;
 import util.sendToHtml.SendToHtml;
 
 /**
@@ -51,6 +52,16 @@ public class TechnologyServlet extends HttpServlet {
 			List<Map<String, Object>> list = tel_And_ActService.getTechnologyWithQuestionAndAnswer(technologyId);
 			JSONArray json = JSONArray.fromObject(list);
 			SendToHtml.send(json, response);
+		}else if("addTechnology".equals(request.getParameter("info"))){
+			JSONArray json = JSONArray.fromObject("[" + request.getParameter("object") + "]");
+			try {
+				Object object = JsonToObject.jsonToObj("Tel_And_Act", json);
+				Tel_And_ActService tel_And_ActService = new Tel_And_ActService();
+				tel_And_ActService.save(object);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new ServletException();
+			}						
 		}
 		
 	}

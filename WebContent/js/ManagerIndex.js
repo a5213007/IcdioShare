@@ -253,8 +253,72 @@ function ini(type){
 }
 
 function submitTechnology(){
-	
+	if($('#teyTitle').val().length != 0 && $('#teyContent').val().length != 0){
+		var object = {};
+		object['id'] = getId();
+		object['title'] = $('#teyTitle').val();
+		object['content'] = $('#teyContent').val();
+		object['userID'] = eval(sessionStorage.user)[0]['id'];
+		object['releaseDate'] = getNowTime();
+		object['type'] = '技术分享';
+
+		$.ajax({
+			type:'post',
+			async:false,
+			url:'../servlet/TechnologyServlet',
+			data:{
+				'info':'addTechnology', 'object' : JSON.stringify(object)
+			},
+			success:function(data){
+				closeTechnology();
+				alert("新增技术分享成功！");
+				window.location.reload();
+			},
+			error:function(data){
+				alert('服务器访问失败！');
+			},
+		})	
+	}else {
+		alert("尚有必填项未填，请填写完毕！");
+	}
 }
+
+function submitActive(){
+	if($('#actTitle').val().length != 0 && $('#actContent').val().length != 0 && $('#actType').val() != "请选择"){
+		var object = {};
+		object['id'] = getId();
+		object['title'] = $('#actTitle').val();
+		object['content'] = $('#actContent').val();
+		object['userID'] = eval(sessionStorage.user)[0]['id'];
+		object['releaseDate'] = getNowTime();
+		object['type'] = '日常活动';
+		object['contentType'] = $('#actType').val();
+		object['activeDate'] = $('#actTime').val();
+		object['activePlace'] = $('#actPlace').val();
+
+		$.ajax({
+			type:'post',
+			async:false,
+			url:'../servlet/TechnologyServlet',
+			data:{
+				'info':'addTechnology', 'object' : JSON.stringify(object)
+			},
+			success:function(data){
+				closeTechnology();
+				alert("新增活动通知成功！请联系管理员审批！");
+				window.location.reload();
+			},
+			error:function(data){
+				alert('服务器访问失败！');
+			},
+		})			
+	}else if($('#actType').val() == "请选择") {
+		alert("请选择类型！");
+	}else {
+		alert("尚有必填项未填，请填写完毕！");
+	}
+}
+
 
 function turnToUserInfo() {
 	window.location.href="UserDisplay.html";

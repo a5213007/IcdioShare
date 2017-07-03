@@ -27,11 +27,12 @@ function loadActive(){
 						}else {
 							var display = '<div id="evaluation_' + info[i]['id'] + 
 							'"><div class="evaluationBody"><div class="separate"></div>'+
-							'<div class="theEvaluation"><span  class="evaSpan">&nbsp;&nbsp;'+
-							'<span class="redTip">★</span>' + info[i]['evaluationContent'] + 
-							'</span></div><div class="theUser"><span class="UserSpanFr">'+
-							info[i]['evalutionDate'] +'</span><span class="UserSpan">'+
-							info[i]['name'] + '</span></div></div></div></div>';
+							'<div class="evaluation"><div class="theEvaluation"><span'+
+							' class="evaSpan">&nbsp;&nbsp;<span class="redTip">★</span>' +
+							info[i]['evaluationContent'] + '</span></div><div class="theUser">'+
+							'<span class="UserSpanFr">'+ info[i]['evalutionDate'] +
+							'</span><span class="UserSpan">'+ info[i]['name'] + 
+							'</span></div></div></div></div></div>';
 													
 							$("#allEvaluation").append(display);
 						}
@@ -70,7 +71,7 @@ function submitEvaluation(){
 			},
 			success:function(data){
 				exitEvaluation();
-				alert("提问成功！");
+				alert("评价成功！");
 				window.location.reload();
 				
 			},

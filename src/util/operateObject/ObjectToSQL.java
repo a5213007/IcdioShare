@@ -27,8 +27,11 @@ public class ObjectToSQL {
 				sqlArg += method.invoke(object, null) + ",";
 			}else{
 				Column column = field.getAnnotation(Column.class);
-				sql += column.name() + ",";	
-				if(column.type().equals("String"))
+				sql += column.name() + ",";
+				
+				if(method.invoke(object, null) == null){
+					sqlArg += "null,";
+				}else if(column.type().equals("String"))
 					sqlArg += "\"" + method.invoke(object, null) + "\",";
 				else 
 					sqlArg += method.invoke(object, null) + ",";
