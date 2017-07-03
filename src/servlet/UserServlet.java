@@ -47,6 +47,7 @@ public class UserServlet extends HttpServlet {
 		String type = request.getParameter("type");
 		if ("changeInfo".equals(type)) {
 			JSONArray json = JSONArray.fromObject("[" + request.getParameter("data") + "]");
+			@SuppressWarnings("unchecked")
 			Map<String, Object> data = (Map<String, Object>)json.get(0);
 			try {
 				userService.updateTo(data);

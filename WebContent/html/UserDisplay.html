@@ -63,12 +63,12 @@
 	</div>
 	<div class="modifyPassword displayNone" id="pdFrame">
 		<div class="modifyPasswordFr" style="margin-top: 22%;">
-			<div class="modifyPasswordLabel">新密码</div>
+			<div class="modifyPasswordLabel"><span style="color: red">*</span>新密码</div>
 			<input id="newPd" onkeyup="checkPassword()" maxlength="18" class="modifyPasswordInput" type="password" name="password">
 		</div>
 		<div class="pdTip" id="newPdTip"></div>
 		<div  class="modifyPasswordFr">
-			<div class="modifyPasswordLabel">重复密码</div>
+			<div class="modifyPasswordLabel"><span style="color: red">*</span>重复密码</div>
 			<input id="rePd" onblur="checkPdIsEqual()" maxlength="18" class="modifyPasswordInput" type="password" name="password">
 		</div>
 		<div class="pdTip"  id="rePdTip"></div>

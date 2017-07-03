@@ -39,7 +39,7 @@ body{
     width: 40px;
     height: 20px;
     font-size: 20px;
-    color: yellow;
+    color: lightblue;
     cursor: pointer;
 }
 .exit{
@@ -50,7 +50,7 @@ body{
     width: 40px;
     height: 20px;
     font-size: 20px;
-    color: yellow;
+    color: lightblue;
     cursor: pointer;
 }
 .title{

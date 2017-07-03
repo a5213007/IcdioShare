@@ -38,12 +38,12 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 }
 
 .login_img {
-	height: 8%;
-    width: 22%;
-    padding-left: 39%;
-    padding-right: 39%;
-    margin-bottom: 5%;
-    margin-top: 1%;
+    height: 18%;
+    width: 48%;
+    padding-left: 28%;
+    padding-right: 23%;
+    margin-bottom: 14%;
+    margin-top: 7%;
 }
 
 .login_div {
@@ -107,13 +107,13 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 }
 
 .login_button {
-	width: 40%;
-	height: 33%;
-	margin-left: 30%;
-	margin-right: 30%;
-	margin-top: 5%;
-	margin-bottom: 5%;
-	cursor: pointer;
+    width: 64%;
+    height: 10%;
+    margin-left: 23%;
+    margin-right: 12%;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    cursor: pointer;
 }
 
 
