@@ -41,7 +41,7 @@
 				<button class="btFind">查找</button>
 			</div>
 		</div>
-		<div class="bodyTable">
+		<div id="displayTable" class="bodyTable">
 			<table id="table" class="table" cellspacing="0" cellpadding="5">
 				<tr class="controlTh controlTh2">
 					<td>活动标题</td><td>流程id</td><td>发布人</td><td>发布时间</td><td>操作</td>					
@@ -119,11 +119,11 @@
 			</table>
 		</div>		
 		<div class="bodyPage">
-			<span>首页</span>
-			<span>上一页</span>
-			<span>1</span><span>/</span><span>2</span>
-			<span>下一页</span>
-			<span>尾页</span>
+			<span class="page">首页</span>
+			<span class="page">上一页</span>
+			<span id="nowPage">1</span><span>/</span><span id="allPage">2</span>
+			<span class="page">下一页</span>
+			<span class="page">尾页</span>
 		</div>
 	</div>
 	
