@@ -166,6 +166,7 @@ function pdReturn() {
 }
 
 function changePd() {
+	$('#cover').css('display','block');
 	$('#changePd').addClass('displayNone');
 	$('#changeInfo').addClass('displayNone');
 	$('#pdFrame').removeClass('displayNone');
