@@ -1,5 +1,4 @@
-
-	function turnToLogin(){
+function turnToLogin(){
 	window.location.href = "login.html";
 }
 
@@ -61,7 +60,7 @@ function checkPassword() {
 		$('#password_tip').html("");
 }
 
-function isLogin() {
+function alreadyLogin() {
 	if (sessionStorage.user != undefined) {
 		window.location.href = 'ManagerIndex.html?activeIndex=1&technologyIndex=1';
 	}

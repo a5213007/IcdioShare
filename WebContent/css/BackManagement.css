@@ -184,6 +184,12 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     font-size: 1vw;
     padding-left: 1%;	
 }
+
+.btFind:hover {
+    background-color: #5bc0de;
+    color: white;
+}
+
 .select{
     float: left;
     width: 25%;
@@ -376,5 +382,14 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 .selTail button:hover{
 	color:#000;
 	background-color: #fff;
+}
+
+.page{
+    color:black;
+}
+
+.page:hover {
+    color:#e35e40;
+    text-decoration: underline;
 }
 
