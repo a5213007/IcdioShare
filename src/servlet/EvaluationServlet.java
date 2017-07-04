@@ -45,6 +45,7 @@ public class EvaluationServlet extends HttpServlet {
 		response.setContentType("text/html");
 		response.setHeader("Content-type", "text/html;charset=UTF-8");
 		
+		//添加评论
 		if("addEvaluation".equals(request.getParameter("info"))){
 			JSONArray json = JSONArray.fromObject("[" + request.getParameter("object") + "]");
 			try {
@@ -56,10 +57,13 @@ public class EvaluationServlet extends HttpServlet {
 				e.printStackTrace();
 				throw new ServletException();
 			}
+			
+		//后台评论展示
 		}else if("display".equals(request.getParameter("info"))){
 			int page = Integer.parseInt(request.getParameter("page")+"");
+			Long userId = Long.parseLong(request.getParameter("userId") + "");
 			EvaluationService evaluationService = new EvaluationService();
-			List<Map<String, Object>> list = evaluationService.getInfoByPage(page);
+			List<Map<String, Object>> list = evaluationService.getInfoByPage(page, userId);
 			
 			if(list != null){
 				JSONArray json = JSONArray.fromObject(list);

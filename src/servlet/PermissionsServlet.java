@@ -55,8 +55,14 @@ public class PermissionsServlet extends HttpServlet {
 				SendToHtml.send(json, response);
 			}
 		}else if("getPermissions".equals(request.getParameter("info"))){
+			Long id = Long.parseLong(request.getParameter("id") + "");
 			PermissionsService permissionsService = new PermissionsService();
+			List<Map<String, Object>> list = permissionsService.hasPerssions(id);
 			
+			if(list != null){
+				JSONArray json = JSONArray.fromObject(list);
+				SendToHtml.send(json, response);
+			}
 		}
 	}
 

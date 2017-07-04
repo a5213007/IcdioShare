@@ -7,12 +7,14 @@ import java.util.Map;
 import java.util.Set;
 
 import oracle.net.aso.q;
+import service.Permissions.PermissionsService;
 import service.baseService.IBaseService;
 import dao.Answer.AnswerDao;
 
 public class AnswerService implements IBaseService{
 	private AnswerDao answerDao = new AnswerDao();
-
+	private PermissionsService permissionsService = new PermissionsService();
+	
 	public int save(Object object) throws Exception{
 		try {
 			return answerDao.save(object);
@@ -30,20 +32,7 @@ public class AnswerService implements IBaseService{
 			throw new Exception();
 		}
 	}
-	
-	public List<Map<String, Object>> getInfoByPage(int page){
-		try {
-			List<Map<String, Object>> answerList = answerDao.getPageInfo(page);		
-			List<Map<String, Object>> pageList = answerDao.getAllInfoPage();
-			
-			answerList.add(pageList.get(0));
-			return answerList;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
+
 	
 	public List<Map<String, Object>> getAllInfo(){
 		try {
@@ -51,6 +40,32 @@ public class AnswerService implements IBaseService{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
+	}
+	
+	//跳页（通过当前页获取数据）
+	public List<Map<String, Object>> getInfoByPage(int page, Long userId){
+		try {
+			if(permissionsService.hasPerssions("AnswerCtr", userId) || permissionsService.hasPerssions("AnswerCtr_display", userId)){
+				List<Map<String, Object>> evaluationList = answerDao.getInfoByPageAdmin(page);		
+				List<Map<String, Object>> pageList = answerDao.getAdminInfoPage();
+			
+				evaluationList.add(pageList.get(0));
+				return evaluationList;
+				
+			//没有权限的只能查看自己的	
+			}else {
+				List<Map<String, Object>> evaluationList =  answerDao.getInfoByPageUser(page, userId);
+				
+				evaluationList.add(answerDao.getUserInfoPage(userId).get(0));
+				
+				return evaluationList;
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 	

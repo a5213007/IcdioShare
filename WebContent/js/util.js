@@ -1,5 +1,8 @@
 function hasPerssions(type){
-	var perssions = eval(sessionStorage.user)[0]['sign'];
+	if(sessionStorage.permissions == undefined || sessionStorage.permissions == "[]")
+		return true;
+	
+	var perssions = eval(sessionStorage.permissions)[0]['sign'];
 	for(var i = 0; i < perssions.length; i++){
 		if(type == perssions[i])
 			return true;
@@ -14,11 +17,11 @@ function getPermissions(){
 		url:'../servlet/PermissionsServlet',
 		async:false,
 		data:{
-			'info':'getPermissions'
+			'info':'getPermissions','id':eval(sessionStorage.user)[0]['id']
 		},
 		success:function(data){
-			if(eval(data) != undefined || eval(data) != ""){
-				sessionStorage.permissions = eval(data);
+			if(eval(data) != undefined && eval(data) != "" && eval(data).length != 0){
+				sessionStorage.permissions = JSON.stringify(eval(data));
 			}
 		},
 		error:function(data){
