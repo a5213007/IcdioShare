@@ -16,7 +16,7 @@ function hasPerssions(userId){
 }
 
 function goWhere(tip){
-	window.location.href = tip + ".html";
+	window.location.href = tip + ".html?block=main";
 }
 
 //将编码转换成字符  

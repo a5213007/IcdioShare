@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>后台管理</title>
+	<link rel="stylesheet" type="text/css" href="../css/BackManagement.css">
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/laydate.js"></script>
+	<script type="text/javascript" src="../js/util.js"></script>
+	<script type="text/javascript" src="../js/BackManagement.js"></script>
+</head>
+<body onload="loadBackManagement()">
+	<div class="head">
+		<div><img class="logo" alt="icdio" src="../image/Manager/logo.png"></div>
+		<div class="exit" onclick="exit()">退出</div>
+	</div>
+	<div class="leftBody">
+		<div class="top"></div>
+		<div class="item" onclick="goBlock('权限管理')"><span></span><span class="itemFr">权限管理</span></div>
+		<div class="item" onclick="goBlock('角色管理')"><span></span><span class="itemFr">角色管理</span></div>
+		<div class="item" onclick="goBlock('人员信息管理')"><span></span><span class="itemFr">人员信息管理</span></div>
+		<div class="item" onclick="goBlock('流程管理')"><span></span><span class="itemFr">流程管理</span></div>
+		<div class="item" onclick="goBlock('评论管理')"><span></span><span class="itemFr">评论管理</span></div>
+		<div class="item" onclick="goBlock('问题答案管理')"><span></span><span class="itemFr">问题答案管理</span></div>
+		<div class="item" onclick="goBlock('技术分享管理')"><span></span><span class="itemFr">技术分享管理</span></div>
+		<div class="item" onclick="goBlock('活动通知管理')"><span></span><span class="itemFr">活动通知管理</span></div>
+		<div class="item" onclick="Return()"><span></span><span class="itemFr" onclick="">返回前台</span></div>
+	</div>
+	
+	<div id="title" class="title">权限管理</div>
+	
+	<div id="displayModel" class="rightBody">
+		<div class="bodyHead">
+			<div class="flAdd">
+				<div id="btAddInfo" class="add">新增</div>
+			</div>
+			<div class="frFind">
+				<input class="find" type="text"/>
+				<select class="select">
+					<option>请选择</option>
+				</select>
+				<button class="btFind">查找</button>
+			</div>
+		</div>
+		<div class="bodyTable">
+			<table id="table" class="table" cellspacing="0" cellpadding="5">
+				<tr class="controlTh">
+					<td>活动标题</td><td>流程id</td><td>发布人</td><td>发布时间</td><td>操作</td>					
+				</tr>
+				<tr>
+					<td>XXXXXXXXxxxxxxxxxxxXXXXXXXXXXXXXXXX</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td>小明</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td class="controlTh"><span class="control">同意</span><span class="control">不同意</span></td>
+				</tr>
+				<tr class="otherTr">
+					<td>XXXXXXXXxxxxxxxxxxxXXXXXXXXXXXXXXXX</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td>小明</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td class="controlTh"><span class="control">同意</span><span class="control">不同意</span></td>
+				</tr>
+				<tr>
+					<td>XXXXXXXXxxxxxxxxxxxXXXXXXXXXXXXXXXX</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td>小明</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td class="controlTh"><span class="control">同意</span><span class="control">不同意</span></td>
+				</tr>
+				<tr class="otherTr">
+					<td>XXXXXXXXxxxxxxxxxxxXXXXXXXXXXXXXXXX</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td>小明</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td class="controlTh"><span class="control">同意</span><span class="control">不同意</span></td>
+				</tr>
+				<tr>
+					<td>XXXXXXXXxxxxxxxxxxxXXXXXXXXXXXXXXXX</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td>小明</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td class="controlTh"><span class="control">同意</span><span class="control">不同意</span></td>
+				</tr>
+				<tr class="otherTr">
+					<td>XXXXXXXXxxxxxxxxxxxXXXXXXXXXXXXXXXX</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td>小明</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td class="controlTh"><span class="control">同意</span><span class="control">不同意</span></td>
+				</tr>
+				<tr>
+					<td>XXXXXXXXxxxxxxxxxxxXXXXXXXXXXXXXXXX</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td>小明</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td class="controlTh"><span class="control">同意</span><span class="control">不同意</span></td>
+				</tr>
+				<tr class="otherTr">
+					<td>XXXXXXXXxxxxxxxxxxxXXXXXXXXXXXXXXXX</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td>小明</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td class="controlTh"><span class="control">同意</span><span class="control">不同意</span></td>
+				</tr>
+				<tr>
+					<td>XXXXXXXXxxxxxxxxxxxXXXXXXXXXXXXXXXX</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td>小明</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td class="controlTh"><span class="control">同意</span><span class="control">不同意</span></td>
+				</tr>
+				<tr class="otherTr">
+					<td>XXXXXXXXxxxxxxxxxxxXXXXXXXXXXXXXXXX</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td>小明</td>
+					<td>XXXXXXXXXXXXX</td>
+					<td class="controlTh"><span class="control">同意</span><span class="control">不同意</span></td>
+				</tr>
+			</table>
+		</div>		
+		<div class="bodyPage"></div>
+	</div>
+	
+	<div id="addEditModel" class="rightBody">
+		<div class="inputBody">
+			<div class="addInput1"><label class="lab1">姓名</label><input class="input1" type="text"/></div>
+			<div class="addInput2"><label class="lab2">姓名</label><input class="input2" type="text"/></div>
+			<div class="addInput1"><label class="lab1">姓名</label><input class="input1" type="text"/></div>
+			<div class="addInput2"><label class="lab2">姓名</label><input class="input2" type="text"/></div>
+			<div class="addInput1"><label class="lab1">姓名</label><input class="input1" type="text"/></div>
+			<div class="addInput2"><label class="lab2">姓名</label><input class="input2" type="text"/></div>
+			<div class="addInput1"><label class="lab1">姓名</label><input class="input1" type="text"/></div>
+			<div class="addInput2"><label class="lab2">姓名</label><input class="input2" type="text"/></div>
+			<div class="addInput1"><label class="lab1">姓名</label><input class="input1" type="text"/></div>
+			<div class="addInput2"><label class="lab2">姓名</label><input class="input2" type="text"/></div>
+			<div class="addInput1"><label class="lab1">姓名</label><input class="input1" type="text"/></div>
+		
+			<div class="tail">
+				<button class="btSure">确定</button>
+				<button class="btRe">返回</button>
+			</div>	
+		</div>	
+	</div>
+	<div id="cover" class="cover"></div>
+	<div id="sel" class="sel">
+		<div class="selTitle">选择角色</div>
+		<div class="selBody">
+			<div class="itemSel">
+				<input class="checkbox" type="checkbox" name="aa" value="1"/>
+				<span class="itemSpan" title="学生拥有xxx的权限">学生</span>
+			</div>
+			<div class="itemSel">
+				<input class="checkbox" type="checkbox" name="aa" value="2"/>
+				<span class="itemSpan" title="学生拥有xxx的权限">学生</span>
+			</div>
+			<div class="itemSel">
+				<input class="checkbox" type="checkbox" name="aa" value="3"/>
+				<span class="itemSpan" title="学生拥有xxx的权限">学生</span>
+			</div>
+			<div class="itemSel">
+				<input class="checkbox" type="checkbox" name="aa" value="4"/>
+				<span class="itemSpan" title="学生拥有xxx的权限">学生</span>
+			</div>
+		</div>
+		
+		<div class="selTail">
+			<button class="selSure" onclick="aa()">确定</button>
+			<script>
+			function aa(){
+				 var a= $("input[type='checkbox']:checked");
+				 var b = "";
+				 for(var i = 0; i < a.length; i ++){
+					 if(i == (a.length - 1))
+						 b += a[i].value;
+					 else
+					 	b += a[i].value + ",";
+				 }
+				 alert(b);
+
+			}
+			</script>
+			<button class="selQuit">取消</button>
+		</div>
+	</div>
+</body>
+</html>

@@ -8,6 +8,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 	position:fixed;
 	width:100%;
 	height:8%;
+	border: 0.01em solid #ccc;
 }
 .leftBody{
     top: 8%;
@@ -130,11 +131,10 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     float: left;
     margin-top: 6%;
     width: 10%;
-    height: 36%;
+    height: 35%;
     line-height: 2.5;
     font-size: 1vw;
     text-align: center;
-
     margin-left: 5.68%;
 }
 .add{
@@ -165,7 +165,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 .select{
     float: left;
     width: 25%;
-    height: 100%;
+    height: 94%;
     font-size: 1vw;
     padding-left: 1%;	
 }
@@ -178,7 +178,169 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     background: none;
     outline:none;
 }
+#displayModel, #addEditModel, #title, #sel, #cover{
+	display:none;
+}
 
-
-
+.addInput1{
+    float: left;
+    width: 49.8%;
+    height: 12%;
+    position: relative
+}
+.addInput2{
+    float: right;
+    width: 49.8%;
+    height: 12%;
+    position: relative
+}
+.inputBody{
+    margin-top: 5%;
+    height: 80%;
+}
+.lab1{
+    position: absolute;
+    margin-left: 35%;
+    margin-top: 5%;
+    font-size: 0.9vw;
+}
+.lab2{
+    position: absolute;
+    margin-left: 5%;
+    margin-top: 5%;
+    font-size: 0.9vw;
+}
+.input1{
+    margin-left: 42%;
+    margin-top: 4.8%;
+    height: 25%;
+    width: 50%;
+    font-size: 0.9vw;
+    line-height: 0.5;
+    padding: 0 0.2%;
+    border: 0.01em solid rgba(0, 0, 0, 0.45)	
+}
+.input2{
+    margin-left: 12%;
+    margin-top: 4.8%;
+    height: 25%;
+    width: 50%;
+    font-size: 0.9vw;
+    line-height: 0.5;
+    padding: 0 0.2%;
+    border: 0.01em solid rgba(0, 0, 0, 0.45)	
+}
+.tail{
+    width: 100%;
+    height: 5%;
+    position: relative;
+    float: right;
+    margin-top: 3%;
+    text-align: center;
+}
+.btSure{
+    margin-right: 5%;
+    width: 5%;
+    height: 90%;
+    background: none;
+    outline: none;
+    cursor: pointer;	
+}
+.btRe{
+    margin-left: 5%;
+    width: 5%;
+    height: 90%;
+    background: none;
+    outline: none;
+    cursor: pointer;	
+}
+.title{
+    position: absolute;
+    top: 12%;
+    left: 55%;
+    font-size: 1.2vw;
+    z-index:1200;	
+}
+.cover{
+	position: fixed;
+    z-index: 1000;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color:rgba(0, 0, 0, 0.52);	
+}
+.sel{
+    top: 25%;
+    position: absolute;
+    z-index: 1009;
+    width: 50%;
+    height: 50%;
+    left: 25%;
+    background-color: rgba(0, 0, 0, 0.47);
+    color: #fff;
+    box-shadow: 1px 1px 20px 6px #fff	
+}
+.selTitle{
+    width: 100%;
+    text-align: center;
+    margin: 1% 0;
+    font-size: 1.8vw;
+    line-height: 2.5;	
+}
+.selBody{
+	width: 90%;
+    height: 70%;
+    padding: 1% 5%;
+}
+.selTail{
+	    width: 100%;
+    text-align: center;
+    height: 10%;
+    padding: 1%;
+}
+.itemSel{
+    width: 25%;
+    float: left;
+    margin: 2% 0;
+    text-align: center;
+    font-size: 1.8vw;
+    line-height: 1.5;
+}
+.checkbox{
+    font-size: 1.8vw;
+    line-height: 1.5;
+    border: 0.01em solid #fff;
+    transform: scale(2.5);	
+}
+.selSure{
+	width: 15%;
+    height: 75%;
+    margin-left: 25%;
+    float: left;
+    border: none;
+    outline: none;
+    background:none;
+    font-size: 1vw;
+    cursor: pointer;
+    line-height: 1.5;
+    border:0.01em solid #fff;
+}
+.selQuit{
+    width: 15%;
+    height: 75%;
+    margin-right: 25%;
+    float: right;
+    border: none;
+    outline: none;
+    background:none;
+    font-size: 1vw;
+    line-height: 1.5;
+    cursor: pointer;	
+    border:0.01em solid #fff;
+}
+.selTail button:hover{
+	color:#000;
+	background-color: #fff;
+}
 
