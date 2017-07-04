@@ -33,7 +33,7 @@ tableTh2['Process'] = ['流程ID','活动ID','发布人ID','发布时间','状�
 control['评论管理'] = "Evaluation";
 control2['Evaluation'] = "评论管理";
 tableTh['Evaluation'] = ['telAndActID','userID','evaluationContent','evalutionDate','operate'];
-tableTh2['Evaluation'] = ['技术分享表ID','发言人ID','评价内容','评价时间','操作'];
+tableTh2['Evaluation'] = ['活动ID','发言人ID','评价内容','评价时间','操作'];
 
 //答案
 control['答案管理'] = "Answer";

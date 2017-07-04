@@ -110,14 +110,14 @@
     <url-pattern>/servlet/ProcessServlet</url-pattern>
   </servlet-mapping>
   
-  <!-- DisplayIndexServlet  -->
+  <!-- CommonOperateServlet  -->
   <servlet>
-    <servlet-name>DisplayIndexServlet</servlet-name>
-    <servlet-class>servlet.DisplayIndexServlet</servlet-class>
+    <servlet-name>CommonOperateServlet</servlet-name>
+    <servlet-class>servlet.CommonOperateServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DisplayIndexServlet</servlet-name>
-    <url-pattern>/servlet/DisplayIndexServlet</url-pattern>
+    <servlet-name>CommonOperateServlet</servlet-name>
+    <url-pattern>/servlet/CommonOperateServlet</url-pattern>
   </servlet-mapping>
   
   <!-- ExitLogin  -->

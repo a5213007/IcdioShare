@@ -182,7 +182,7 @@ function getOperate(type, info){
 	}
 	
 	if(hasPerssions(type) || hasPerssions(type +"_delete"))
-		display += '<span class="control">删除</span>';
+		display += '<span class="control" onclick="del(\''+type+'\',\''+info['id']+'\')">删除</span>';
 	
 	if(type == "TechnologyCtr" || type == "ActiveCtr"){ 
 		if((hasPerssions(type) || (eval(sessionStorage.user)[0]['id'] == info['userID']))
@@ -195,6 +195,26 @@ function getOperate(type, info){
 	}
 	return display;
 }
+
+function del(type, id){
+	if(confirm("确定删除？")){
+		$.ajax({
+			type:'post',
+			url:'../servlet/'+type.substring(0, type.length - 3)+'Servlet',
+			aysnc:false,
+			data:{
+				'info':'delete', 'id':id
+			},
+			success:function(data){
+				alert("删除成功！");
+			},
+			error:function(data){
+				alert("服务器访问失败！");
+			},
+		});
+	}
+}
+
 
 function goBlock(tip){
 	window.location.href = "BackManagement.html?page=1&block=" + control[tip];
