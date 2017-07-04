@@ -102,7 +102,27 @@ function displayTable(info){
 			display += "</tr>";
 		}else {
 			$('#nowPage').html(url['page']);
-			$('#allPage').html(Math.ceil(info[i]['page']));
+			var url = GetRequest();
+			if(Math.ceil(info[i]['page']) == 0 || Math.ceil(info[i]['page']) == 1) {
+				$('#allPage').html('1');
+				sessionStorage.backPages = 1;
+				addClasses();
+			}
+			else if(parseInt(url['page'])  > 1 && parseInt(url['page']) < Math.ceil(info[i]['page'])){
+				$('#allPage').html(Math.ceil(info[i]['page']));
+				sessionStorage.backPages = Math.ceil(info[i]['page']);
+				removeClasses();
+			}
+			else if(parseInt(url['page']) == 1 && parseInt(url['page']) < Math.ceil(info[i]['page'])) {
+				$('#allPage').html(Math.ceil(info[i]['page']));
+				sessionStorage.backPages = Math.ceil(info[i]['page']);
+				aheadAddClasses();
+			}
+			else {
+				$('#allPage').html(Math.ceil(info[i]['page']));
+				sessionStorage.backPages = Math.ceil(info[i]['page']);
+				backAddClasses();
+			}
 		}
 	}
 	
@@ -110,6 +130,49 @@ function displayTable(info){
 	$('#displayTable').append(display);
 }
 
+function addClasses() { //全部不能点
+	$('#bcakFirstPg').addClass('cantClick');
+	$('#bcakPreviousPg').addClass('cantClick');
+	$('#bcakNextPg').addClass('cantClick');
+	$('#bcakLastPg').addClass('cantClick');
+	$('#bcakFirstPg').removeClass('canClick');
+	$('#bcakPreviousPg').removeClass('canClick');
+	$('#bcakNextPg').removeClass('canClick');
+	$('#bcakLastPg').removeClass('canClick');
+}
+
+function removeClasses() { //全部能点
+	$('#bcakFirstPg').addClass('canClick');
+	$('#bcakPreviousPg').addClass('canClick');
+	$('#bcakNextPg').addClass('canClick');
+	$('#bcakLastPg').addClass('canClick');
+	$('#bcakFirstPg').removeClass('cantClick');
+	$('#bcakPreviousPg').removeClass('cantClick');
+	$('#bcakNextPg').removeClass('cantClick');
+	$('#bcakLastPg').removeClass('cantClick');
+}
+
+function aheadAddClasses() { //左边不能点
+	$('#bcakFirstPg').removeClass('canClick');
+	$('#bcakPreviousPg').removeClass('canClick');
+	$('#bcakFirstPg').addClass('cantClick');
+	$('#bcakPreviousPg').addClass('cantClick');
+	$('#bcakNextPg').removeClass('cantClick');
+	$('#bcakLastPg').removeClass('cantClick');
+	$('#bcakNextPg').addClass('canClick');
+	$('#bcakLastPg').addClass('canClick');
+}
+
+function backAddClasses() { //右边不能点
+	$('#bcakFirstPg').removeClass('cantClick');
+	$('#bcakPreviousPg').removeClass('cantClick');
+	$('#bcakFirstPg').addClass('canClick');
+	$('#bcakPreviousPg').addClass('canClick');
+	$('#bcakNextPg').removeClass('canClick');
+	$('#bcakLastPg').removeClass('canClick');
+	$('#bcakNextPg').addClass('cantClick');
+	$('#bcakLastPg').addClass('cantClick');
+}
 
 function getOperate(type, info){
 	var display = "";
@@ -143,6 +206,37 @@ function goMain() {
 	window.location.href = "BackManagement.html?block=main";
 }
 
+function backGoFirstPg (){
+	var url = GetRequest();
+	var pages = sessionStorage.backPages;
+	if(parseInt($('#nowPage').html()) <= pages && parseInt(url['page']) > 1 && parseInt($('#nowPage').html()) != 1) {
+		window.location.href = "BackManagement.html?page=1&block=" + url['block'];
+	}
+}
+
+function backGoPreviousPg (){
+	var url = GetRequest();
+	var pages = sessionStorage.backPages;
+	if(parseInt($('#nowPage').html()) <= pages && (parseInt(url['page']) - 1) > 0 && (parseInt(url['page']) - 1) < pages) {
+		window.location.href = "BackManagement.html?page=" + (parseInt(url['page']) - 1) + "&block=" + url['block'];
+	}
+}
+
+function backGoNextPg (){
+	var url = GetRequest();
+	var pages = sessionStorage.backPages;
+	if(parseInt($('#nowPage').html()) < pages && (parseInt(url['page']) + 1) <= pages && (parseInt(url['page']) + 1) >=2) {
+		window.location.href = "BackManagement.html?page=" + (parseInt(url['page']) + 1) + "&block=" + url['block'];
+	}
+}
+
+function backGoLastPg (){
+	var url = GetRequest();
+	var pages = sessionStorage.backPages;
+	if(parseInt($('#nowPage').html()) < pages && parseInt(url['page']) > 0 && parseInt($('#nowPage').html()) != pages) {
+		window.location.href = "BackManagement.html?page=" + pages + "&block=" + url['block'];
+	}
+}
 
 
 

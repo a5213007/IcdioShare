@@ -54,8 +54,14 @@ public class DividePageServlet extends HttpServlet {
 			List<Map<String, Object>> activeList = tel_And_ActService.getAllActiveInfo();
 			List<Map<String, Object>> technologyList = tel_And_ActService.getAllTechnologyInfo();
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("活动通知", (activeList.size() / 10) + 1);
-			map.put("技术分享", (technologyList.size() / 10) + 1);
+			if (activeList.size() == 0)
+				map.put("活动通知", 1);
+			else
+				map.put("活动通知", ((activeList.size() - 1) / 10) + 1);
+			if (technologyList.size() == 0)
+				map.put("技术分享", 1);
+			else
+				map.put("技术分享", ((technologyList.size() - 1) / 10) + 1);
 			JSONArray json = JSONArray.fromObject(map);
 			SendToHtml.send(json, response);
 		}

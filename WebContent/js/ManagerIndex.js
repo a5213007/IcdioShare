@@ -150,14 +150,14 @@ function loadManager(){
 function turnToActiveFirstPage() {
 	var page = GetRequest();
 	var pages = eval(sessionStorage.pages);
-	if(parseInt(page['activeIndex']) > 1 && parseInt(page['activeIndex']) <= pages[0]['活动通知'])
+	if(parseInt(page['activeIndex']) > 1 && parseInt(page['activeIndex']) <= pages[0]['活动通知'] && parseInt(page['activeIndex']) != 1)
 		window.location.href = "ManagerIndex.html?activeIndex=1&technologyIndex=" + page['technologyIndex'];
 }
 
 function turnToTechnologyFirstPage() {
 	var page = GetRequest();
 	var pages = eval(sessionStorage.pages);
-	if(parseInt(page['technologyIndex']) > 1 && parseInt(page['technologyIndex']) <= pages[0]['技术分享'])
+	if(parseInt(page['technologyIndex']) > 1 && parseInt(page['technologyIndex']) <= pages[0]['技术分享'] && parseInt(page['technologyIndex'])!= 1)
 		window.location.href = "ManagerIndex.html?activeIndex=" + page['activeIndex'] + "&technologyIndex=1";
 }
 
@@ -168,21 +168,21 @@ function turnToActive(id){
 function turnToActivePreviousPage() {
 	var page = GetRequest();
 	var pages = eval(sessionStorage.pages);
-	if(parseInt(page['activeIndex']) > 1 && parseInt(page['activeIndex']) <= pages[0]['活动通知'])
+	if(parseInt(page['activeIndex']) > 1 && parseInt(page['activeIndex']) <= pages[0]['活动通知'] && (parseInt(page['activeIndex']) - 1) < pages[0]['活动通知'])
 		window.location.href = "ManagerIndex.html?activeIndex=" + (parseInt(page['activeIndex']) - 1) + "&technologyIndex=" + page['technologyIndex'];
 }
 
 function turnToActiveNextPage() {
 	var page = GetRequest();
 	var pages = eval(sessionStorage.pages);
-	if(parseInt(page['activeIndex']) < pages[0]['活动通知'] && parseInt(page['activeIndex']) > 0)
+	if(parseInt(page['activeIndex']) < pages[0]['活动通知'] && (parseInt(page['activeIndex']) + 1) >= 2 && (parseInt(page['activeIndex']) + 1) <= pages[0]['活动通知'])
 		window.location.href = "ManagerIndex.html?activeIndex=" + (parseInt(page['activeIndex']) + 1) + "&technologyIndex=" + page['technologyIndex'];
 }
 
 function turnToTechnologyPreviousPage() {
 	var page = GetRequest();
 	var pages = eval(sessionStorage.pages);
-	if(parseInt(page['technologyIndex']) > 1 && parseInt(page['technologyIndex']) <= pages[0]['技术分享'])
+	if(parseInt(page['technologyIndex']) > 1 && parseInt(page['technologyIndex']) <= pages[0]['技术分享'] && (parseInt(page['technologyIndex']) -1) < pages[0]['技术分享'])
 		window.location.href = "ManagerIndex.html?activeIndex=" + page['activeIndex'] + "&technologyIndex=" + (parseInt(page['technologyIndex']) - 1);
 }
 
@@ -193,21 +193,21 @@ function turnTechnology(id){
 function turnToTechnologyNextPage() {
 	var page = GetRequest();
 	var pages = eval(sessionStorage.pages);
-	if(parseInt(page['technologyIndex']) < pages[0]['技术分享'] && parseInt(page['technologyIndex']) > 0)
+	if(parseInt(page['technologyIndex']) < pages[0]['技术分享'] &&(parseInt(page['technologyIndex']) + 1) >= 2 && (parseInt(page['technologyIndex']) + 1) <= pages[0]['技术分享'])
 		window.location.href = "ManagerIndex.html?activeIndex=" + page['activeIndex'] + "&technologyIndex=" + (parseInt(page['technologyIndex']) + 1);
 }
 
 function turnToActiveLastPage() {
 	var pages = eval(sessionStorage.pages);
 	var page = GetRequest();
-	if(parseInt(page['activeIndex']) < pages[0]['活动通知'] && parseInt(page['activeIndex']) > 0)
+	if(parseInt(page['activeIndex']) < pages[0]['活动通知'] && parseInt(page['activeIndex']) > 0 && parseInt(page['activeIndex']) != pages[0]['活动通知'])
 		window.location.href = "ManagerIndex.html?activeIndex=" + pages[0]['活动通知'] + "&technologyIndex=" + page['technologyIndex'] ;
 }
 
 function turnToTechnologyLastPage() {
 	var pages = eval(sessionStorage.pages);
 	var page = GetRequest();
-	if(parseInt(page['technologyIndex']) < pages[0]['技术分享'] && parseInt(page['technologyIndex']) > 0)
+	if(parseInt(page['technologyIndex']) < pages[0]['技术分享'] && parseInt(page['technologyIndex']) > 0 && parseInt(page['technologyIndex']) != pages[0]['技术分享'])
 		window.location.href = "ManagerIndex.html?activeIndex=" + page['activeIndex'] + "&technologyIndex=" + pages[0]['技术分享'] ;
 }
 
