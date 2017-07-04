@@ -8,85 +8,101 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 	position:fixed;
 	width:100%;
 	height:8%;
-	border: 0.01em solid #ccc;
+	border:none;
+    background: #f9fafc;
 }
 .leftBody{
     top: 8%;
     position: fixed;
-    width: 15%;
+    width: 13%;
     height: 92%;
-    border: 0.01em solid #ccc;
+    border: none;
+    background-color: #394263;
 }
 .rightBody{
-	top:8%;
-	left:15%;
-	position:fixed;
-	width:85%;
-	height:92%;
-	border:0.01em solid #ccc;
+    top: 8%;
+    left: 13%;
+    position: fixed;
+    width: 87%;
+    height: 92%;
+    border:none;
+    background-color: #eaedf1;
+}
+
+.item:hover {
+    background: rgba(170, 193, 182, 0.57);
 }
 .logo{
-    width: 6%;
+    width: 9%;
     height: 68%;
     position: absolute;
-    margin: 0.6% 4.2%;
-
+    margin: 0.6% 2%;
     background-color: rgba(255, 255, 0, 0.15);
 }
 .exit{
     position: absolute;
-    width: 10%;
-    height: 97%;
-    background-color: #fff;
-    font-size: 1.4vw;
+    width: 8%;
+    height: 73%;
+    padding: 0.5% 0.5%;
+    background-color: #f9fafc;
+    font-size: 1.1vw;
     line-height: 3;
     text-align: center;
-    border: 0.01em solid #ccc;
     margin-left: 90%;
     z-index: 1004;
     cursor: pointer;
-	border: 0.01em solid #ccc;
+    border: none;
+    color: #5bc0de;
 }
 .exit:hover{
 	color:#fff;
-	background-color:rgba(0, 0, 255, 0.21);
+	background-color:#5bc0de;
 	border:none;
 }
 .top{
-    height: 3%;
-    width: 100%;
-    background-color: rgba(204, 204, 204, 0.14);
+    height: 6%;
+    width: 80%;
+    background-color: #394263;
+    color: #868b92;
+    font-size: 10px;
+    font-family: 'Microsoft Yahei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 4;
+    margin-left: 20%;
 }
 .item {
     width: 100%;
-    height: 6%;
-    border-top: 0.05em solid #fff;
-    border-bottom: 0.05em solid #fff;
+    height: 5%;
     line-height: 3;
-    font-size: 1vw;
-    cursor: pointer;
+    font-size: 12px;
+    cursor: default;
     font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.54);
+    background-color: #394263;
     color: #fff;
+    font-family: 'Microsoft Yahei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 .itemFr{
 	position: relative;
-    margin-left: 36%;
+    margin-left: 20%;
 }
 .bodyHead{
     position: relative;
     width: 100%;
-    height: 15%;
+    height: 20%;
 }
 .bodyTable{
 	position: relative;
     width: 100%;
-    height: 75%;
+    height: 70%;
 }
 .bodyPage{
     position: relative;
     width: 100%;
     height: 10%;
+    text-align: center;
+    font-size: 15px;
+    font-family: 等线;
+    font-weight: normal;
+    cursor: default;
 }
 .table{
 	position: fixed;
@@ -105,11 +121,17 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     text-overflow: ellipsis;
     padding: 0.7% 0.5%;
 }
+
+.controlTh2{
+    background-color: #f9fafc;
+    font-weight: bold;
+}
+
 .controlTh{
 	text-align:center;
 }
 .otherTr{
-	background-color:rgba(204, 204, 204, 0.46);
+	background-color:#f3f3f3;
 }
 .table tr {
 	width: 100%;
@@ -120,28 +142,28 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 }
 .control{
 	margin: 0 3% 0 3%;
-    color: blue;
     font-size: 1.1vw;
-    cursor: pointer
-}
-.control:hover{
-	color:#000;
+    cursor: pointer;
+    color:#0589CB;
 }
 .flAdd{
     float: left;
     margin-top: 6%;
-    width: 10%;
-    height: 35%;
+    width: 6%;
+    height: 28%;
     line-height: 2.5;
     font-size: 1vw;
     text-align: center;
-    margin-left: 5.68%;
+    margin-left: 8%;
 }
 .add{
     width: 100%;
     height: 100%;
-    cursor:pointer;	
-	border: 0.01em solid #000;
+    cursor: pointer;
+    background-color: #5bc0de;
+    color: white;
+    border: none;
+    border-radius: 7px;
 }
 .add:hover{
 	color:#fff;
@@ -153,11 +175,11 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     width: 33%;
     position: absolute;
     margin-left: 61%;
-    height: 38%;
+    height: 28%;
 }
 .find{
+    float: left;
     height: 87%;
-    margin: 0 0.3%;
     width: 57%;
     font-size: 1vw;
     padding-left: 1%;	
@@ -165,18 +187,30 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 .select{
     float: left;
     width: 25%;
-    height: 94%;
+    height: 98%;
     font-size: 1vw;
-    padding-left: 1%;	
+    padding-left: 1%;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-right: 0;
+}
+.control:hover {
+    color: #23527c;
+    text-decoration-line: underline;
 }
 .btFind{
-    float: right;
+    float: left;
     width: 15%;
     font-size: 1.3vw;
     line-height: 1.75;
     cursor: pointer;
     background: none;
     outline:none;
+    border:1px solid #c9c9c9;
+    color: #5bc0de;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-left: 0;
 }
 #displayModel, #addEditModel, #title, #sel, #cover{
 	display:none;
