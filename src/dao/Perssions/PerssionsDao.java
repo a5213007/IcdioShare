@@ -2,6 +2,7 @@ package dao.Perssions;
 
 import java.util.List;
 import java.util.Map;
+
 import dao.baseDao.IBaseDao;
 import util.connectUtil.*;
 import util.operateObject.ObjectToSQL;
@@ -34,5 +35,13 @@ public class PerssionsDao extends CommonDAO implements IBaseDao{
 		String sql = "delete from perssions where id = " + id;
 		executeSql(sql);
 		return 1;
+	}
+	
+	public List<Map<String, Object>> hasPerssions(String signName, Long userId){
+		String sql = "select * from v_userperssions where userID = "+ userId + 
+				" and sign = '" + signName + "'";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
 	}
 }
