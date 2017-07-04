@@ -11,11 +11,11 @@
 </head>
 <body onload="loadBackManagement()">
 	<div class="head">
-		<div><img class="logo" alt="icdio" src="../image/Manager/logo.png"></div>
-		<div class="exit" onclick="exit()">退出</div>
+		<div><img class="logo" onclick="goMain()" alt="icdio" src="../image/Manager/logo.png"></div>
+		<div class="exit" onclick="Return()">首页</div>
 	</div>
 	<div class="leftBody">
-		<div class="top"></div>
+		<div class="top">系统设置</div>
 		<div class="item" onclick="goBlock('权限管理')"><span></span><span class="itemFr">权限管理</span></div>
 		<div class="item" onclick="goBlock('角色管理')"><span></span><span class="itemFr">角色管理</span></div>
 		<div class="item" onclick="goBlock('人员信息管理')"><span></span><span class="itemFr">人员信息管理</span></div>
@@ -24,7 +24,6 @@
 		<div class="item" onclick="goBlock('问题答案管理')"><span></span><span class="itemFr">问题答案管理</span></div>
 		<div class="item" onclick="goBlock('技术分享管理')"><span></span><span class="itemFr">技术分享管理</span></div>
 		<div class="item" onclick="goBlock('活动通知管理')"><span></span><span class="itemFr">活动通知管理</span></div>
-		<div class="item" onclick="Return()"><span></span><span class="itemFr" onclick="">返回前台</span></div>
 	</div>
 	
 	<div id="title" class="title">权限管理</div>
@@ -35,16 +34,16 @@
 				<div id="btAddInfo" class="add">新增</div>
 			</div>
 			<div class="frFind">
-				<input class="find" type="text"/>
 				<select class="select">
 					<option>请选择</option>
 				</select>
+				<input class="find" type="text"/>
 				<button class="btFind">查找</button>
 			</div>
 		</div>
-		<div id="displayTable" class="bodyTable">
+		<div class="bodyTable">
 			<table id="table" class="table" cellspacing="0" cellpadding="5">
-				<tr class="controlTh">
+				<tr class="controlTh controlTh2">
 					<td>活动标题</td><td>流程id</td><td>发布人</td><td>发布时间</td><td>操作</td>					
 				</tr>
 				<tr>
@@ -119,7 +118,13 @@
 				</tr>
 			</table>
 		</div>		
-		<div class="bodyPage"></div>
+		<div class="bodyPage">
+			<span>首页</span>
+			<span>上一页</span>
+			<span>1</span><span>/</span><span>2</span>
+			<span>下一页</span>
+			<span>尾页</span>
+		</div>
 	</div>
 	
 	<div id="addEditModel" class="rightBody">

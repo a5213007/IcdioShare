@@ -116,7 +116,9 @@ function goBlock(tip){
 function Return(){
 	window.location.href = "ManagerIndex.html?activeIndex=1&technologyIndex=1";
 }
-
+function goMain() {
+	window.location.href = "BackManagement.html?block=main";
+}
 
 
 
