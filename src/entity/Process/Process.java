@@ -18,7 +18,37 @@ public class Process{
 	 
 	@Column(name="reviewID", chineseName="审批人ID", nullAble=true, note="审批人ID", type="String", length=14)
 	private String reviewID;
-	 
+	
+	@Column(name="releaseDate", chineseName="提交日期", nullAble=true, note="提交日期", type="String", length=-1)
+	private String releaseDate;
+	
+	@Column(name="reviewDate", chineseName="审批日期", nullAble=true, note="审批日期", type="String", length=-1)
+	private String reviewDate;
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getReleaseDate() {
+		return releaseDate;
+	}
+
+	public void setReleaseDate(String releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+
+	public String getReviewDate() {
+		return reviewDate;
+	}
+
+	public void setReviewDate(String reviewDate) {
+		this.reviewDate = reviewDate;
+	}
+
 	public void setState(String state){
 		this.state = state;	
 	}

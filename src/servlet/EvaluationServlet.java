@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.Evaluation.EvaluationService;
 import util.operateObject.JsonToObject;
+import util.sendToHtml.SendToHtml;
 import net.sf.json.JSONArray;
 
 /**
@@ -52,6 +55,14 @@ public class EvaluationServlet extends HttpServlet {
 				
 				e.printStackTrace();
 				throw new ServletException();
+			}
+		}else if("display".equals(request.getParameter("info"))){
+			EvaluationService evaluationService = new EvaluationService();
+			List<Map<String, Object>> list = evaluationService.getAllInfo();
+			
+			if(list != null){
+				JSONArray json = JSONArray.fromObject(list);
+				SendToHtml.send(json, response);
 			}
 		}
 	}

@@ -28,13 +28,14 @@ public class QuestionService implements IBaseService{
 		}
 	}
 	
-	public List<Map<String, Object>> getAllInfo() throws Exception{
+	public List<Map<String, Object>> getAllInfo(){
 		try {
 			return questionDao.getAllInfo();	
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new Exception();
 		}
+		
+		return null;
 	}
 	
 	public List<Map<String, Object>> getInfoById(Long id) throws Exception{		

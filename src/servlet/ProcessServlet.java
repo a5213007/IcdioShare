@@ -1,11 +1,18 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
+import service.Process.ProcessService;
+import util.sendToHtml.SendToHtml;
 
 /**
  * Servlet implementation class ProcessServlet
@@ -26,14 +33,26 @@ public class ProcessServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		response.setContentType("textml;charset=utf-8");		
+		response.setContentType("text/html");
+		response.setHeader("Content-type", "text/html;charset=UTF-8");
+		
+		if("display".equals(request.getParameter("info"))){
+			ProcessService processService = new ProcessService();
+			List<Map<String, Object>> list = processService.getAllInfo();
+			
+			if(list != null){
+				JSONArray json = JSONArray.fromObject(list);
+				SendToHtml.send(json, response);
+			}
+		}
 	}
 
 }

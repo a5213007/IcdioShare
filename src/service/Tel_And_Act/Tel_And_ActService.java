@@ -8,7 +8,7 @@ import java.util.Set;
 
 import service.Answer.AnswerService;
 import service.Evaluation.EvaluationService;
-import service.Perssions.PerssionsService;
+import service.Permissions.PermissionsService;
 import service.Process.ProcessService;
 import service.Question.QuestionService;
 import service.baseService.IBaseService;
@@ -18,7 +18,7 @@ import entity.Tel_And_Act.Tel_And_Act;
 
 public class Tel_And_ActService implements IBaseService{
 	private Tel_And_ActDao tel_and_actDao = new Tel_And_ActDao();
-	private PerssionsService perssionsService = new PerssionsService();
+	private PermissionsService perssionsService = new PermissionsService();
 
 	public int save(Object object) throws Exception{
 		try {
@@ -189,6 +189,33 @@ public class Tel_And_ActService implements IBaseService{
 			}else {
 				List<Map<String, Object>> telList =  tel_and_actDao.getAllTechnologyByPage(page, userId);
 				telList.add(tel_and_actDao.getAllTechnologyPage(userId).get(0));
+				
+				return telList;
+			}
+				
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	//后台活动通知展示
+	public List<Map<String, Object>> getAllActiveByPage(int page, Long userId){
+		try {
+			
+			//拥有权限能查看所有的
+			if(perssionsService.hasPerssions("ActiveCtr", userId) || perssionsService.hasPerssions("ActiveCtr_display", userId)){
+				List<Map<String, Object>> telList =  tel_and_actDao.getAllActiveByPageAdmin(page);
+				telList.add(tel_and_actDao.getAllActivePageAdmin().get(0));
+				
+				return telList;
+				
+			//没有权限的只能查看自己的	
+			}else {
+				List<Map<String, Object>> telList =  tel_and_actDao.getAllActiveByPage(page, userId);
+				telList.add(tel_and_actDao.getAllActivePage(userId).get(0));
 				
 				return telList;
 			}

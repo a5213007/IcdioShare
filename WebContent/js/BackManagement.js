@@ -1,28 +1,3 @@
-var control = {};
-var control2 = {};
-var tableTh = {};
-var tableTh2 = {};
-control['权限管理'] = "Permissions";
-control['角色管理'] = "Role";
-control['人员信息管理'] = "User";
-control['流程管理'] = "Process";
-control['评论管理'] = "Evaluation";
-control['问题答案管理'] = "QuesAndAnsw";
-control['技术分享管理'] = "Technology";
-control['活动通知管理'] = "Active";
-
-control2['Permissions'] = "权限管理";
-control2['Role'] = "角色管理";
-control2['User'] = "人员信息管理";
-control2['Process'] = "流程管理";
-control2['Evaluation'] = "评论管理";
-control2['QuesAndAnsw'] = "问题答案管理";
-control2['Technology'] = "技术分享管理";
-control2['Active'] = "活动通知管理";
-
-tableTh['Technology'] = ['title','type','userID','releaseDate','state','operate'];
-tableTh2['Technology'] = ['标题','类型','发布人ID','发布时间','状态','操作'];
-
 function loadBackManagement(){
 	isLogin();
 	var url = GetRequest();
@@ -40,6 +15,7 @@ function loadBackManagement(){
 		}else {
 			$("#btAddInfo").css('display','none');
 		}
+		setFindBt(url['block']);
 		getInfo();
 		
 	}else {
@@ -47,6 +23,10 @@ function loadBackManagement(){
 		reManager();
 	}
 	
+}
+function setFindBt(type){
+	for(var i = 0; i < tableTh2[type].length - 1;i++)
+		$('#findSel').append('<option value="'+tableTh[type][i] + '">'+ tableTh2[type][i] +'</option>');
 }
 
 function getInfo(){
@@ -95,7 +75,7 @@ function displayTable(info){
 				if(j == (tableTh[url['block']].length - 1)){
 					display += '<td class="controlTh">' + getOperate(url['block'] + 'Ctr', info[i]) + '</td>';
 				}else {
-					display += "<td>" + info[i][tableTh[url['block']][j]] + '</td>';
+					display += "<td>" + isNull(info[i][tableTh[url['block']][j]]) + '</td>';
 				}
 			}
 			
@@ -110,14 +90,32 @@ function displayTable(info){
 	$('#displayTable').append(display);
 }
 
+function isNull(info){
+	if(info == null)
+		return "";
+	return info;
+}
 
 function getOperate(type, info){
 	var display = "";
 		
+	if(type == "ProcessCtr" && hasPerssions(type)){
+		if(info['state'] == "已提交"){
+			display += '<span class="control">同意</span>';
+			display += '<span class="control">驳回</span>';
+		}else {
+			display += '<span class="control">删除</span>';
+		}
+		return display;
+	}
+	
 	if(hasPerssions(type) || hasPerssions(type +"_display"))
 		display += '<span class="control">查看</span>';
-	if(hasPerssions(type) || hasPerssions(type +"_edit"))
-		display += '<span class="control">编辑</span>';
+	if(type != "QuestionCtr" && type != "AnswerCtr" && type != "Evaluation"){
+		if(hasPerssions(type) || hasPerssions(type +"_edit"))
+			display += '<span class="control">编辑</span>';
+	}
+	
 	if(hasPerssions(type) || hasPerssions(type +"_delete"))
 		display += '<span class="control">删除</span>';
 	

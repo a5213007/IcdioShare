@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import service.User.UserService;
+import util.sendToHtml.SendToHtml;
 import net.sf.json.JSONArray;
 
 /**
@@ -44,8 +46,8 @@ public class UserServlet extends HttpServlet {
 		response.setContentType("text/html");
 		response.setHeader("Content-type", "text/html;charset=UTF-8");
 		UserService userService = new UserService();
-		String type = request.getParameter("type");
-		if ("changeInfo".equals(type)) {
+
+		if ("changeInfo".equals(request.getParameter("type"))) {
 			JSONArray json = JSONArray.fromObject("[" + request.getParameter("data") + "]");
 			@SuppressWarnings("unchecked")
 			Map<String, Object> data = (Map<String, Object>)json.get(0);
@@ -55,7 +57,7 @@ public class UserServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if ("changePd".equals(type)) {
+		else if ("changePd".equals(request.getParameter("type"))) {
 			String account = request.getParameter("account");
 			String password = request.getParameter("password");
 			try {
@@ -63,8 +65,13 @@ public class UserServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else {
+		}else if("display".equals(request.getParameter("info"))){
+			List<Map<String, Object>> list = userService.getAllInfo();
 			
+			if(list != null){
+				JSONArray json = JSONArray.fromObject(list);
+				SendToHtml.send(json, response);
+			}
 		}
 		
 	}

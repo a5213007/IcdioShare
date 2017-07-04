@@ -2,6 +2,7 @@ package dao.Role;
 
 import java.util.List;
 import java.util.Map;
+
 import dao.baseDao.IBaseDao;
 import util.connectUtil.*;
 import util.operateObject.ObjectToSQL;
@@ -21,7 +22,9 @@ public class RoleDao extends CommonDAO implements IBaseDao{
 	}
 	
 	public List<Map<String, Object>> getAllInfo() throws Exception{
-		String sql = "select * from role";
+		String sql = "select * from role limit 0,10";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	}
 	

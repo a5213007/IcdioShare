@@ -1,12 +1,13 @@
-package service.Perssions;
+package service.Permissions;
 
 import java.util.List;
 import java.util.Map;
-import service.baseService.IBaseService;
-import dao.Perssions.PerssionsDao;
 
-public class PerssionsService implements IBaseService{
-	private PerssionsDao perssionsDao = new PerssionsDao();
+import service.baseService.IBaseService;
+import dao.Permissions.PermissionsDao;
+
+public class PermissionsService implements IBaseService{
+	private PermissionsDao perssionsDao = new PermissionsDao();
 
 	public int save(Object object) throws Exception{
 		try {

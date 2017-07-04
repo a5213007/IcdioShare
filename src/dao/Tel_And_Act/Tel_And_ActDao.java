@@ -62,6 +62,7 @@ public class Tel_And_ActDao extends CommonDAO implements IBaseDao{
 		return excuteQuery(sql, null);
 	} 
 	
+	//后台展示技技术分享表格以及获取分页(管理)
 	//*********************************************************************************
 	public List<Map<String, Object>> getAllTechnologyByPageAdmin(int page) throws Exception{
 		String sql = "select * from v_technology order by releaseDate desc limit " 
@@ -79,23 +80,63 @@ public class Tel_And_ActDao extends CommonDAO implements IBaseDao{
 	}
 	/*********************************************************************************/
 	
+	//后台展示技技术分享表格以及获取分页(个人)
 	//*********************************************************************************
-		public List<Map<String, Object>> getAllTechnologyByPage(int page, Long userId) throws Exception{
-			String sql = "select * from v_technology where userID = " + userId +
-					" order by releaseDate desc limit " + (page - 1) * 10 + ",10";
+	public List<Map<String, Object>> getAllTechnologyByPage(int page, Long userId) throws Exception{
+		String sql = "select * from v_technology where userID = " + userId +
+				" order by releaseDate desc limit " + (page - 1) * 10 + ",10";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
+	}
+	
+	public List<Map<String, Object>> getAllTechnologyPage(Long userId) throws Exception{
+		String sql = "select count(*) / 10 as page from v_technology where userID = " + userId;
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
+	}
+	/*********************************************************************************/
+
+	//后台展示技日常活动表格以及获取分页(管理)
+	//*********************************************************************************
+	public List<Map<String, Object>> getAllActiveByPageAdmin(int page) throws Exception{
+		String sql = "select * from v_active order by releaseDate desc limit " 
+				+ (page - 1) * 10 + ",10";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
+	}
+	
+	public List<Map<String, Object>> getAllActivePageAdmin() throws Exception{
+		String sql = "select count(*) / 10 as page from v_active ";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
+	}
+	/*********************************************************************************/	
+	
+	//后台展示技日常活动表格以及获取分页(个人)
+		//*********************************************************************************
+		public List<Map<String, Object>> getAllActiveByPage(int page, Long userId) throws Exception{
+			String sql = "select * from v_active where userID = " + userId + " order by "+
+					"releaseDate desc limit " + (page - 1) * 10 + ",10";
 			System.out.println("----------------------------------------");
 			System.out.println("SQL:" + sql);
 			return excuteQuery(sql, null);
 		}
 		
-		public List<Map<String, Object>> getAllTechnologyPage(Long userId) throws Exception{
-			String sql = "select count(*) / 10 as page from v_technology where userID = " + userId;
+		public List<Map<String, Object>> getAllActivePage(Long userId) throws Exception{
+			String sql = "select count(*) / 10 as page from v_active  where userID = " + userId;
 			System.out.println("----------------------------------------");
 			System.out.println("SQL:" + sql);
 			return excuteQuery(sql, null);
 		}
-		/*********************************************************************************/
+		/*********************************************************************************/	
 	
+	/**
+	 * 前台展示已提交的技术分享页面
+	 * */
 	public List<Map<String, Object>> getAllTechnologyInfo() throws Exception{
 		String sql = "select * from v_technology where state = '已提交'";
 		System.out.println("----------------------------------------");
@@ -103,6 +144,9 @@ public class Tel_And_ActDao extends CommonDAO implements IBaseDao{
 		return excuteQuery(sql, null);
 	} 
 	
+	/**
+	 * 通过id获取已提交的技术分享
+	 * */
 	public List<Map<String, Object>> getTechnologyAndUserById(Long id) throws Exception{
 		String sql = "select * from v_technologyanduser where id = " + id + " and state = '已提交'";
 		System.out.println("----------------------------------------");
@@ -110,6 +154,9 @@ public class Tel_And_ActDao extends CommonDAO implements IBaseDao{
 		return excuteQuery(sql, null);
 	} 
 	
+	/**
+	 * 通过id获取已同意的活动通知
+	 * */
 	public List<Map<String, Object>> getActiveAndUserById(Long id){
 		String sql = "SELECT tel_and_act.id, user.id, user.name, releaseDate, title,"+
 				" content, contentType, type, state, activeDate, activePlace from "+

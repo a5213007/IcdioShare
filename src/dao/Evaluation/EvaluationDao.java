@@ -25,6 +25,8 @@ public class EvaluationDao extends CommonDAO implements IBaseDao{
 	
 	public List<Map<String, Object>> getAllInfo() throws Exception{
 		String sql = "select * from evaluation";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	}
 	

@@ -1,9 +1,9 @@
-package entity.Perssions;
+package entity.Permissions;
 
 import util.codeGenerate.*;
 
 @Entity(name="权限信息", table="perssions")
-public class Perssions{
+public class Permissions{
 	@Column(name="id", chineseName="权限信息id",nullAble=false, note="id", type="String", length=14)
 	private String id;
 
@@ -12,9 +12,6 @@ public class Perssions{
 	 
 	@Column(name="sign", chineseName="权限标识", nullAble=true, note="用于标记权限", type="String", length=-1)
 	private String sign;
-	 
-	@Column(name="roleID", chineseName="角色ID", nullAble=false, note="角色ID", type="String", length=-1)
-	private String roleID;
 	 
 	public void setPerssionsName(String perssionsName){
 		this.perssionsName = perssionsName;	
@@ -30,14 +27,14 @@ public class Perssions{
 
 	public String getSign(){
 		return sign;		
-	}	 
-
-	public void setRoleID(String roleID){
-		this.roleID = roleID;	
 	}
 
-	public String getRoleID(){
-		return roleID;		
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}	 
 
 }

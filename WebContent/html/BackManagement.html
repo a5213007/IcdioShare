@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/BackManagement.css">
 	<script type="text/javascript" src="../js/jquery.js"></script>
 	<script type="text/javascript" src="../js/laydate.js"></script>
+	<script type="text/javascript" src="../js/BackConfig.js"></script>
 	<script type="text/javascript" src="../js/util.js"></script>
 	<script type="text/javascript" src="../js/BackManagement.js"></script>
 </head>
@@ -21,7 +22,8 @@
 		<div class="item" onclick="goBlock('人员信息管理')"><span></span><span class="itemFr">人员信息管理</span></div>
 		<div class="item" onclick="goBlock('流程管理')"><span></span><span class="itemFr">流程管理</span></div>
 		<div class="item" onclick="goBlock('评论管理')"><span></span><span class="itemFr">评论管理</span></div>
-		<div class="item" onclick="goBlock('问题答案管理')"><span></span><span class="itemFr">问题答案管理</span></div>
+		<div class="item" onclick="goBlock('答案管理')"><span></span><span class="itemFr">答案管理</span></div>
+		<div class="item" onclick="goBlock('问题管理')"><span></span><span class="itemFr">问题管理</span></div>
 		<div class="item" onclick="goBlock('技术分享管理')"><span></span><span class="itemFr">技术分享管理</span></div>
 		<div class="item" onclick="goBlock('活动通知管理')"><span></span><span class="itemFr">活动通知管理</span></div>
 	</div>
@@ -34,7 +36,7 @@
 				<div id="btAddInfo" class="add">新增</div>
 			</div>
 			<div class="frFind">
-				<select class="select">
+				<select id="findSel" class="select">
 					<option>请选择</option>
 				</select>
 				<input class="find" type="text"/>
