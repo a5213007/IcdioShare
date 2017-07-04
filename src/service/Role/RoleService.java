@@ -2,6 +2,7 @@ package service.Role;
 
 import java.util.List;
 import java.util.Map;
+
 import service.baseService.IBaseService;
 import dao.Role.RoleDao;
 
@@ -29,6 +30,20 @@ public class RoleService implements IBaseService{
 	public List<Map<String, Object>> getAllInfo(){
 		try {
 			return roleDao.getAllInfo();	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public List<Map<String, Object>> getInfoByPage(int page){
+		try {
+			List<Map<String, Object>> roleList = roleDao.getPageInfo(page);		
+			List<Map<String, Object>> pageList = roleDao.getAllInfoPage();
+			
+			roleList.add(pageList.get(0));
+			return roleList;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

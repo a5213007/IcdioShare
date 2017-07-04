@@ -45,8 +45,9 @@ public class RoleServlet extends HttpServlet {
 		response.setHeader("Content-type", "text/html;charset=UTF-8");
 		
 		if("display".equals(request.getParameter("info"))){
+			int page = Integer.parseInt(request.getParameter("page")+"");
 			RoleService roleService = new RoleService();
-			List<Map<String, Object>> list = roleService.getAllInfo();
+			List<Map<String, Object>> list = roleService.getInfoByPage(page);
 			
 			if(list != null){
 				JSONArray json = JSONArray.fromObject(list);

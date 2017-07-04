@@ -1,11 +1,19 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
+import service.Evaluation.EvaluationService;
+import service.Permissions.PermissionsService;
+import util.sendToHtml.SendToHtml;
 
 /**
  * Servlet implementation class PermissionsServlet
@@ -33,7 +41,20 @@ public class PermissionsServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		response.setContentType("textml;charset=utf-8");		
+		response.setContentType("text/html");
+		response.setHeader("Content-type", "text/html;charset=UTF-8");
+		
+		if("display".equals(request.getParameter("info"))){
+			int page = Integer.parseInt(request.getParameter("page")+"");
+			PermissionsService permissionsService = new PermissionsService();
+			List<Map<String, Object>> list = permissionsService.getInfoByPage(page);
+			
+			if(list != null){
+				JSONArray json = JSONArray.fromObject(list);
+				SendToHtml.send(json, response);
+			}
+		}
 	}
 
 }

@@ -47,6 +47,20 @@ public class QuestionService implements IBaseService{
 		}
 	}
 	
+	public List<Map<String, Object>> getInfoByPage(int page){
+		try {
+			List<Map<String, Object>> questionList = questionDao.getPageInfo(page);		
+			List<Map<String, Object>> pageList = questionDao.getAllInfoPage();
+			
+			questionList.add(pageList.get(0));
+			return questionList;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	public int delete(Long id) throws Exception{
 		try {
 			return questionDao.delete(id);

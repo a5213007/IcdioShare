@@ -57,8 +57,9 @@ public class EvaluationServlet extends HttpServlet {
 				throw new ServletException();
 			}
 		}else if("display".equals(request.getParameter("info"))){
+			int page = Integer.parseInt(request.getParameter("page")+"");
 			EvaluationService evaluationService = new EvaluationService();
-			List<Map<String, Object>> list = evaluationService.getAllInfo();
+			List<Map<String, Object>> list = evaluationService.getInfoByPage(page);
 			
 			if(list != null){
 				JSONArray json = JSONArray.fromObject(list);

@@ -44,14 +44,14 @@ tableTh2['Answer'] = ['问题ID','发布人ID','内容','发布时间','操作']
 //活动通知
 control['活动通知管理'] = "Active";
 control2['Active'] = "活动通知管理";
-tableTh['Active'] = ['title','type','contentType','userID','releaseDate','state','operate'];
-tableTh2['Active'] = ['标题','类型','活动类型','发布人ID','发布时间','状态','操作'];
+tableTh['Active'] = ['title','contentType','userID','releaseDate','state','operate'];
+tableTh2['Active'] = ['标题','活动类型','发布人ID','发布时间','状态','操作'];
 
 //技术分享
 control['技术分享管理'] = "Technology";
 control2['Technology'] = "技术分享管理";
-tableTh['Technology'] = ['title','type','userID','releaseDate','state','operate'];
-tableTh2['Technology'] = ['标题','类型','发布人ID','发布时间','状态','操作'];
+tableTh['Technology'] = ['title','userID','releaseDate','state','operate'];
+tableTh2['Technology'] = ['标题','发布人ID','发布时间','状态','操作'];
 
 //问题
 control['问题管理'] = "Question";

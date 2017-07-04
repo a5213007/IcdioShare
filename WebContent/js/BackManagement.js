@@ -42,8 +42,7 @@ function getInfo(){
 			},
 			success:function(data){
 				var info = eval(data);				
-				if(info != undefined && info != ""){
-					$("#table").remove();				
+				if(info != undefined && info != ""){				
 					displayTable(info);				
 				}
 			},

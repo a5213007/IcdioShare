@@ -22,7 +22,7 @@ public class PermissionsDao extends CommonDAO implements IBaseDao{
 	}
 	
 	public List<Map<String, Object>> getAllInfo() throws Exception{
-		String sql = "select * from perssions limit 0,10";
+		String sql = "select * from perssions";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
@@ -37,6 +37,26 @@ public class PermissionsDao extends CommonDAO implements IBaseDao{
 		String sql = "delete from perssions where id = " + id;
 		executeSql(sql);
 		return 1;
+	}
+	
+	/**
+	 * 跳页
+	 * */
+	public List<Map<String, Object>> getPageInfo(int page) throws Exception{
+		String sql = "select * from perssions limit " + (page - 1) * 10 + ", 10";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
+	}
+	
+	/**
+	 * 获取页数
+	 * */
+	public List<Map<String, Object>> getAllInfoPage() throws Exception{
+		String sql = "select count(*) / 10 as page from perssions";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
 	}
 	
 	public List<Map<String, Object>> hasPerssions(String signName, Long userId){

@@ -45,6 +45,20 @@ public class PermissionsService implements IBaseService{
 		}
 	}
 	
+	public List<Map<String, Object>> getInfoByPage(int page){
+		try {
+			List<Map<String, Object>> perssionsList = perssionsDao.getPageInfo(page);		
+			List<Map<String, Object>> pageList = perssionsDao.getAllInfoPage();
+			
+			perssionsList.add(pageList.get(0));
+			return perssionsList;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	public int delete(Long id) throws Exception{
 		try {
 			return perssionsDao.delete(id);

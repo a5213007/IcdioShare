@@ -36,6 +36,20 @@ public class ProcessService implements IBaseService{
 		return null;
 	}
 	
+	public List<Map<String, Object>> getInfoByPage(int page){
+		try {
+			List<Map<String, Object>> processList = processDao.getPageInfo(page);		
+			List<Map<String, Object>> pageList = processDao.getAllInfoPage();
+			
+			processList.add(pageList.get(0));
+			return processList;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	public List<Map<String, Object>> getInfoById(Long id) throws Exception{		
 		try {
 			return processDao.getInfoById(id);

@@ -66,7 +66,8 @@ public class UserServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if("display".equals(request.getParameter("info"))){
-			List<Map<String, Object>> list = userService.getAllInfo();
+			int page = Integer.parseInt(request.getParameter("page")+"");
+			List<Map<String, Object>> list = userService.getInfoByPage(page);
 			
 			if(list != null){
 				JSONArray json = JSONArray.fromObject(list);

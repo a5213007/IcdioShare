@@ -31,6 +31,20 @@ public class AnswerService implements IBaseService{
 		}
 	}
 	
+	public List<Map<String, Object>> getInfoByPage(int page){
+		try {
+			List<Map<String, Object>> answerList = answerDao.getPageInfo(page);		
+			List<Map<String, Object>> pageList = answerDao.getAllInfoPage();
+			
+			answerList.add(pageList.get(0));
+			return answerList;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	public List<Map<String, Object>> getAllInfo(){
 		try {
 			return answerDao.getAllInfo();	

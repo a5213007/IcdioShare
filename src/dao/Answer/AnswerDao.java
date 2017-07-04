@@ -30,6 +30,26 @@ public class AnswerDao extends CommonDAO implements IBaseDao{
 		return excuteQuery(sql, null);
 	}
 	
+	/**
+	 * 跳页
+	 * */
+	public List<Map<String, Object>> getPageInfo(int page) throws Exception{
+		String sql = "select * from answer limit " + (page - 1) * 10  + ", 10";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
+	}
+	
+	/**
+	 * 获取页数
+	 * */
+	public List<Map<String, Object>> getAllInfoPage() throws Exception{
+		String sql = "select count(*) / 10 as page from answer";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
+	}
+	
 	public List<Map<String, Object>> getInfoById(Long id) throws Exception{
 		String sql = "select * from answer where id = " + id;
 		return excuteQuery(sql, null);

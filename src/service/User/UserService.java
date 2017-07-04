@@ -42,6 +42,20 @@ public class UserService implements IBaseService{
 		}
 	}
 	
+	public List<Map<String, Object>> getInfoByPage(int page){
+		try {
+			List<Map<String, Object>> userList = userDao.getPageInfo(page);		
+			List<Map<String, Object>> pageList = userDao.getAllInfoPage();
+			
+			userList.add(pageList.get(0));
+			return userList;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	public int update(Object object) throws Exception{		
 		try {
 			return userDao.update(object);

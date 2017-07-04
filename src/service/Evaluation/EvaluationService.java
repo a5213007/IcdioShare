@@ -2,6 +2,7 @@ package service.Evaluation;
 
 import java.util.List;
 import java.util.Map;
+
 import service.baseService.IBaseService;
 import dao.Evaluation.EvaluationDao;
 
@@ -35,6 +36,20 @@ public class EvaluationService implements IBaseService{
 			e.printStackTrace();
 			
 		}
+		return null;
+	}
+	
+	public List<Map<String, Object>> getInfoByPage(int page){
+		try {
+			List<Map<String, Object>> evaluationList = evaluationDao.getPageInfo(page);		
+			List<Map<String, Object>> pageList = evaluationDao.getAllInfoPage();
+			
+			evaluationList.add(pageList.get(0));
+			return evaluationList;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 	
