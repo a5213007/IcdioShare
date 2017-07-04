@@ -1,18 +1,11 @@
-function hasPerssions(userId){
-	$.ajax({
-		type:'post',
-		url:'',
-		aysnc:false,
-		data:{
-			
-		},
-		success:function(data){
-			
-		},
-		error:function(data){
-			
-		},
-	})
+function hasPerssions(type){
+	var perssions = eval(sessionStorage.user)[0]['sign'];
+	for(var i = 0; i < perssions.length; i++){
+		if(type == perssions[i])
+			return true;
+	}
+	
+	return false;
 }
 
 function goWhere(tip){

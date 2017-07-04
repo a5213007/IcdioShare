@@ -1,12 +1,13 @@
-package action.Peocess;
+package action.Process;
 
 import java.util.List;
 import java.util.Map;
-import action.baseAction.IBaseAction;
-import service.Peocess.PeocessService;
 
-public class PeocessAction implements IBaseAction{
-	private PeocessService peocessservice = new PeocessService();
+import action.baseAction.IBaseAction;
+import service.Process.ProcessService;
+
+public class ProcessAction implements IBaseAction{
+	private ProcessService peocessservice = new ProcessService();
 
 	public int save(Object object) throws Exception{
 		return peocessservice.save(object);		

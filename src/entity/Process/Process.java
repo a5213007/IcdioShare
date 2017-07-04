@@ -1,9 +1,9 @@
-package entity.Peocess;
+package entity.Process;
 
 import util.codeGenerate.*;
 
 @Entity(name="流程信息", table="peocess")
-public class Peocess{
+public class Process{
 	@Column(name="id", chineseName="流程信息id",nullAble=false, note="id", type="String", length=14)
 	private String id;
 

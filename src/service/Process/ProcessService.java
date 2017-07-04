@@ -1,12 +1,13 @@
-package service.Peocess;
+package service.Process;
 
 import java.util.List;
 import java.util.Map;
-import service.baseService.IBaseService;
-import dao.Peocess.PeocessDao;
 
-public class PeocessService implements IBaseService{
-	private PeocessDao peocessDao = new PeocessDao();
+import service.baseService.IBaseService;
+import dao.Process.ProcessDao;
+
+public class ProcessService implements IBaseService{
+	private ProcessDao peocessDao = new ProcessDao();
 
 	public int save(Object object) throws Exception{
 		try {

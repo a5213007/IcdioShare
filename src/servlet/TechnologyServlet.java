@@ -62,6 +62,17 @@ public class TechnologyServlet extends HttpServlet {
 				e.printStackTrace();
 				throw new ServletException();
 			}						
+		}else if("display".equals(request.getParameter("info"))){
+			int page = Integer.parseInt(request.getParameter("page")+"");
+			Long userId = Long.parseLong(request.getParameter("userId") + "");
+			Tel_And_ActService tel_And_ActService = new Tel_And_ActService();
+			
+			List<Map<String, Object>> list = tel_And_ActService.getAllTechnologyByPage(page, userId);
+			
+			if(list != null){
+				JSONArray json = JSONArray.fromObject(list);
+				SendToHtml.send(json, response);
+			}
 		}
 		
 	}

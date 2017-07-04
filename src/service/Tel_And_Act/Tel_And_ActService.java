@@ -8,6 +8,8 @@ import java.util.Set;
 
 import service.Answer.AnswerService;
 import service.Evaluation.EvaluationService;
+import service.Perssions.PerssionsService;
+import service.Process.ProcessService;
 import service.Question.QuestionService;
 import service.baseService.IBaseService;
 import util.operateObject.Tool;
@@ -16,6 +18,7 @@ import entity.Tel_And_Act.Tel_And_Act;
 
 public class Tel_And_ActService implements IBaseService{
 	private Tel_And_ActDao tel_and_actDao = new Tel_And_ActDao();
+	private PerssionsService perssionsService = new PerssionsService();
 
 	public int save(Object object) throws Exception{
 		try {
@@ -164,6 +167,32 @@ public class Tel_And_ActService implements IBaseService{
 				list.addAll(evaluationList);
 				return list;
 			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public List<Map<String, Object>> getAllTechnologyByPage(int page, Long userId){
+		try {
+			
+			//拥有权限能查看所有的
+			if(perssionsService.hasPerssions("TechnologyCtr", userId) || perssionsService.hasPerssions("TechnologyCtr_display", userId)){
+				List<Map<String, Object>> telList =  tel_and_actDao.getAllTechnologyByPageAdmin(page);
+				telList.add(tel_and_actDao.getAllTechnologyPageAdmin().get(0));
+				
+				return telList;
+				
+			//没有权限的只能查看自己的	
+			}else {
+				List<Map<String, Object>> telList =  tel_and_actDao.getAllTechnologyByPage(page, userId);
+				telList.add(tel_and_actDao.getAllTechnologyPage(userId).get(0));
+				
+				return telList;
+			}
+				
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,4 +1,4 @@
-package dao.Peocess;
+package dao.Process;
 
 import java.util.List;
 import java.util.Map;
@@ -6,7 +6,7 @@ import dao.baseDao.IBaseDao;
 import util.connectUtil.*;
 import util.operateObject.ObjectToSQL;
 
-public class PeocessDao extends CommonDAO implements IBaseDao{
+public class ProcessDao extends CommonDAO implements IBaseDao{
 
 	public int save(Object object) throws Exception{
 		String sql = ObjectToSQL.toSqlForSave(object);

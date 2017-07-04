@@ -52,4 +52,14 @@ public class PerssionsService implements IBaseService{
 			throw new Exception();
 		}		
 	}
+	
+	public boolean hasPerssions(String signName, Long userId){
+		try {
+			if(perssionsDao.hasPerssions(signName, userId).size() != 0)
+				return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return false;
+	}
 }

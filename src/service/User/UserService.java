@@ -1,8 +1,14 @@
 package service.User;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
+import oracle.net.aso.a;
+import oracle.net.aso.u;
 import service.baseService.IBaseService;
 import dao.User.UserDao;
 
@@ -89,7 +95,24 @@ public class UserService implements IBaseService{
 				return null;
 			
 			if(password.equals(list.get(0).get("password"))){
-				list.get(0).remove("password");
+				Map<String, Object> map = list.get(0);
+				map.remove("password");
+				
+				List<Map<String, Object>> userInfo = userDao.getViewByAccount(account);
+				if(userInfo.size() != 0){
+					String[] permissions = new String[userInfo.size()];
+					
+					for (int i = 0; i < userInfo.size(); i++) 
+						permissions[i] = userInfo.get(i).get("sign") + "";
+	
+					map.put("sign", permissions);
+						
+					list.clear();
+					list.add(map);
+				}else{
+					list.get(0).put("sign", "");
+				}
+				
 				return list;
 			}
 
