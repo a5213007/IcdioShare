@@ -109,28 +109,9 @@ public class UserService implements IBaseService{
 			if(list.size() == 0)
 				return null;
 			
-			if(password.equals(list.get(0).get("password"))){
-				Map<String, Object> map = list.get(0);
-				map.remove("password");
+			list.get(0).remove("password");		
 				
-				List<Map<String, Object>> userInfo = userDao.getViewByAccount(account);
-				if(userInfo.size() != 0){
-					String[] permissions = new String[userInfo.size()];
-					
-					for (int i = 0; i < userInfo.size(); i++) 
-						permissions[i] = userInfo.get(i).get("sign") + "";
-	
-					map.put("sign", permissions);
-						
-					list.clear();
-					list.add(map);
-				}else{
-					list.get(0).put("sign", "");
-				}
-				
-				return list;
-			}
-
+			return list;		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

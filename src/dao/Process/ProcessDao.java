@@ -32,7 +32,9 @@ public class ProcessDao extends CommonDAO implements IBaseDao{
 	 * 跳页
 	 * */
 	public List<Map<String, Object>> getPageInfo(int page) throws Exception{
-		String sql = "select * from process limit " + (page - 1) * 10  + ", 10";
+		String sql = "select process.id,submitID,user.name as submitName,reviewID,releaseDate"+
+				",reviewDate,telAndActID,state from process left join user on(user.id "+
+				"= process.submitID) limit " + (page - 1) * 10  + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);

@@ -74,7 +74,7 @@ function displayTable(info){
 				if(j == (tableTh[url['block']].length - 1)){
 					display += '<td class="controlTh">' + getOperate(url['block'] + 'Ctr', info[i]) + '</td>';
 				}else {
-					display += "<td>" + isNull(info[i][tableTh[url['block']][j]]) + '</td>';
+					display += "<td title='"+isNull(info[i][tableTh[url['block']][j]])+"'>"+isNull(info[i][tableTh[url['block']][j]]) + '</td>';
 				}
 			}
 			
@@ -162,6 +162,7 @@ function backAddClasses() { //右边不能点
 }
 
 function getOperate(type, info){
+	getPermissions();
 	var display = "";
 		
 	if(type == "ProcessCtr" && hasPerssions(type)){

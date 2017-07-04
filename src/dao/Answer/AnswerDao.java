@@ -34,7 +34,7 @@ public class AnswerDao extends CommonDAO implements IBaseDao{
 	 * 跳页
 	 * */
 	public List<Map<String, Object>> getPageInfo(int page) throws Exception{
-		String sql = "select * from answer limit " + (page - 1) * 10  + ", 10";
+		String sql = "select answer.id, question.id as questionID, question.questionContent,user.id as userID,user.name,answerContent,answerDate from answer left join user on(user.id = answer.userID) left join question on (question.id = answer.questionID) limit " + (page - 1) * 10  + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);

@@ -27,7 +27,10 @@ public class EvaluationDao extends CommonDAO implements IBaseDao{
 	 * 跳页
 	 * */
 	public List<Map<String, Object>> getPageInfo(int page) throws Exception{
-		String sql = "select * from evaluation limit " + (page - 1) * 10  + ", 10";
+		String sql = "SELECT evaluation.id,	telAndActID,tel_and_act.title,telAndActID,"+
+				"user.name,evaluationContent,evalutionDate FROM	evaluation LEFT JOIN "+
+				" tel_and_act ON (tel_and_act.id = evaluation.telAndActID) LEFT JOIN user"+
+				" ON (user .id = evaluation.userID) limit " + (page - 1) * 10  + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);

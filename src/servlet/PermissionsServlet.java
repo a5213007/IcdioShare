@@ -54,6 +54,9 @@ public class PermissionsServlet extends HttpServlet {
 				JSONArray json = JSONArray.fromObject(list);
 				SendToHtml.send(json, response);
 			}
+		}else if("getPermissions".equals(request.getParameter("info"))){
+			PermissionsService permissionsService = new PermissionsService();
+			
 		}
 	}
 

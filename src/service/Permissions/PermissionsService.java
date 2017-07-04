@@ -68,13 +68,19 @@ public class PermissionsService implements IBaseService{
 		}		
 	}
 	
-	public boolean hasPerssions(String signName, Long userId){
+	public List<Map<String, Object>> hasPerssions(Long userId){
 		try {
-			if(perssionsDao.hasPerssions(signName, userId).size() != 0)
-				return true;
+			List<Map<String, Object>> list = perssionsDao.hasPerssions(userId);
+			if(list.size() != 0){
+				String[] permissions = new String[list.size()];
+				
+				
+			}
+			
+			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
-		return false;
+		return null;
 	}
 }

@@ -8,6 +8,25 @@ function hasPerssions(type){
 	return false;
 }
 
+function getPermissions(){
+	$.ajax({
+		type:'post',
+		url:'../servlet/PermissionsServlet',
+		async:false,
+		data:{
+			'info':'getPermissions'
+		},
+		success:function(data){
+			if(eval(data) != undefined || eval(data) != ""){
+				sessionStorage.permissions = eval(data);
+			}
+		},
+		error:function(data){
+			alert("权限获取失败！")
+		},
+	})
+}
+
 function goWhere(tip){
 	window.location.href = tip + ".html?block=main";
 }
