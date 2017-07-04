@@ -52,6 +52,11 @@ public class UserDao extends CommonDAO implements IBaseDao{
 		return excuteQuery(sql, null);
 	}
 	
+	public List<Map<String, Object>> getViewByAccount(String account) throws Exception{
+		String sql = "select * from v_user where account = " + account;
+		return excuteQuery(sql, null);
+	}
+	
 	public int updateTo(Map<String, Object> map) throws Exception{
 		String sql = "update user set name='" + map.get("name") + "',sex = '" + 
 				map.get("sex") + "',age = '" + map.get("age") + "',phoneNum = '"

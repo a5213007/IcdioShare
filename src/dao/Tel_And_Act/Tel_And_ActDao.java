@@ -72,7 +72,7 @@ public class Tel_And_ActDao extends CommonDAO implements IBaseDao{
 	}
 	
 	public List<Map<String, Object>> getAllTechnologyPageAdmin() throws Exception{
-		String sql = "select count(*) as page from v_technology ";
+		String sql = "select count(*) / 10 as page from v_technology ";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);

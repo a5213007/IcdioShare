@@ -35,10 +35,10 @@ function loadBackManagement(){
 		$('#title').html(control2[url['block']]);
 		$('#title').css('display','block');
 		
-		if(url['block'] == "Process" || url['block'] == "QuesAndAnsw" || url['block'] == "Process" || url['block'] == "Evaluation"){
-			$("#btAddInfo").css('display','none');
-		}else {
+		if(url['block'] == "Permissions" || url['block'] == "Role" || url['block'] == "User" ){
 			$("#btAddInfo").css('display','block');
+		}else {
+			$("#btAddInfo").css('display','none');
 		}
 		getInfo();
 		
@@ -61,17 +61,14 @@ function getInfo(){
 				'info':'display', 'page': url['page'], 'userId' : eval(sessionStorage.user)[0]['id'],
 			},
 			success:function(data){
-				var info = eval(data);
-				
+				var info = eval(data);				
 				if(info != undefined && info != ""){
-					$("#table").remove();
-					
-					displayTable(info);
-					
+					$("#table").remove();				
+					displayTable(info);				
 				}
 			},
 			error:function(data){
-				
+				alert("服务器访问失败！");
 			},
 		})
 	}
@@ -80,10 +77,10 @@ function getInfo(){
 
 function displayTable(info){
 	var url = GetRequest();
-	var display = '<table id="table" class="table" cellspacing="0" cellpadding="5"><tr class="controlTh">';
+	var display = '<table id="table" class="table" cellspacing="0" cellpadding="5"><tr class="controlTh controlTh2">';
 	
 	for(var j = 0; j < tableTh[url['block']].length; j++)
-		display += '<td>'+tableTh[url['block']][j]+'</td>';
+		display += '<td>'+tableTh2[url['block']][j]+'</td>';
 	
 	display +='</tr>';
 	for(var i = 0; i < info.length; i++){
@@ -92,22 +89,48 @@ function displayTable(info){
 			if(i % 2 == 1)
 				display += "<tr class='otherTr'>";
 			else 
-				display += "<tr>"
+				display += "<tr>";
 			
 			for(var j = 0; j < tableTh[url['block']].length; j++){
 				if(j == (tableTh[url['block']].length - 1)){
-					display += '<td class="controlTh"><span class="control">编辑</span><span class="control">查看</span><span class="control">删除</span></td>';
+					display += '<td class="controlTh">' + getOperate(url['block'] + 'Ctr', info[i]) + '</td>';
 				}else {
 					display += "<td>" + info[i][tableTh[url['block']][j]] + '</td>';
 				}
 			}
 			
 			display += "</tr>";
+		}else {
+			$('#nowPage').html(url['page']);
+			$('#allPage').html(Math.ceil(info[i]['page']));
 		}
 	}
 	
 	display += '</table>'
 	$('#displayTable').append(display);
+}
+
+
+function getOperate(type, info){
+	var display = "";
+		
+	if(hasPerssions(type) || hasPerssions(type +"_display"))
+		display += '<span class="control">查看</span>';
+	if(hasPerssions(type) || hasPerssions(type +"_edit"))
+		display += '<span class="control">编辑</span>';
+	if(hasPerssions(type) || hasPerssions(type +"_delete"))
+		display += '<span class="control">删除</span>';
+	
+	if(type == "TechnologyCtr" || type == "ActiveCtr"){ 
+		if((hasPerssions(type) || (eval(sessionStorage.user)[0]['id'] == info['userID']))
+				&& info['state'] == '已提交'){
+			display += '<span class="control">撤回</span>';
+		}else if((hasPerssions(type) || (eval(sessionStorage.user)[0]['id'] == info['userID']))
+				&& (info['state'] == '已撤回' || info['state'] == '已驳回')){
+			display += '<span class="control">提交</span>';
+		}
+	}
+	return display;
 }
 
 function goBlock(tip){
