@@ -297,9 +297,11 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 .title{
     position: absolute;
     top: 12%;
-    left: 55%;
-    font-size: 1.2vw;
-    z-index:1200;	
+    left: 52%;
+    font-size: 24px;
+    z-index: 1200;
+    font-family: 幼圆;
+    font-weight: bold;
 }
 .cover{
 	position: fixed;
@@ -391,5 +393,13 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 .page:hover {
     color:#e35e40;
     text-decoration: underline;
+}
+
+.cantClick {
+    cursor: not-allowed;
+}
+
+.canClick {
+    cursor: default;
 }
 
