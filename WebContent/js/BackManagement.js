@@ -26,7 +26,7 @@ function loadBackManagement(){
 			$("#btAddInfo").css('display','none');
 		}
 		setFindBt(url['block']);
-		getInfo();
+		displayInfo();
 		
 	}else {
 		alert("路径出错！");
@@ -65,7 +65,34 @@ function setFindBt(type){
 		$('#findSel').append('<option value="'+tableTh[type][i] + '">'+ tableTh2[type][i] +'</option>');
 }
 
-function getInfo(){
+function setAddModel(type){
+	if(type == 'Permissions'){
+		
+	}else if(type == 'Role'){
+		
+	}else if(type == 'User'){
+		
+	}
+}
+
+function getInfoEditAndLook(block, id){
+	$.ajax({
+		type:'post',
+		url:'../servlet/CommomOperateServlet',
+		async:false,
+		data:{
+			'info':'findById', 'service':block, 'id': id
+		},
+		success:function(data){
+			
+		},
+		error:function(data){
+			
+		},
+	})
+}
+
+function displayInfo(){
 	var url = GetRequest();
 	
 	if(url['page'] != undefined && url['block'] != undefined){
@@ -299,6 +326,11 @@ function backGoLastPg (){
 function add() {
 	var url = GetRequest();
 	window.location.href = "BackManagement.html?block=" + url['block'] + "&type=add";
+}
+
+function edit(id) {
+	var url = GetRequest();
+	window.location.href = "BackManagement.html?block=" + url['block'] + "&type=edit&id=" + id;
 }
 
 
