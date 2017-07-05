@@ -67,20 +67,6 @@ public class CommonOperateServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if("find".equals(request.getParameter("info"))) {
-			String key = request.getParameter("key");
-			String value = request.getParameter("value");
-			String className = request.getParameter("className");
-			try {
-				Class service = Class.forName("service." + className + "." + className  +"Service");
-				Object object = service.newInstance();
-				@SuppressWarnings("unchecked")
-				Method method = service.getMethod("findByKeyAndValue", String.class, String.class);
-				method.invoke(object, key, value);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 	}
 
 }

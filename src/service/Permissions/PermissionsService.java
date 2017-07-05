@@ -106,4 +106,16 @@ public class PermissionsService implements IBaseService{
 		}	
 		return false;
 	}
+	
+	public List<Map<String, Object>> findByKeyAndValue(String key, String value, int page){
+		try {
+			List<Map<String, Object>> list = perssionsDao.findByKeyAndValue(key, value, page);
+			List<Map<String, Object>> list1 = perssionsDao.findByKeyAndValuePage(key, value, page);
+			list.add(list1.get(0));
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return null;
+	}
 }

@@ -63,6 +63,16 @@ public class PermissionsServlet extends HttpServlet {
 				JSONArray json = JSONArray.fromObject(list);
 				SendToHtml.send(json, response);
 			}
+		}else if("find".equals(request.getParameter("info"))){
+			int page = Integer.parseInt(request.getParameter("page"));
+			String key = request.getParameter("key");
+			String value = request.getParameter("value");
+			PermissionsService permissionsService = new PermissionsService();
+			List<Map<String, Object>> list = permissionsService.findByKeyAndValue(key, value, page);
+			if(list != null){
+				JSONArray json = JSONArray.fromObject(list);
+				SendToHtml.send(json, response);
+			}
 		}
 	}
 

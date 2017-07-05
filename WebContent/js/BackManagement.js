@@ -9,6 +9,8 @@ function loadBackManagement(){
 		
 		if(url['block'] == 'main')
 			return;
+
+		setFindBt(url['block']);
 		if (url['type'] == "add") {
 			$('#addEditModel').css('display','block');
 			$('#displayModel').css('display','none');
@@ -21,6 +23,11 @@ function loadBackManagement(){
 			getColumnInfo(url['block']);
 			setEditModel(url['block'], url['id']);
 			return ;
+		}else if(url['type'] == 'find'){
+			find();
+			$('#displayModel').css('display','block');
+			$('#addEditModel').css('display','none');
+			return;
 		}
 
 		$('#displayModel').css('display','block');
@@ -32,7 +39,6 @@ function loadBackManagement(){
 		}else {
 			$("#btAddInfo").css('display','none');
 		}
-		setFindBt(url['block']);
 		displayInfo();
 		
 	}else {
@@ -362,26 +368,30 @@ function addReBt(tip){
 	window.location.href = "BackManagement.html?page=1&block=" + tip;
 }
 
-function find(type, key, value){
-	if(confirm("确定删除？")){
-		if(type == "ActiveCtr" || type == "TechnologyCtr")
-			type = "Tel_And_ActCtr";
-		$.ajax({
-			type:'post',
-			url:'../servlet/CommonOperateServlet',
-			aysnc:false,
-			data:{
-				'info':'find', 'key':key, 'value':value, 'className':type.substring(0, type.length - 3)
-			},
-			success:function(data){
-				var url = GetRequest();
-				window.location.href = "BackManagement.html?page=1&block=" + url['block'];
-			},
-			error:function(data){
-				alert("服务器访问失败！");
-			},
-		});
-	}
+function loadFind(){
+	var url = GetRequest();
+	window.location.href = "BackManagement.html?page=1&block=" + url['block'] + "&type=find&key=" + $('#findSel').val() + "&value=" + $('#findbyKeyAndValue').val()
+}
+
+function find() {
+	var url = GetRequest();
+	$.ajax({
+		type:'post',
+		url:'../servlet/'+ url['block'] + 'Servlet',
+		aysnc:false,
+		data:{
+			'info':'find', 'key':url['key'], 'value':url['value'], 'page':url['page']
+		},
+		success:function(data){
+			var info = eval(data);
+			getPermissions();
+			displayTable(info);	
+			sessionStorage.removeItem('permissions');	
+		},
+		error:function(data){
+			alert("服务器访问失败！");
+		},
+	});
 }
 
 function goBlock(tip){
