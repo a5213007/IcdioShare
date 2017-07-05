@@ -19,7 +19,7 @@
 			</div>
 			<div id="activeDisplay">
 			</div>
-			<div class="add" onclick="openActive()">添加</div>
+			<div class="add" id="activeAdd" onclick="openActive()">添加</div>
 			<div class="page">
 				<span id="activeFirstPage" onclick="turnToActiveFirstPage()">首页</span> <span id="activePreviousPage" onclick="turnToActivePreviousPage()">上一页</span> 
 				<span id="currentActivePage"></span>/<span id="activePages"></span> <span id="activeNextPage" onclick="turnToActiveNextPage()">下一页</span> 
@@ -137,19 +137,9 @@
 		</div>		
 	</div>
 	
-	<div class="control">
-		<div class="mainCtr">
-			<button>权限管理</button>
-			<button>角色管理</button>
-			<button>人员信息管理</button>
-			<button onclick="goWhere('BackManagement')">流程管理</button>
-		</div>
-		
+	<div class="control"> 
 		<div class="secondCtr">
-			<button>评论管理</button>
-			<button>问题答案管理</button>
-			<button>技术分享管理</button>
-			<button>活动通知管理</button>
+			<button style="float: right;" onclick="goWhere('BackManagement')">进入管理页面</button>
 		</div>
 	</div>
 	

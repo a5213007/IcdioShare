@@ -185,14 +185,13 @@ body{
 .control button{
 	width: 22%;
     margin-right: 6.2px;
-    /* height: 122%; */
-    /* font-size: 2%; */
     background: none;
-    color: #bd9e24;
+    color: lightblue;
     border-bottom: none;
-    border-color: #bd9e24;
+    border-color: #607D8B;
     cursor: pointer;
     height: 100%;
+    border-radius:2px;
 }
 .control button:focus{
 	outline:none;
