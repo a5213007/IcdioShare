@@ -13,7 +13,7 @@ public class Evaluation{
 	@Column(name="userID", chineseName="人员ID", nullAble=true, note="人员ID", type="String", length=14)
 	private String userID;
 	 
-	@Column(name="evaluationContent", chineseName="评价内容", nullAble=true, note="评价内容", type="String", length=-1)
+	@Column(name="evaluationContent", chineseName="评价内容", nullAble=true, note="评价内容", type="String", length=200)
 	private String evaluationContent;
 	 
 	@Column(name="evalutionDate", chineseName="评价时间", nullAble=true, note="评价时间", type="String", length=-1)

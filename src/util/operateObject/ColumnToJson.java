@@ -6,32 +6,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.sf.json.JSONArray;
 import util.codeGenerate.Column;
 
 public class ColumnToJson {
-	public static List<Map<String, Object>> viewToJson(List<Map<String, Object>> list) throws ClassNotFoundException{
-		Class clazz = Class.forName("Entity." + list.get(0).get("EntityName"));
-		
+	public static JSONArray viewToJson(String className) throws ClassNotFoundException{
+		Class clazz = Class.forName("Entity." + className + "." + className);		
 		List<Map<String, Object>> info = new ArrayList<Map<String,Object>>();
 		Field[] fields = clazz.getDeclaredFields();
-
-		Map<String, Object> title = new HashMap<String, Object>();
-		title.put("ChineseName", list.get(0).get("ChineseName"));
-		title.put("EntityName", list.get(0).get("EntityName"));
-		title.put("TID", list.get(0).get("TID"));
-		info.add(title);
 		
-		for (int i = 1; i <fields.length; i++) 			
-			info.add(setInfo(fields[i], list));
+		for (int i = 0; i <fields.length; i++) 			
+			info.add(setInfo(fields[i]));
 				
-		return info;
+		return JSONArray.fromObject(info);
 	}
 	
-	private static Map<String, Object> setInfo(Field field, List<Map<String, Object>> list){
+	private static Map<String, Object> setInfo(Field field){
 		Column column = field.getAnnotation(Column.class);
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		
+		map.put("name", column.name());
+		map.put("chineseName", column.chineseName());
+		map.put("nullAble", column.nullAble());
+		map.put("type", column.type());
+		map.put("length", column.length());
+		map.put("note", column.note());
 		
 		return map;
 	

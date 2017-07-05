@@ -13,12 +13,12 @@ public class Answer{
 	@Column(name="userID", chineseName="人员ID", nullAble=true, note="人员ID", type="String", length=14)
 	private String userID;
 	 
-	@Column(name="answerContent", chineseName="回答内容", nullAble=true, note="回答内容", type="String", length=-1)
-	private String answerContent;
-	 
 	@Column(name="answerDate", chineseName="回答时间", nullAble=true, note="回答时间", type="String", length=-1)
 	private String answerDate;
 	 
+	@Column(name="answerContent", chineseName="回答内容", nullAble=true, note="回答内容", type="String", length=8000)
+	private String answerContent;
+	
 	public String getId() {
 		return id;
 	}
