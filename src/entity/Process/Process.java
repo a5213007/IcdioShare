@@ -4,25 +4,25 @@ import util.codeGenerate.*;
 
 @Entity(name="流程信息", table="peocess")
 public class Process{
-	@Column(name="id", chineseName="流程信息id",nullAble=false, note="id", type="String", length=14)
+	@Column(name="id", chineseName="流程信息id",nullAble=false, note="id", type="String", length=14,editAble=false)
 	private String id;
 
-	@Column(name="state", chineseName="状态", nullAble=true, note="状态", type="String", length=-1)
+	@Column(name="state", chineseName="状态", nullAble=true, note="状态", type="String", length=-1,editAble=false)
 	private String state;
 	 
-	@Column(name="telAndActID", chineseName="技术日常活动表ID", nullAble=true, note="技术日常活动表ID", type="String", length=14)
+	@Column(name="telAndActID", chineseName="技术日常活动表ID", nullAble=true, note="技术日常活动表ID", type="String", length=14,editAble=false)
 	private String telAndActID;
 	 
-	@Column(name="submitID", chineseName="提交人ID", nullAble=true, note="提交人ID", type="String", length=14)
+	@Column(name="submitID", chineseName="提交人ID", nullAble=true, note="提交人ID", type="String", length=14,editAble=false)
 	private String submitID;
 	 
-	@Column(name="reviewID", chineseName="审批人ID", nullAble=true, note="审批人ID", type="String", length=14)
+	@Column(name="reviewID", chineseName="审批人ID", nullAble=true, note="审批人ID", type="String", length=14,editAble=false)
 	private String reviewID;
 	
-	@Column(name="releaseDate", chineseName="提交日期", nullAble=true, note="提交日期", type="String", length=-1)
+	@Column(name="releaseDate", chineseName="提交日期", nullAble=true, note="提交日期", type="String", length=-1,editAble=false)
 	private String releaseDate;
 	
-	@Column(name="reviewDate", chineseName="审批日期", nullAble=true, note="审批日期", type="String", length=-1)
+	@Column(name="reviewDate", chineseName="审批日期", nullAble=true, note="审批日期", type="String", length=-1,editAble=false)
 	private String reviewDate;
 	
 	public String getId() {

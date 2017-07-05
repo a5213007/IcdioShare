@@ -4,7 +4,7 @@ import util.codeGenerate.*;
 
 @Entity(name="角色信息", table="role")
 public class Role{
-	@Column(name="id", chineseName="角色信息id",nullAble=false, note="id", type="String", length=14)
+	@Column(name="id", chineseName="角色信息id",nullAble=false, note="id", type="String", length=14,editAble=false)
 	private String id;
 
 	@Column(name="roleName", chineseName="角色名称", nullAble=true, note="角色名称", type="String", length=-1)

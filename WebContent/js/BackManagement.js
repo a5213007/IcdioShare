@@ -123,10 +123,15 @@ function setEditModel(type, infoId){
 	var dis = '<div class="tail"><button class="btSure">确定</button><button class="btRe" onclick="addReBt(\''+type+'\')">返回</button>'+
 			'</div>'
 	$("#addEdit").append(dis);
+	restoreEdit(type, infoId);
 	
 }
 
 function restoreEdit(type, infoId){
+	var column = eval(sessionStorage.column);
+	if(type == "Active" || type == "Technology")
+		type = "Tel_And_Act";
+	
 	$.ajax({
 		type:'post',
 		url:'../servlet/CommonOperateServlet',
@@ -135,16 +140,27 @@ function restoreEdit(type, infoId){
 			'info':'restore','id': infoId, 'className':type,
 		},
 		success:function(data){
+			var info = eval(data);
 			
+			if(data != undefined){
+				for(var i = 0; i < column.length; i++){
+					if(column[i]['editAble'] == undefined || column[i]['editAble'] == true);
+					else
+						$('#addModel_' + column[i]['name']).attr("disabled","false");
+					$('#addModel_' + column[i]['name']).val(info[0][column[i]['name']]);
+				}
+			}
 		},
 		error:function(data){
 			
 		},
-		
 	})
 }
 
 function getColumnInfo(block){
+	if(block == "Active" || block == "Technology")
+		block = "Tel_And_Act";
+	
 	$.ajax({
 		type:'post',
 		url:'../servlet/CommonOperateServlet',

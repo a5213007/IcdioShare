@@ -31,7 +31,7 @@ public class ColumnToJson {
 		map.put("type", column.type());
 		map.put("length", column.length());
 		map.put("note", column.note());
-		
+		map.put("editAble", column.editAble());
 		return map;
 	
 	}
