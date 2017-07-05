@@ -51,13 +51,13 @@ function loadBackManagement(){
  * 根据权限展示左边模块按钮
  * */
 function setItem(){
-	if(!isDisplay('PermissionsCtr') && !isDisplay('PermissionsCtr_display'))
+	if(isDisplay('PermissionsCtr') && isDisplay('PermissionsCtr_display'))
 		$("#permissionsCtr").remove();
-	if(!isDisplay('UserCtr') && !isDisplay('UserCtr_display'))
+	if(isDisplay('UserCtr') && isDisplay('UserCtr_display'))
 		$("#roleCtr").remove();
-	if(!isDisplay('RoleCtr') && !isDisplay('RoleCtr_display'))
+	if(isDisplay('RoleCtr') && isDisplay('RoleCtr_display'))
 		$("#userCtr").remove();
-	if(!isDisplay('ProcessCtr') && !isDisplay('ProcessCtr_display'))
+	if(isDisplay('ProcessCtr') && isDisplay('ProcessCtr_display'))
 		$("#processCtr").remove();
 	$("div.item").css('display','block');
 }
@@ -359,14 +359,14 @@ function getOperate(type, info){
 		return display;
 	}
 	
-	if(hasPerssions(type) || hasPerssions(type +"_display"))
+	if((hasPerssions(type) || hasPerssions(type +"_display")) || isTheBlock(type))
 		display += '<span class="control">查看</span>';
 	if(type != "QuestionCtr" && type != "AnswerCtr" && type != "Evaluation"){
-		if(hasPerssions(type) || hasPerssions(type +"_edit"))
+		if((hasPerssions(type) || hasPerssions(type +"_edit")) || isTheBlock(type))
 			display += '<span class="control" onclick="edit('+info['id']+')">编辑</span>';
 	}
 	
-	if(hasPerssions(type) || hasPerssions(type +"_delete"))
+	if((hasPerssions(type) || hasPerssions(type +"_delete")) || isTheBlock(type))
 		display += '<span class="control" onclick="del(\''+type+'\',\''+info['id']+'\')">删除</span>';
 	
 	if(type == "TechnologyCtr" || type == "ActiveCtr"){ 
@@ -384,6 +384,12 @@ function getOperate(type, info){
 	}
 	
 	return display;
+}
+
+function isTheBlock(type){
+	if(type == "RoleCtr" || type == "UserCtr" || type == "PermissionsCtr" || type == "ProcessCtr")
+		return false;
+	return true;
 }
 
 /**

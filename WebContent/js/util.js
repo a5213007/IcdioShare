@@ -20,7 +20,7 @@ function getPermissions(){
 			'info':'getPermissions','id':eval(sessionStorage.user)[0]['id']
 		},
 		success:function(data){
-			if(eval(data) != undefined && eval(data) != "" && eval(data).length != 0){
+			if(eval(data) != undefined && eval(data) != "" && eval(data).length != 0 && data != "[]"){
 				sessionStorage.permissions = JSON.stringify(eval(data));
 			}
 		},
