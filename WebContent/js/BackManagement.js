@@ -5,6 +5,12 @@ function loadBackManagement(){
 	if(url['block'] != undefined){
 		if(url['block'] == 'main')
 			return;
+
+		if (url['type'] == "add") {
+			$('#addEditModel').css('display','block');
+			$('#displayModel').css('display','none');
+			return;
+		}
 		
 		$('#displayModel').css('display','block');
 		$('#title').html(control2[url['block']]);
@@ -256,6 +262,11 @@ function backGoLastPg (){
 	if(parseInt($('#nowPage').html()) < pages && parseInt(url['page']) > 0 && parseInt($('#nowPage').html()) != pages) {
 		window.location.href = "BackManagement.html?page=" + pages + "&block=" + url['block'];
 	}
+}
+
+function add() {
+	var url = GetRequest();
+	window.location.href = "BackManagement.html?block=" + url['block'] + "&type=add";
 }
 
 

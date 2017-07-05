@@ -79,6 +79,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     background-color: #394263;
     color: #fff;
     font-family: 'Microsoft Yahei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    display:none;
 }
 .itemFr{
 	position: relative;
@@ -235,64 +236,98 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     position: relative
 }
 .inputBody{
-    margin-top: 5%;
+    margin-top: 8%;
     height: 80%;
 }
 .lab1{
     position: absolute;
     margin-left: 35%;
-    margin-top: 5%;
+    margin-top: 2%;
     font-size: 0.9vw;
+    height: 40%;
+    line-height: 2;
 }
+.tip1 {
+    position: absolute;
+    margin-left: 42%;
+    margin-top: 1%;
+    font-size: 0.9vw;
+    height: 21%;
+    width: 40%;
+}
+
+.tip2 {
+    position: absolute;
+    margin-left: 12%;
+    margin-top: 1%;
+    font-size: 0.9vw;
+    height: 21%;
+    width: 40%;
+}
+
 .lab2{
     position: absolute;
     margin-left: 5%;
-    margin-top: 5%;
+    margin-top: 2%;
     font-size: 0.9vw;
+    height: 40%;
+    line-height: 2;
 }
 .input1{
     margin-left: 42%;
-    margin-top: 4.8%;
-    height: 25%;
-    width: 50%;
+    margin-top: 1.8%;
+    height: 40%;
+    width: 40%;
     font-size: 0.9vw;
     line-height: 0.5;
     padding: 0 0.2%;
-    border: 0.01em solid rgba(0, 0, 0, 0.45)	
+    border: 0.01em solid rgba(0, 0, 0, 0.45);
 }
 .input2{
     margin-left: 12%;
-    margin-top: 4.8%;
-    height: 25%;
-    width: 50%;
+    margin-top: 1.8%;
+    height: 40%;
+    width: 40%;
     font-size: 0.9vw;
     line-height: 0.5;
     padding: 0 0.2%;
     border: 0.01em solid rgba(0, 0, 0, 0.45)	
 }
 .tail{
-    width: 100%;
-    height: 5%;
+    width: 79%;
+    height: 6%;
     position: relative;
     float: right;
     margin-top: 3%;
-    text-align: center;
 }
 .btSure{
-    margin-right: 5%;
     width: 5%;
     height: 90%;
-    background: none;
+    background: #5bc0de;
     outline: none;
-    cursor: pointer;	
+    cursor: pointer;
+    border: none;
+    color: white;
+    font-size: 15px;
+    font-family: 等线;	
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    float: left;
+    margin-right: 0.5%;
 }
 .btRe{
-    margin-left: 5%;
     width: 5%;
     height: 90%;
-    background: none;
+    background: #5bc0de;
     outline: none;
     cursor: pointer;	
+    border: none;
+    color: white;
+    font-size: 15px;
+    font-family: 等线;    
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    float: left;
 }
 .title{
     position: absolute;
