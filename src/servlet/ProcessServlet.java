@@ -64,6 +64,12 @@ public class ProcessServlet extends HttpServlet {
 				JSONArray json = JSONArray.fromObject(list);
 				SendToHtml.send(json, response);
 			}
+		}else if("processCtr".equals(request.getParameter("info"))){
+			JSONArray json = JSONArray.fromObject("["+request.getParameter("object")+"]");
+			String judge = request.getParameter("judge");
+			
+			ProcessService processService = new ProcessService();
+			processService.changeState(judge, json);
 		}
 	}
 

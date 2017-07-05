@@ -6,12 +6,12 @@ function loadBackManagement(){
 		getPermissions();
 		setItem();
 		sessionStorage.removeItem('permissions');
-		$('#title').html(control2[url['block']]);
-		$('#title').css('display','block');
-		
+				
 		if(url['block'] == 'main')
 			return;
 
+		$('#title').html(control2[url['block']]);
+		$('#title').css('display','block');
 		setFindBt(url['block']);
 		if(url['block'] == "Permissions" || url['block'] == "Role" || url['block'] == "User" ){
 			$("#btAddInfo").css('display','block');
@@ -351,8 +351,8 @@ function getOperate(type, info){
 		
 	if(type == "ProcessCtr" && hasPerssions(type)){
 		if(info['state'] == "已提交"){
-			display += '<span class="control">同意</span>';
-			display += '<span class="control">驳回</span>';
+			display += '<span class="control" onclick="processCtr(\'true\',\''+info['id']+'\')">同意</span>';
+			display += '<span class="control" onclick="processCtr(\'false\',\''+info['id']+'\')">驳回</span>';
 		}else {
 			display += '<span class="control" onclick="del(\''+type+'\',\''+info['id']+'\')">删除</span>';
 		}
@@ -385,6 +385,36 @@ function getOperate(type, info){
 	
 	return display;
 }
+
+/**
+ * 流程审批
+ * */
+function processCtr(tip, id){
+	var object = {};
+	object['processId'] = id;
+	object['userId'] = eval(sessionStorage.user)[0]['id'];
+	object['reviewDate'] = getNowTime();
+	
+	if(confirm("是否进行审批？")){
+		$.ajax({
+			type:'post',
+			async:false,
+			url:'../servicce/ProcessServlet',
+			data:{
+				'info':'processCtr', 'judge':tip,'object':JSON.stringify(object)
+			},
+			success:function(data){
+				alert("审批成功！");
+				window.location.reload();
+			},
+			error:function(data){
+				
+			},
+		});
+		
+	}
+}
+
 
 /**
  * 删除按钮
