@@ -12,12 +12,12 @@ public class Question{
 	 
 	@Column(name="userID", chineseName="人员ID", nullAble=true, note="人员ID", type="String", length=14)
 	private String userID;
-	 
-	@Column(name="questionContent", chineseName="问题内容", nullAble=true, note="问题内容", type="String", length=-1)
-	private String questionContent;
-	 
+ 
 	@Column(name="askDate", chineseName="提问时间", nullAble=true, note="提问时间", type="String", length=-1)
 	private String askDate;
+		 
+	@Column(name="questionContent", chineseName="问题内容", nullAble=true, note="问题内容", type="String", length=8000)
+	private String questionContent;
 	
 	public String getId() {
 		return id;

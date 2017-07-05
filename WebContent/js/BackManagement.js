@@ -75,16 +75,19 @@ function setAddModel(type){
 	}
 }
 
-function getInfoEditAndLook(block, id){
+function getColumnInfo(block){
 	$.ajax({
 		type:'post',
 		url:'../servlet/CommomOperateServlet',
 		async:false,
 		data:{
-			'info':'findById', 'service':block, 'id': id
+			'info':'columnInfo', 'class':block
 		},
 		success:function(data){
-			
+			var info = eval(data);
+			if(info != null && info != ""){
+				sessionStorage.object = JSON.stringify(info);
+			}
 		},
 		error:function(data){
 			

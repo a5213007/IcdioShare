@@ -12,7 +12,17 @@ public class User_Role{
 	 
 	@Column(name="roleID", chineseName="角色ID", nullAble=true, note="角色ID", type="String", length=14)
 	private String roleID;
-	 
+	
+	
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setUserID(String userID){
 		this.userID = userID;	
 	}
