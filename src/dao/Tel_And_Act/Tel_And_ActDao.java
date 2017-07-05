@@ -170,7 +170,9 @@ public class Tel_And_ActDao extends CommonDAO implements IBaseDao{
 	}
 	
 	public List<Map<String, Object>> findByKeyAndValue(String key, String value, int page){
-		String sql = "select * from tel_and_act where " + key + " like '%" + value + "%' limit " + (page - 1) * 10 + ", 10";
+		String sql = "SELECT tel_and_act.id, user.id, user.name, releaseDate, title,"+
+				" content, contentType, type, state, activeDate, activePlace from "+
+				"tel_and_act LEFT JOIN user on(user.id = tel_and_act.userID) where " + key + " like '%" + value + "%' and state = '已同意' limit " + (page - 1) * 10 + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);

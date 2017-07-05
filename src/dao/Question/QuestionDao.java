@@ -94,7 +94,8 @@ public class QuestionDao extends CommonDAO implements IBaseDao{
 	}
 	
 	public List<Map<String, Object>> findByKeyAndValue(String key, String value, int page){
-		String sql = "select * from question where " + key + " like '%" + value + "%' limit " + (page - 1) * 10 + ", 10";
+		String sql = "select question.id, tel_and_act.title, user.id as userID, telAndActID, user.name, questionContent, askDate from" + 
+				" question left join user on(user.id = question.userID) LEFT JOIN tel_and_act ON (tel_and_act.id = question.telAndActID) where " + key + " like '%" + value + "%' ORDER BY askDate asc limit " + (page - 1) * 10 + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);

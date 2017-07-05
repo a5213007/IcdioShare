@@ -20,6 +20,8 @@ public class AnswerDao extends CommonDAO implements IBaseDao{
 	public int update(Object object) throws Exception{
 		String sql = ObjectToSQL.toSqlForUpdate(object);
 		executeSql(sql);
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
 		return 1;
 	}
 	
@@ -95,7 +97,9 @@ public class AnswerDao extends CommonDAO implements IBaseDao{
 	}
 	
 	public List<Map<String, Object>> findByKeyAndValue(String key, String value, int page){
-		String sql = "select * from answer where " + key + " like '%" + value + "%' limit " + (page - 1) * 10 + ", 10";
+		String sql = "select answer.id, user.id as userID,question.questionContent, answer.questionID, user.name, answerContent,  answerDate" +
+				" from answer  left join user on(user.id = answer.userID) LEFT JOIN question ON (question.id = answer.questionID) where " +
+				key + " like '%" + value + "%' order by answerDate asc limit " + (page - 1) * 10 + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
