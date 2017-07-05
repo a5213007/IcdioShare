@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
+import service.Permissions.PermissionsService;
 import service.Role.RoleService;
 import util.sendToHtml.SendToHtml;
 
@@ -49,6 +50,16 @@ public class RoleServlet extends HttpServlet {
 			RoleService roleService = new RoleService();
 			List<Map<String, Object>> list = roleService.getInfoByPage(page);
 			
+			if(list != null){
+				JSONArray json = JSONArray.fromObject(list);
+				SendToHtml.send(json, response);
+			}
+		}else if("find".equals(request.getParameter("info"))){
+			int page = Integer.parseInt(request.getParameter("page"));
+			String key = request.getParameter("key");
+			String value = request.getParameter("value");
+			RoleService roleService = new RoleService();
+			List<Map<String, Object>> list = roleService.findByKeyAndValue(key, value, page);
 			if(list != null){
 				JSONArray json = JSONArray.fromObject(list);
 				SendToHtml.send(json, response);

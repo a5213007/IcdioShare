@@ -34,13 +34,55 @@ function goWhere(tip){
 	window.location.href = tip + ".html?block=main";
 }
 
-//将编码转换成字符  
-function utf8ToChar(str) {  
-    var iCode, iCode1, iCode2;  
-    iCode = parseInt("0x" + str.substr(1, 2));  
-    iCode1 = parseInt("0x" + str.substr(4, 2));  
-    iCode2 = parseInt("0x" + str.substr(7, 2));  
-    return String.fromCharCode(((iCode & 0x0F) << 12) | ((iCode1 & 0x3F) << 6) | (iCode2 & 0x3F));  
+function uniencode(text)
+{
+    text = escape(text.toString()).replace(/\+/g, "%2B");
+    var matches = text.match(/(%([0-9A-F]{2}))/gi);
+    if (matches)
+    {
+        for (var matchid = 0; matchid < matches.length; matchid++)
+        {
+            var code = matches[matchid].substring(1,3);
+            if (parseInt(code, 16) >= 128)
+            {
+                text = text.replace(matches[matchid], '%u00' + code);
+            }
+        }
+    }
+    text = text.replace('%25', '%u0025');
+ 
+    return text;
+}
+
+function convert_int_to_utf8($intval)
+{
+    $intval = intval($intval);
+    switch ($intval)
+    {
+        // 1 byte, 7 bits
+        case 0:
+            return chr(0);
+        case ($intval & 0x7F):
+            return chr($intval);
+ 
+        // 2 bytes, 11 bits
+        case ($intval & 0x7FF):
+            return chr(0xC0 | (($intval >> 6) & 0x1F)) .
+                chr(0x80 | ($intval & 0x3F));
+ 
+        // 3 bytes, 16 bits
+        case ($intval & 0xFFFF):
+            return chr(0xE0 | (($intval >> 12) & 0x0F)) .
+                chr(0x80 | (($intval >> 6) & 0x3F)) .
+                chr (0x80 | ($intval & 0x3F));
+ 
+        // 4 bytes, 21 bits
+        case ($intval & 0x1FFFFF):
+            return chr(0xF0 | ($intval >> 18)) .
+                chr(0x80 | (($intval >> 12) & 0x3F)) .
+                chr(0x80 | (($intval >> 6) & 0x3F)) .
+                chr(0x80 | ($intval & 0x3F));
+    }
 } 
 
 function isLogin(){
