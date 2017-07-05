@@ -369,6 +369,14 @@ function addReBt(tip){
 }
 
 function loadFind(){
+	if($('#findSel').val() == '' || $('#findSel').val() == '请选择') {
+		alert('下拉框未选择！');
+		return;
+		}
+	if($('#findbyKeyAndValue').val() == '') {
+		alert('请输入查找信息！');
+		return;
+	}
 	var url = GetRequest();
 	window.location.href = "BackManagement.html?page=1&block=" + url['block'] + "&type=find&key=" + $('#findSel').val() + "&value=" + $('#findbyKeyAndValue').val()
 }
