@@ -9,11 +9,18 @@ function loadBackManagement(){
 		
 		if(url['block'] == 'main')
 			return;
-
 		if (url['type'] == "add") {
 			$('#addEditModel').css('display','block');
 			$('#displayModel').css('display','none');
+			getColumnInfo(url['block']);
+			setAddModel(url['block']);
 			return;
+		}else if(url['type'] == 'edit'){
+			$('#addEditModel').css('display','block');
+			$('#displayModel').css('display','none');
+			getColumnInfo(url['block']);
+			setEditModel(url['block'], url['id']);
+			return ;
 		}
 
 		$('#displayModel').css('display','block');
@@ -65,19 +72,76 @@ function setFindBt(type){
 }
 
 function setAddModel(type){
-	if(type == 'Permissions'){
-		
-	}else if(type == 'Role'){
-		
-	}else if(type == 'User'){
-		
+	var column = eval(sessionStorage.column);
+	
+	for(var i = 0, j = 0; i < column.length; i++){
+		if(column[i]['name'] == 'id')
+			continue;
+		else{
+			if(column[i]['length'] < 100){
+				var index = (j % 2 == 0 ? 1 : 2);
+				j++;
+				var display = '<div class="addInput'+index+'"><label class="lab'+index+'">'+column[i]['chineseName']+'</label>'+
+				'<input class="input'+index+'" type="text" id="addModel_'+column[i]['name']+'" />'+
+				'<div class="tip'+index+'"></div></div>';
+				$("#addEdit").append(display);
+			}
+		} 
+			
 	}
+	var dis = '<div class="tail"><button class="btSure">确定</button><button class="btRe" onclick="addReBt(\''+type+'\')">返回</button>'+
+			'</div>'
+	$("#addEdit").append(dis);
+	
+}
+
+function setEditModel(type, infoId){
+	var column = eval(sessionStorage.column);
+	
+	for(var i = 0; i < column.length; i++){
+		var index = (i % 2 == 0 ? 1 : 2);
+		if(column[i]['length'] < 100){
+			var display = '<div class="addInput'+index+'"><label class="lab'+index+'">'+column[i]['chineseName']+'</label>'+
+			'<input class="input'+index+'" type="text" id="addModel_'+column[i]['name']+'" />'+
+			'<div class="tip'+index+'"></div></div>';
+			$("#addEdit").append(display);
+		} else {
+			
+			var display = '<div class="addInput'+index+'"><label class="lab'+index+'">'+column[i]['chineseName']+'</label>'+
+			'<input class="input'+index+'" type="text" id="addModel_'+column[i]['name']+'" />'+
+			'<div class="tip'+index+'"></div></div>';
+			$("#addEdit").append(display);
+		}
+			
+	}
+	var dis = '<div class="tail"><button class="btSure">确定</button><button class="btRe" onclick="addReBt(\''+type+'\')">返回</button>'+
+			'</div>'
+	$("#addEdit").append(dis);
+	
+}
+
+function restoreEdit(type, infoId){
+	$.ajax({
+		type:'post',
+		url:'../servlet/CommonOperateServlet',
+		async:false,
+		data:{
+			'info':'restore','id': infoId, 'className':type,
+		},
+		success:function(data){
+			
+		},
+		error:function(data){
+			
+		},
+		
+	})
 }
 
 function getColumnInfo(block){
 	$.ajax({
 		type:'post',
-		url:'../servlet/CommomOperateServlet',
+		url:'../servlet/CommonOperateServlet',
 		async:false,
 		data:{
 			'info':'columnInfo', 'class':block
@@ -85,15 +149,18 @@ function getColumnInfo(block){
 		success:function(data){
 			var info = eval(data);
 			if(info != null && info != ""){
-				sessionStorage.object = JSON.stringify(info);
+				sessionStorage.column = JSON.stringify(info);
 			}
 		},
 		error:function(data){
-			
+			alert("服务器访问失败！");
 		},
 	})
 }
 
+/**
+ * 模块数据表格展示
+ * */
 function displayInfo(){
 	var url = GetRequest();
 	
@@ -228,6 +295,10 @@ function backAddClasses() { //右边不能点
 
 }
 
+function submitEdit(){
+	
+}
+
 function getOperate(type, info){
 	var display = "";
 		
@@ -245,7 +316,7 @@ function getOperate(type, info){
 		display += '<span class="control">查看</span>';
 	if(type != "QuestionCtr" && type != "AnswerCtr" && type != "Evaluation"){
 		if(hasPerssions(type) || hasPerssions(type +"_edit"))
-			display += '<span class="control">编辑</span>';
+			display += '<span class="control" onclick="edit('+info['id']+')">编辑</span>';
 	}
 	
 	if(hasPerssions(type) || hasPerssions(type +"_delete"))
@@ -282,6 +353,9 @@ function del(type, id){
 	}
 }
 
+function addReBt(tip){
+	window.location.href = "BackManagement.html?page=1&block=" + tip;
+}
 
 function goBlock(tip){
 	window.location.href = "BackManagement.html?page=1&block=" + control[tip];

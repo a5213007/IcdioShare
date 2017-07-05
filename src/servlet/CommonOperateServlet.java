@@ -50,6 +50,8 @@ public class CommonOperateServlet extends HttpServlet {
 				e.printStackTrace();
 				throw new ServletException();
 			}
+		}else if("restore".equals(request.getParameter("info"))){
+			
 		}
 	}
 

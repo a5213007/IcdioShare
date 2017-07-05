@@ -11,7 +11,7 @@ import util.codeGenerate.Column;
 
 public class ColumnToJson {
 	public static JSONArray viewToJson(String className) throws ClassNotFoundException{
-		Class clazz = Class.forName("Entity." + className + "." + className);		
+		Class clazz = Class.forName("entity." + className + "." + className);		
 		List<Map<String, Object>> info = new ArrayList<Map<String,Object>>();
 		Field[] fields = clazz.getDeclaredFields();
 		
