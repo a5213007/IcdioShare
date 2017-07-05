@@ -53,8 +53,7 @@ public class CommonOperateServlet extends HttpServlet {
 			}
 		}else if("restore".equals(request.getParameter("info"))){
 			
-		}
-		else if("delete".equals(request.getParameter("info"))) {
+		}else if("delete".equals(request.getParameter("info"))) {
 			Long id = Long.parseLong(request.getParameter("id"));
 			String className = request.getParameter("className");
 			try {
@@ -66,8 +65,7 @@ public class CommonOperateServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else if("find".equals(request.getParameter("info"))) {
+		}else if("find".equals(request.getParameter("info"))) {
 			String key = request.getParameter("key");
 			String value = request.getParameter("value");
 			String className = request.getParameter("className");
