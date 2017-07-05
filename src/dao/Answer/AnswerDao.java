@@ -20,6 +20,8 @@ public class AnswerDao extends CommonDAO implements IBaseDao{
 	public int update(Object object) throws Exception{
 		String sql = ObjectToSQL.toSqlForUpdate(object);
 		executeSql(sql);
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
 		return 1;
 	}
 	

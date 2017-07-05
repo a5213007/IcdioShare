@@ -303,9 +303,9 @@ function submitActive(){
 		$.ajax({
 			type:'post',
 			async:false,
-			url:'../servlet/TechnologyServlet',
+			url:'../servlet/ActiveServlet',
 			data:{
-				'info':'addTechnology', 'object' : JSON.stringify(object)
+				'info':'addActive', 'object' : JSON.stringify(object)
 			},
 			success:function(data){
 				closeTechnology();

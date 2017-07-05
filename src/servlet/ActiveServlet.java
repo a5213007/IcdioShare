@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entity.Process.Process;
 import net.sf.json.JSONArray;
+import service.Process.ProcessService;
 import service.Tel_And_Act.Tel_And_ActService;
+import util.operateObject.JsonToObject;
 import util.sendToHtml.SendToHtml;
 
 /**
@@ -64,6 +67,20 @@ public class ActiveServlet extends HttpServlet {
 				JSONArray json = JSONArray.fromObject(list);
 				SendToHtml.send(json, response);
 			}
+		}else  if("addActive".equals(request.getParameter("info"))){
+			JSONArray json = JSONArray.fromObject("[" + request.getParameter("object") + "]");
+			try {
+				Object object = JsonToObject.jsonToObj("Tel_And_Act", json);
+				Tel_And_ActService tel_And_ActService = new Tel_And_ActService();
+				ProcessService processService = new ProcessService();
+				Map<String, Object> map = (Map<String, Object>) json.get(0);
+				tel_And_ActService.save(object);
+				processService.add(map);
+			
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new ServletException();
+			}						
 		}
 	}
 

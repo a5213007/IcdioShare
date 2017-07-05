@@ -544,7 +544,11 @@ function edit(id) {
  * 新增按钮确定
  * */
 function submitAdd(){
+	if(!yanzhen())
+		return ;
 	
+	var column = eval(sessionStorage.column);
+	var url = GetRequest();
 }
 
 /**

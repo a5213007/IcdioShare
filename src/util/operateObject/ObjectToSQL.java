@@ -29,7 +29,7 @@ public class ObjectToSQL {
 				Column column = field.getAnnotation(Column.class);
 				sql += column.name() + ",";
 				
-				if(method.invoke(object, null) == null){
+				if(method.invoke(object, null) == null || method.invoke(object, null).equals("null")){
 					sqlArg += "null,";
 				}else if(column.type().equals("String"))
 					sqlArg += "\"" + method.invoke(object, null) + "\",";
@@ -91,7 +91,9 @@ public class ObjectToSQL {
 			else{
 				Column column = field.getAnnotation(Column.class);
 					
-				if(column.type().equals("String"))
+				if(method.invoke(object, null) == null || method.invoke(object, null).equals("null")){
+					sql +=  column.name() + " =  null,";
+				}else if(column.type().equals("String"))
 					sql += column.name() + " = \"" + method.invoke(object, null) + "\",";
 				else 
 					sql += column.name() + " = " + method.invoke(object, null) + ",";
