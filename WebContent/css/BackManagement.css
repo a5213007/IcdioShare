@@ -241,7 +241,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 }
 .lab1{
     position: absolute;
-    margin-left: 35%;
+    margin-left: 30%;
     margin-top: 2%;
     font-size: 0.9vw;
     height: 40%;
@@ -267,7 +267,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 
 .lab2{
     position: absolute;
-    margin-left: 5%;
+/*    margin-left: 5%;*/
     margin-top: 2%;
     font-size: 0.9vw;
     height: 40%;
