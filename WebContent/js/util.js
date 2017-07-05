@@ -1,6 +1,6 @@
 function hasPerssions(type){
 	if(sessionStorage.permissions == undefined || sessionStorage.permissions == "[]")
-		return true;
+		return false;
 	
 	var perssions = eval(sessionStorage.permissions)[0]['sign'];
 	for(var i = 0; i < perssions.length; i++){

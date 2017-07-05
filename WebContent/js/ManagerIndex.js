@@ -4,6 +4,10 @@ function loadManager(){
 	$("#name").html('欢迎你，<a onclick="turnToUserInfo()">' + user[0]['name'] + '</a>');
 
 	var page = GetRequest();
+	getPermissions();
+	if (!hasPerssions("ActiveCtr")) {
+		$('#activeAdd').remove();
+	}
 	$.ajax ({
 		type:'post',
 		async:false,
