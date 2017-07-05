@@ -13,5 +13,6 @@ public @interface Column {
 	public String type() default "";
 	public String note() default "";
 	public boolean nullAble() default false;
+	public boolean editAble() default true;
 	public int length() default -1;
 }

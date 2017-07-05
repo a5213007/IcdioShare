@@ -4,23 +4,23 @@ import util.codeGenerate.*;
 
 @Entity(name="评价信息", table="evaluation")
 public class Evaluation{
-	@Column(name="id", chineseName="评价信息id",nullAble=false, note="id", type="String", length=14)
+	@Column(name="id", chineseName="评价信息id",nullAble=false, note="id", type="String", length=14,editAble=false)
 	private String id;
 
-	@Column(name="telAndActID", chineseName="技术日常活动表ID", nullAble=true, note="技术日常活动表ID", type="String", length=14)
+	@Column(name="telAndActID", chineseName="技术日常活动表ID", nullAble=true, note="技术日常活动表ID", type="String", length=14,editAble=false)
 	private String telAndActID;
 	 
-	@Column(name="userID", chineseName="人员ID", nullAble=true, note="人员ID", type="String", length=14)
+	@Column(name="userID", chineseName="人员ID", nullAble=true, note="人员ID", type="String", length=14,editAble=false)
 	private String userID;
-	 
-	@Column(name="evaluationContent", chineseName="评价内容", nullAble=true, note="评价内容", type="String", length=200)
-	private String evaluationContent;
-	 
-	@Column(name="evalutionDate", chineseName="评价时间", nullAble=true, note="评价时间", type="String", length=-1)
+	 	 
+	@Column(name="evalutionDate", chineseName="评价时间", nullAble=true, note="评价时间", type="String", length=-1,editAble=false)
 	private String evalutionDate;
 	 
-	@Column(name="Type", chineseName="类型", nullAble=true, note="类型", type="String", length=-1)
+	@Column(name="Type", chineseName="类型", nullAble=true, note="类型", type="String", length=-1,editAble=false)
 	private String Type;
+	
+	@Column(name="evaluationContent", chineseName="评价内容", nullAble=true, note="评价内容", type="String", length=200)
+	private String evaluationContent;
 	 	
 	public String getId() {
 		return id;

@@ -4,16 +4,16 @@ import util.codeGenerate.*;
 
 @Entity(name="答案信息", table="answer")
 public class Answer{
-	@Column(name="id", chineseName="答案信息id",nullAble=false, note="id", type="String", length=14)
+	@Column(name="id", chineseName="答案信息id",nullAble=false, note="id", type="String", length=14, editAble=false)
 	private String id;
 
-	@Column(name="questionID", chineseName="问题ID", nullAble=true, note="问题ID", type="String", length=14)
+	@Column(name="questionID", chineseName="问题ID", nullAble=true, note="问题ID", type="String", length=14,editAble=false)
 	private String questionID;
 	 
-	@Column(name="userID", chineseName="人员ID", nullAble=true, note="人员ID", type="String", length=14)
+	@Column(name="userID", chineseName="人员ID", nullAble=true, note="人员ID", type="String", length=14,editAble=false)
 	private String userID;
 	 
-	@Column(name="answerDate", chineseName="回答时间", nullAble=true, note="回答时间", type="String", length=-1)
+	@Column(name="answerDate", chineseName="回答时间", nullAble=true, note="回答时间", type="String", length=-1,editAble=false)
 	private String answerDate;
 	 
 	@Column(name="answerContent", chineseName="回答内容", nullAble=true, note="回答内容", type="String", length=8000)
