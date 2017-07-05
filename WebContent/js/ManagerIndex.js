@@ -295,7 +295,7 @@ function submitActive(){
 		object['content'] = $('#actContent').val();
 		object['userID'] = eval(sessionStorage.user)[0]['id'];
 		object['releaseDate'] = getNowTime();
-		object['type'] = '日常活动';
+		object['type'] = '活动通知';
 		object['contentType'] = $('#actType').val();
 		object['activeDate'] = $('#actTime').val();
 		object['activePlace'] = $('#actPlace').val();

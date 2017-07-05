@@ -109,8 +109,21 @@ public class CommonOperateServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new ServletException();
-			}
+			}	
 			
+		}else if("add".equals(request.getParameter("info"))){
+			String className = request.getParameter("className");
+			JSONArray json= JSONArray.fromObject("["+request.getParameter("object")+"]");
+			try {
+				Class clazz = Class.forName("service." + className + "." + className  +"Service");
+				Object object = clazz.newInstance();
+				Method method = clazz.getMethod("save", Object.class);
+				Object obj = JsonToObject.jsonToObj(className, json);
+				method.invoke(object, obj);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new ServletException();
+			}
 		}
 	}
 
