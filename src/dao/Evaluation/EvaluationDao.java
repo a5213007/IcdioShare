@@ -100,4 +100,21 @@ public class EvaluationDao extends CommonDAO implements IBaseDao{
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	}
+	
+	public List<Map<String, Object>> findByKeyAndValue(String key, String value, int page){
+		String sql = "select evaluation.id,tel_and_act.title, user.id, user.name, evaluationContent," +
+				"evalutionDate,evaluation.Type from evaluation LEFT JOIN user on(user.id = "+
+				"evaluation.userID)LEFT JOIN tel_and_act ON (evaluation.telAndActID = tel_and_act.id" +
+				") where " + key + "='" + value + "' ORDER BY evalutionDate asc";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
+	}
+	
+	public List<Map<String, Object>> findByKeyAndValuePage(String key, String value, int page){
+		String sql = "select count(*) / 10 as page from evaluation where " + key + " like '%" + value + "%' limit " + (page - 1) * 10 + ", 10";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
+	}
 }

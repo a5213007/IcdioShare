@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
+import service.Question.QuestionService;
 import service.Tel_And_Act.Tel_And_ActService;
 import util.operateObject.JsonToObject;
 import util.sendToHtml.SendToHtml;
@@ -69,6 +70,16 @@ public class TechnologyServlet extends HttpServlet {
 			
 			List<Map<String, Object>> list = tel_And_ActService.getAllTechnologyByPage(page, userId);
 			
+			if(list != null){
+				JSONArray json = JSONArray.fromObject(list);
+				SendToHtml.send(json, response);
+			}
+		}else if("find".equals(request.getParameter("info"))){
+			int page = Integer.parseInt(request.getParameter("page"));
+			String key = request.getParameter("key");
+			String value = request.getParameter("value");
+			Tel_And_ActService tel_And_ActService = new Tel_And_ActService();
+			List<Map<String, Object>> list = tel_And_ActService.findByKeyAndValue(key, value, page);
 			if(list != null){
 				JSONArray json = JSONArray.fromObject(list);
 				SendToHtml.send(json, response);

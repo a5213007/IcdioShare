@@ -102,4 +102,16 @@ public class AnswerService implements IBaseService{
 		}
 		return null;
 	}
+	
+	public List<Map<String, Object>> findByKeyAndValue(String key, String value, int page){
+		try {
+			List<Map<String, Object>> list = answerDao.findByKeyAndValue(key, value, page);
+			List<Map<String, Object>> list1 = answerDao.findByKeyAndValuePage(key, value, page);
+			list.add(list1.get(0));
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return null;
+	}
 }
