@@ -59,6 +59,13 @@ public class PermissionsDao extends CommonDAO implements IBaseDao{
 		return excuteQuery(sql, null);
 	}
 	
+	public List<Map<String, Object>> hasPerssions(Long userId){
+		String sql = "select * from v_user where id = "+ userId;
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
+	}
+	
 	public List<Map<String, Object>> hasPerssions(String signName, Long userId){
 		String sql = "select * from v_user where id = "+ userId + 
 				" and sign = '" + signName + "'";

@@ -65,7 +65,7 @@ public class Tel_And_ActDao extends CommonDAO implements IBaseDao{
 	//后台展示技技术分享表格以及获取分页(管理)
 	//*********************************************************************************
 	public List<Map<String, Object>> getAllTechnologyByPageAdmin(int page) throws Exception{
-		String sql = "select * from v_technology order by releaseDate desc limit " 
+		String sql = "select tel_and_act.id, tel_and_act.userID,user.name,tel_and_act.title,content,releaseDate,contentType,type,attachment,state,activePlace,activeDate from tel_and_act left join user on(user.id = tel_and_act.userID) where type='技术分享' order by releaseDate desc limit " 
 				+ (page - 1) * 10 + ",10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
@@ -83,7 +83,7 @@ public class Tel_And_ActDao extends CommonDAO implements IBaseDao{
 	//后台展示技技术分享表格以及获取分页(个人)
 	//*********************************************************************************
 	public List<Map<String, Object>> getAllTechnologyByPage(int page, Long userId) throws Exception{
-		String sql = "select * from v_technology where userID = " + userId +
+		String sql = "select tel_and_act.id, tel_and_act.userID,user.name,tel_and_act.title,content,releaseDate,contentType,type,attachment,state,activePlace,activeDate from tel_and_act left join user on(user.id = tel_and_act.userID) where type='技术分享' and userID = " + userId +
 				" order by releaseDate desc limit " + (page - 1) * 10 + ",10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
@@ -101,7 +101,7 @@ public class Tel_And_ActDao extends CommonDAO implements IBaseDao{
 	//后台展示技日常活动表格以及获取分页(管理)
 	//*********************************************************************************
 	public List<Map<String, Object>> getAllActiveByPageAdmin(int page) throws Exception{
-		String sql = "select * from v_active order by releaseDate desc limit " 
+		String sql = "select tel_and_act.id, tel_and_act.userID,user.name,tel_and_act.title,content,releaseDate,contentType,type,attachment,state,activePlace,activeDate from tel_and_act left join user on(user.id = tel_and_act.userID) where type='活动通知' order by releaseDate desc limit " 
 				+ (page - 1) * 10 + ",10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
@@ -119,7 +119,7 @@ public class Tel_And_ActDao extends CommonDAO implements IBaseDao{
 	//后台展示技日常活动表格以及获取分页(个人)
 		//*********************************************************************************
 		public List<Map<String, Object>> getAllActiveByPage(int page, Long userId) throws Exception{
-			String sql = "select * from v_active where userID = " + userId + " order by "+
+			String sql = "select tel_and_act.id, tel_and_act.userID,user.name,tel_and_act.title,content,releaseDate,contentType,type,attachment,state,activePlace,activeDate from tel_and_act left join user on(user.id = tel_and_act.userID) where type='活动通知' and userID = " + userId + " order by "+
 					"releaseDate desc limit " + (page - 1) * 10 + ",10";
 			System.out.println("----------------------------------------");
 			System.out.println("SQL:" + sql);

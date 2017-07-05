@@ -50,7 +50,7 @@ public class QuestionServlet extends HttpServlet {
 			Long userId = Long.parseLong(request.getParameter("userId") + "");
 			QuestionService questionService = new QuestionService();
 			
-			List<Map<String, Object>> list = questionService.getInfoByPage(page);
+			List<Map<String, Object>> list = questionService.getInfoByPage(page, userId);
 			
 			if(list != null){
 				JSONArray json = JSONArray.fromObject(list);

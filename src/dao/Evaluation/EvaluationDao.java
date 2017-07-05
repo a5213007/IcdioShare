@@ -23,25 +23,56 @@ public class EvaluationDao extends CommonDAO implements IBaseDao{
 		return 1;
 	}
 	
+	
+	//********************************************************************************
 	/**
-	 * 跳页
+	 * 跳页(管理)
 	 * */
-	public List<Map<String, Object>> getPageInfo(int page) throws Exception{
-		String sql = "select * from evaluation limit " + (page - 1) * 10  + ", 10";
+	public List<Map<String, Object>> getInfoByPageAdmin(int page) throws Exception{
+		String sql = "SELECT evaluation.id,	telAndActID,tel_and_act.title,telAndActID,"+
+				"user.name,evaluationContent,evalutionDate FROM	evaluation LEFT JOIN "+
+				" tel_and_act ON (tel_and_act.id = evaluation.telAndActID) LEFT JOIN user"+
+				" ON (user .id = evaluation.userID) limit " + (page - 1) * 10  + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	}
 	
 	/**
-	 * 获取页数
+	 * 获取页数(管理)
 	 * */
-	public List<Map<String, Object>> getAllInfoPage() throws Exception{
+	public List<Map<String, Object>> getAdminInfoPage() throws Exception{
 		String sql = "select count(*) / 10 as page from evaluation";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	}
+	//********************************************************************************
+	
+	//********************************************************************************
+		/**
+		 * 跳页(个人)
+		 * */
+		public List<Map<String, Object>> getInfoByPageUser(int page, Long userId) throws Exception{
+			String sql = "SELECT evaluation.id,	telAndActID,tel_and_act.title,telAndActID,user.id as userID,"+
+					"user.name,evaluationContent,evalutionDate FROM	evaluation LEFT JOIN "+
+					" tel_and_act ON (tel_and_act.id = evaluation.telAndActID) LEFT JOIN user"+
+					" ON (user .id = evaluation.userID) where user.id = " +userId+" limit " + (page - 1) * 10  + ", 10";
+			System.out.println("----------------------------------------");
+			System.out.println("SQL:" + sql);
+			return excuteQuery(sql, null);
+		}
+		
+		/**
+		 * 获取页数(个人)
+		 * */
+		public List<Map<String, Object>> getUserInfoPage(Long userId) throws Exception{
+			String sql = "select count(*) / 10 as page from evaluation where userID = " + userId;
+			System.out.println("----------------------------------------");
+			System.out.println("SQL:" + sql);
+			return excuteQuery(sql, null);
+		}
+		//********************************************************************************
 	
 	public List<Map<String, Object>> getAllInfo() throws Exception{
 		String sql = "select * from evaluation";

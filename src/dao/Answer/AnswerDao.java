@@ -30,25 +30,49 @@ public class AnswerDao extends CommonDAO implements IBaseDao{
 		return excuteQuery(sql, null);
 	}
 	
+	//*************************************************************************************
 	/**
-	 * 跳页
+	 * 跳页(管理)
 	 * */
-	public List<Map<String, Object>> getPageInfo(int page) throws Exception{
-		String sql = "select * from answer limit " + (page - 1) * 10  + ", 10";
+	public List<Map<String, Object>> getInfoByPageAdmin(int page) throws Exception{
+		String sql = "select answer.id, question.id as questionID, question.questionContent,user.id as userID,user.name,answerContent,answerDate from answer left join user on(user.id = answer.userID) left join question on (question.id = answer.questionID) limit " + (page - 1) * 10  + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	}
 	
 	/**
-	 * 获取页数
+	 * 获取页数(管理)
 	 * */
-	public List<Map<String, Object>> getAllInfoPage() throws Exception{
+	public List<Map<String, Object>> getAdminInfoPage() throws Exception{
 		String sql = "select count(*) / 10 as page from answer";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	}
+	//*************************************************************************************
+	
+	//*************************************************************************************
+		/**
+		 * 跳页(个人)
+		 * */
+		public List<Map<String, Object>> getInfoByPageUser(int page, Long userId) throws Exception{
+			String sql = "select answer.id, question.id as questionID, question.questionContent,user.id as userID,user.name,answerContent,answerDate from answer left join user on(user.id = answer.userID) left join question on (question.id = answer.questionID) where user.id = "+userId+" limit " + (page - 1) * 10  + ", 10";
+			System.out.println("----------------------------------------");
+			System.out.println("SQL:" + sql);
+			return excuteQuery(sql, null);
+		}
+		
+		/**
+		 * 获取页数(个人)
+		 * */
+		public List<Map<String, Object>> getUserInfoPage(Long userId) throws Exception{
+			String sql = "select count(*) / 10 as page from answer where userID = " + userId;
+			System.out.println("----------------------------------------");
+			System.out.println("SQL:" + sql);
+			return excuteQuery(sql, null);
+		}
+		//*************************************************************************************
 	
 	public List<Map<String, Object>> getInfoById(Long id) throws Exception{
 		String sql = "select * from answer where id = " + id;

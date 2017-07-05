@@ -1,11 +1,33 @@
 function hasPerssions(type){
-	var perssions = eval(sessionStorage.user)[0]['sign'];
+	if(sessionStorage.permissions == undefined || sessionStorage.permissions == "[]")
+		return true;
+	
+	var perssions = eval(sessionStorage.permissions)[0]['sign'];
 	for(var i = 0; i < perssions.length; i++){
 		if(type == perssions[i])
 			return true;
 	}
 	
 	return false;
+}
+
+function getPermissions(){
+	$.ajax({
+		type:'post',
+		url:'../servlet/PermissionsServlet',
+		async:false,
+		data:{
+			'info':'getPermissions','id':eval(sessionStorage.user)[0]['id']
+		},
+		success:function(data){
+			if(eval(data) != undefined && eval(data) != "" && eval(data).length != 0){
+				sessionStorage.permissions = JSON.stringify(eval(data));
+			}
+		},
+		error:function(data){
+			alert("权限获取失败！")
+		},
+	})
 }
 
 function goWhere(tip){

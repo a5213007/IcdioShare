@@ -3,6 +3,10 @@ function loadBackManagement(){
 	var url = GetRequest();
 	
 	if(url['block'] != undefined){
+		getPermissions();
+		setItem();
+		sessionStorage.removeItem('permissions');
+		
 		if(url['block'] == 'main')
 			return;
 
@@ -11,7 +15,7 @@ function loadBackManagement(){
 			$('#displayModel').css('display','none');
 			return;
 		}
-		
+
 		$('#displayModel').css('display','block');
 		$('#title').html(control2[url['block']]);
 		$('#title').css('display','block');
@@ -28,6 +32,32 @@ function loadBackManagement(){
 		alert("路径出错！");
 		reManager();
 	}	
+}
+
+function setItem(){
+	if(isDisplay('PermissionsCtr') && isDisplay('PermissionsCtr_display'))
+		$("#permissionsCtr").remove();
+	if(isDisplay('UserCtr') && isDisplay('UserCtr_display'))
+		$("#roleCtr").remove();
+	if(isDisplay('RoleCtr') && isDisplay('RoleCtr_display'))
+		$("#userCtr").remove();
+	if(isDisplay('ProcessCtr') && isDisplay('ProcessCtr_display'))
+		$("#processCtr").remove();
+	$("div.item").css('display','block');
+
+}
+
+function isDisplay(type){
+	if(eval(sessionStorage.permissions) == undefined || sessionStorage.permissions == "[]")
+		return true;
+	
+	var perssions = eval(sessionStorage.permissions)[0]['sign'];
+	
+	for(var i = 0; i < perssions.length; i++){
+		if(type == perssions[i])
+			return false;
+	}
+	return true;
 }
 
 function setFindBt(type){
@@ -48,14 +78,16 @@ function getInfo(){
 			},
 			success:function(data){
 				var info = eval(data);				
-				if(info != undefined && info != ""){				
-					displayTable(info);				
+				if(info != undefined && info != ""){	
+					getPermissions();
+					displayTable(info);	
+					sessionStorage.removeItem('permissions');
 				}
 			},
 			error:function(data){
 				alert("服务器访问失败！");
 			},
-		})
+		});
 	}
 	
 }
@@ -80,7 +112,7 @@ function displayTable(info){
 				if(j == (tableTh[url['block']].length - 1)){
 					display += '<td class="controlTh">' + getOperate(url['block'] + 'Ctr', info[i]) + '</td>';
 				}else {
-					display += "<td>" + isNull(info[i][tableTh[url['block']][j]]) + '</td>';
+					display += "<td title='"+isNull(info[i][tableTh[url['block']][j]])+"'>"+isNull(info[i][tableTh[url['block']][j]]) + '</td>';
 				}
 			}
 			

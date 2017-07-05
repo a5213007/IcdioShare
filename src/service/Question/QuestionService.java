@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 import oracle.net.aso.q;
+import service.Permissions.PermissionsService;
 import service.baseService.IBaseService;
 import dao.Question.QuestionDao;
 
 public class QuestionService implements IBaseService{
 	private QuestionDao questionDao = new QuestionDao();
-
+	private PermissionsService permissionsService = new PermissionsService();
+	
 	public int save(Object object) throws Exception{
 		try {
 			return questionDao.save(object);
@@ -47,20 +49,32 @@ public class QuestionService implements IBaseService{
 		}
 	}
 	
-	public List<Map<String, Object>> getInfoByPage(int page){
+	//跳页（通过当前页获取数据）
+	public List<Map<String, Object>> getInfoByPage(int page, Long userId){
 		try {
-			List<Map<String, Object>> questionList = questionDao.getPageInfo(page);		
-			List<Map<String, Object>> pageList = questionDao.getAllInfoPage();
+			if(permissionsService.hasPerssions("QuestionCtr", userId) || permissionsService.hasPerssions("QuestionCtr_display", userId)){
+				List<Map<String, Object>> evaluationList = questionDao.getInfoByPageAdmin(page);		
+				List<Map<String, Object>> pageList = questionDao.getAdminInfoPage();
 			
-			questionList.add(pageList.get(0));
-			return questionList;
+				evaluationList.add(pageList.get(0));
+				return evaluationList;
+				
+			//没有权限的只能查看自己的	
+			}else {
+				List<Map<String, Object>> evaluationList =  questionDao.getInfoByPageUser(page, userId);
+				
+				evaluationList.add(questionDao.getUserInfoPage(userId).get(0));
+				
+				return evaluationList;
+			}
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return null;
 	}
-	
+		
 	public int delete(Long id) throws Exception{
 		try {
 			return questionDao.delete(id);
