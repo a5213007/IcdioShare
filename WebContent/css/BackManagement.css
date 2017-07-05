@@ -282,6 +282,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     line-height: 0.5;
     padding: 0 0.2%;
     border: 0.01em solid rgba(0, 0, 0, 0.45);
+    padding-left: 1%;
 }
 .input2{
     margin-left: 12%;
@@ -291,7 +292,8 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     font-size: 0.9vw;
     line-height: 0.5;
     padding: 0 0.2%;
-    border: 0.01em solid rgba(0, 0, 0, 0.45)	
+    border: 0.01em solid rgba(0, 0, 0, 0.45);
+    padding-left: 1%;
 }
 .tail{
     width: 79%;

@@ -59,14 +59,14 @@ public class RoleDao extends CommonDAO implements IBaseDao{
 		return 1;
 	}
 	public List<Map<String, Object>> findByKeyAndValue(String key, String value, int page){
-		String sql = "select * from role where " + key + " = " + value + " limit " + (page - 1) * 10 + ", 10";
+		String sql = "select * from role where " + key + " like '%" + value + "%' limit " + (page - 1) * 10 + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	}
 	
 	public List<Map<String, Object>> findByKeyAndValuePage(String key, String value, int page){
-		String sql = "select count(*) / 10 as page from role where " + key + " = " + value + " limit " + (page - 1) * 10 + ", 10";
+		String sql = "select count(*) / 10 as page from role where " + key + " like '%" + value + "%' limit " + (page - 1) * 10 + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);

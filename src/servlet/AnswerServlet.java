@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
 import service.Answer.AnswerService;
+import service.Evaluation.EvaluationService;
 import service.Question.QuestionService;
 import util.sendToHtml.SendToHtml;
 
@@ -52,6 +53,16 @@ public class AnswerServlet extends HttpServlet {
 			
 			List<Map<String, Object>> list = answerService.getInfoByPage(page, userId);
 			
+			if(list != null){
+				JSONArray json = JSONArray.fromObject(list);
+				SendToHtml.send(json, response);
+			}
+		}else if("find".equals(request.getParameter("info"))){
+			int page = Integer.parseInt(request.getParameter("page"));
+			String key = request.getParameter("key");
+			String value = request.getParameter("value");
+			AnswerService answerService = new AnswerService();
+			List<Map<String, Object>> list = answerService.findByKeyAndValue(key, value, page);
 			if(list != null){
 				JSONArray json = JSONArray.fromObject(list);
 				SendToHtml.send(json, response);

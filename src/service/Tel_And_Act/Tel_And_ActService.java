@@ -227,4 +227,17 @@ public class Tel_And_ActService implements IBaseService{
 		
 		return null;
 	}
+	
+	public List<Map<String, Object>> findByKeyAndValue(String key, String value, int page){
+		try {
+			Tel_And_ActDao tel_And_ActDao = new Tel_And_ActDao();
+			List<Map<String, Object>> list = tel_And_ActDao.findByKeyAndValue(key, value, page);
+			List<Map<String, Object>> list1 = tel_And_ActDao.findByKeyAndValuePage(key, value, page);
+			list.add(list1.get(0));
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return null;
+	}
 }

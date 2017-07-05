@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import service.Evaluation.EvaluationService;
+import service.Role.RoleService;
 import util.operateObject.JsonToObject;
 import util.sendToHtml.SendToHtml;
 import net.sf.json.JSONArray;
@@ -65,6 +66,16 @@ public class EvaluationServlet extends HttpServlet {
 			EvaluationService evaluationService = new EvaluationService();
 			List<Map<String, Object>> list = evaluationService.getInfoByPage(page, userId);
 			
+			if(list != null){
+				JSONArray json = JSONArray.fromObject(list);
+				SendToHtml.send(json, response);
+			}
+		}else if("find".equals(request.getParameter("info"))){
+			int page = Integer.parseInt(request.getParameter("page"));
+			String key = request.getParameter("key");
+			String value = request.getParameter("value");
+			EvaluationService evaluationService = new EvaluationService();
+			List<Map<String, Object>> list = evaluationService.findByKeyAndValue(key, value, page);
 			if(list != null){
 				JSONArray json = JSONArray.fromObject(list);
 				SendToHtml.send(json, response);
