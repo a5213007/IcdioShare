@@ -433,7 +433,7 @@ function loadFind(){
 		return;
 	}
 	var url = GetRequest();
-	window.location.href = "BackManagement.html?page=1&block=" + url['block'] + "&type=find&key=" + $('#findSel').val() + "&value='" + $('#findbyKeyAndValue').val() + "'";
+	window.location.href = "BackManagement.html?page=1&block=" + url['block'] + "&type=find&key=" + $('#findSel').val() + "&value=" + $('#findbyKeyAndValue').val();
 }
 /**
  * 查询页面加载
