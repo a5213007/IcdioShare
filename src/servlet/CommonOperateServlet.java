@@ -2,6 +2,8 @@ package servlet;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
 import util.operateObject.ColumnToJson;
 import util.sendToHtml.SendToHtml;
 
@@ -52,9 +55,25 @@ public class CommonOperateServlet extends HttpServlet {
 				throw new ServletException();
 			}
 		}else if("restore".equals(request.getParameter("info"))){
+			Long id = Long.parseLong(request.getParameter("id"));
+			String className = request.getParameter("className");
+			try {
+				Class service = Class.forName("service." + className + "." + className  +"Service");
+				Object object = service.newInstance();
+				@SuppressWarnings("unchecked")
+				Method method = service.getMethod("getInfoById", Long.class);
+				List<Map<String, Object>> list = (List<Map<String, Object>>) method.invoke(object, id);
+				
+				if(list != null){
+					JSONArray json = JSONArray.fromObject(list);
+					SendToHtml.send(json, response);
+				}
 			
-		}
-		else if("delete".equals(request.getParameter("info"))) {
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new ServletException();
+			}
+		}else if("delete".equals(request.getParameter("info"))) {
 			Long id = Long.parseLong(request.getParameter("id"));
 			String className = request.getParameter("className");
 			try {
@@ -65,6 +84,17 @@ public class CommonOperateServlet extends HttpServlet {
 				method.invoke(object, id);
 			} catch (Exception e) {
 				e.printStackTrace();
+				throw new ServletException();
+			}
+		}else if("columnInfo".equals(request.getParameter("info"))){
+			String className = request.getParameter("class");
+			
+			try {
+				SendToHtml.send(ColumnToJson.viewToJson(className), response);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				throw new ServletException();
 			}
 		}
 	}
