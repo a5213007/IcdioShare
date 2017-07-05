@@ -35,16 +35,15 @@ function loadBackManagement(){
 }
 
 function setItem(){
-	if(isDisplay('PermissionsCtr') || isDisplay('PermissionsCtr_display'))
+	if(!isDisplay('PermissionsCtr') && !isDisplay('PermissionsCtr_display'))
 		$("#permissionsCtr").remove();
-	if(isDisplay('UserCtr') || isDisplay('UserCtr_display'))
+	if(!isDisplay('UserCtr') && !isDisplay('UserCtr_display'))
 		$("#roleCtr").remove();
-	if(isDisplay('RoleCtr') || isDisplay('RoleCtr_display'))
+	if(!isDisplay('RoleCtr') && !isDisplay('RoleCtr_display'))
 		$("#userCtr").remove();
-	if(isDisplay('ProcessCtr') || isDisplay('ProcessCtr_display'))
+	if(!isDisplay('ProcessCtr') && !isDisplay('ProcessCtr_display'))
 		$("#processCtr").remove();
 	$("div.item").css('display','block');
-
 }
 
 function isDisplay(type){
