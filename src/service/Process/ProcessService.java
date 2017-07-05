@@ -5,6 +5,7 @@ import java.util.Map;
 
 import service.baseService.IBaseService;
 import dao.Process.ProcessDao;
+import entity.Process.Process;
 
 public class ProcessService implements IBaseService{
 	private ProcessDao processDao = new ProcessDao();
@@ -34,6 +35,21 @@ public class ProcessService implements IBaseService{
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public void add(Map<String, Object> map){
+		try {
+			Process process = new Process();
+			process.setId(map.get("id") + "");
+			process.setTelAndActID(map.get("id") + "");
+			process.setReleaseDate(map.get("releaseDate") + "");
+			process.setSubmitID(map.get("userID") + "");
+			process.setState("已提交");
+			
+			save(process);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public List<Map<String, Object>> getInfoByPage(int page){

@@ -6,11 +6,19 @@ function loadBackManagement(){
 		getPermissions();
 		setItem();
 		sessionStorage.removeItem('permissions');
+		$('#title').html(control2[url['block']]);
+		$('#title').css('display','block');
 		
 		if(url['block'] == 'main')
 			return;
 
 		setFindBt(url['block']);
+		if(url['block'] == "Permissions" || url['block'] == "Role" || url['block'] == "User" ){
+			$("#btAddInfo").css('display','block');
+		}else {
+			$("#btAddInfo").css('display','none');
+		}
+		
 		if (url['type'] == "add") {
 			$('#addEditModel').css('display','block');
 			$('#displayModel').css('display','none');
@@ -31,14 +39,6 @@ function loadBackManagement(){
 		}
 
 		$('#displayModel').css('display','block');
-		$('#title').html(control2[url['block']]);
-		$('#title').css('display','block');
-		
-		if(url['block'] == "Permissions" || url['block'] == "Role" || url['block'] == "User" ){
-			$("#btAddInfo").css('display','block');
-		}else {
-			$("#btAddInfo").css('display','none');
-		}
 		displayInfo();
 		
 	}else {
@@ -433,7 +433,7 @@ function loadFind(){
 		return;
 	}
 	var url = GetRequest();
-	window.location.href = "BackManagement.html?page=1&block=" + url['block'] + "&type=find&key=" + $('#findSel').val() + "&value=" + $('#findbyKeyAndValue').val();
+	window.location.href = "BackManagement.html?page=1&block=" + url['block'] + "&type=find&key=" + $('#findSel').val() + "&value=" + encodeUnicode($('#findbyKeyAndValue').val());
 }
 /**
  * 查询页面加载
@@ -445,7 +445,7 @@ function find() {
 		url:'../servlet/'+ url['block'] + 'Servlet',
 		aysnc:false,
 		data:{
-			'info':'find', 'key':url['key'], 'value':url['value'], 'page':url['page']
+			'info':'find', 'key':url['key'], 'value':decodeUnicode(url['value']), 'page':url['page']
 		},
 		success:function(data){
 			var info = eval(data);
@@ -544,7 +544,37 @@ function edit(id) {
  * 新增按钮确定
  * */
 function submitAdd(){
+	if(!yanzhen2())
+		return ;
 	
+	var column = eval(sessionStorage.column);
+	var url = GetRequest();
+	
+	var object = {};
+	for(var i = 0; i < column.length; i ++)
+		if(column[i]['name'] != 'id')
+			object[column[i]['name']] = $('#addModel_' + column[i]['name']).val();
+	object['id'] = getId();
+	
+	var type = url['block'];
+	if(type == "Active" || type == "Technology")
+		type = "Tel_And_Act";
+	
+	$.ajax({
+		type:'post',
+		url:'../servlet/CommonOperateServlet',
+		aysnc:false,
+		data:{
+			'info':'add','object': JSON.stringify(object), 'className': type
+		},
+		success:function(data){
+			alert('新增成功！');
+			addReBt(url['block']);
+		},
+		error:function(data){
+			alert('服务器访问失败！');
+		},
+	})
 }
 
 /**
@@ -582,10 +612,40 @@ function submitEdit(){
 
 }
 
+/**
+ * 编辑验证
+ * */
 function yanzhen(){
 	var column = eval(sessionStorage.column);
 	
 	for(var i = 0; i < column.length; i ++){
+		if(column[i]['nullAble'] == false){
+			if($('#addModel_' + column[i]['name']).val() == ""){
+				alert(column[i]['chineseName'] + '不能为空！');
+				return false;
+			}else if(column[i]['length'] != -1 && $('#addModel_' + column[i]['name']).val().length > column[i]['length']){
+				alert(column[i]['chineseName'] + '最大长度为：' + column[i]['length']);
+				return false;
+			}			
+		}else {
+			if(column[i]['length'] != -1 && $('#addModel_' + column[i]['name']).val().length > column[i]['length']){
+				alert(column[i]['chineseName'] + '最大长度为：' + column[i]['length']);
+				return false;
+			}	
+		}
+	}
+	return true;
+}
+/**
+ * 新增验证
+ * */
+function yanzhen2(){
+	var column = eval(sessionStorage.column);
+	
+	for(var i = 0; i < column.length; i ++){
+		if(column[i]['name'] == 'id')
+			continue;
+		
 		if(column[i]['nullAble'] == false){
 			if($('#addModel_' + column[i]['name']).val() == ""){
 				alert(column[i]['chineseName'] + '不能为空！');
