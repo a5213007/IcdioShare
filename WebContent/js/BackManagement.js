@@ -5,11 +5,18 @@ function loadBackManagement(){
 	if(url['block'] != undefined){
 		getPermissions();
 		setItem();
-		sessionStorage.removeItem('permissions');
+		
 				
 		if(url['block'] == 'main')
 			return;
-
+		else {
+			if(!canOpenThisItem(url['block'])){
+				alert("您无打开的"+control2[url['block']]+"的权限！");
+				return ;
+			}
+		}
+		
+		sessionStorage.removeItem('permissions');
 		$('#title').html(control2[url['block']]);
 		$('#title').css('display','block');
 		setFindBt(url['block']);
@@ -48,17 +55,31 @@ function loadBackManagement(){
 }
 
 /**
+ * 
+ * */
+function canOpenThisItem(type){
+	if(hasPerssions(type + 'Ctr') || hasPerssions(type + '_display')){
+		return true;
+	}else if(type == "Evaluation" || type == "Answer" || type == "Technology" || type == "Question"){
+		return true;
+	}
+	return false;
+}
+
+/**
  * 根据权限展示左边模块按钮
  * */
 function setItem(){
 	if(isDisplay('PermissionsCtr') && isDisplay('PermissionsCtr_display'))
 		$("#permissionsCtr").remove();
 	if(isDisplay('UserCtr') && isDisplay('UserCtr_display'))
-		$("#roleCtr").remove();
-	if(isDisplay('RoleCtr') && isDisplay('RoleCtr_display'))
 		$("#userCtr").remove();
+	if(isDisplay('RoleCtr') && isDisplay('RoleCtr_display'))
+		$("#roleCtr").remove();
 	if(isDisplay('ProcessCtr') && isDisplay('ProcessCtr_display'))
 		$("#processCtr").remove();
+	if(isDisplay('ActiveCtr') && isDisplay('ActiveCtr_display'))
+		$("#activeCtr").remove();
 	$("div.item").css('display','block');
 }
 
@@ -377,10 +398,10 @@ function getOperate(type, info){
 				&& (info['state'] == '已撤回' || info['state'] == '已驳回')){
 			display += '<span class="control">提交</span>';
 		}
-	}else if(type == 'UserCtr'){
-		display += '<span class="control">分配角色</span>';
-	}else if(type == 'RoleCtr'){
-		display += '<span class="control">分配权限</span>';
+	}else if(type == 'UserCtr' && hasPerssions('UserCtr')){
+		display += '<span class="control" onclick="Assign(\''+info['id']+'\',\'Role\',\'选择角色('+info['name']+')\')">分配角色</span>';
+	}else if(type == 'RoleCtr' && hasPerssions('RoleCtr')){
+		display += '<span class="control" onclick="Assign(\''+info['id']+'\',\'Permissions\',\'选择权限('+info['roleName']+')\')">分配权限</span>';
 	}
 	
 	return display;
@@ -405,7 +426,7 @@ function processCtr(tip, id){
 		$.ajax({
 			type:'post',
 			async:false,
-			url:'../servicce/ProcessServlet',
+			url:'../servlet/ProcessServlet',
 			data:{
 				'info':'processCtr', 'judge':tip,'object':JSON.stringify(object)
 			},
@@ -420,7 +441,143 @@ function processCtr(tip, id){
 		
 	}
 }
+/**
+ * 退出权限分配、角色分配
+ * */
 
+function quitRolePer(){
+	$('#selBody').empty();
+	$('#btSetTail').empty();
+	$('#cover').css('display','none');
+	$('#sel').css('display','none');
+}
+
+/**
+ * 分配权限、分配角色点击
+ * */
+function Assign(id, type, title){
+	
+	var tip = type.toLowerCase();
+	
+	if(tip == "permissions")
+		tip = "perssions";
+	
+	$('#selTitle').html(title);
+	
+	$.ajax({
+		type:'post',
+		async:false,
+		url:'../servlet/'+type+'Servlet',
+		data:{
+			'info':'getAll'+type
+		},
+		success:function(data){
+			var info = eval(data);
+			
+			if(info != null && info.length != 0){
+				for(var i = 0; i < info.length; i++){
+					var display = '<div class="itemSel"><input id="check_'+info[i]['id']+'" class="checkbox" type="checkbox" name="aa" value="'+info[i]['id']+'"/>'+
+						'<span class="itemSpan" title="">'+ info[i][tip + 'Name']+'</span></div>';
+					
+					$('#selBody').append(display);
+				}
+			}
+			var display = '<button class="selSure" onclick="addSelTo(\''+id+'\',\''+type+'\')">确定</button>'+
+			'<button class="selQuit" onclick="quitRolePer()">取消</button>';
+			
+			getSel(id,type);
+			
+			$('#btSetTail').append(display);
+			$('#cover').css('display','block');
+			$('#sel').css('display','block');
+		},
+		error:function(data){
+			alert('服务器访问失败！');
+		},
+	});
+}
+
+/**
+ * 展示还原权限、角色
+ * */
+function getSel(id, type){
+	var tip = type.toLowerCase();	
+		
+	$.ajax({
+		type:'post',
+		async:false,
+		url:'../servlet/'+type+'Servlet',
+		data:{
+			'info':'get'+type+'ById', 'id':id
+		},
+		success:function(data){
+			var info = eval(data);
+			
+			if(info != undefined && info.length != 0){
+				for(var i = 0; i < info[0][tip].length; i++){
+					$('#check_' + info[0][tip][i]).attr("checked", true);
+				}
+			}
+		},
+		error:function(data){
+			alert('服务器访问失败！');
+		},
+	});
+		
+}
+/**
+ * 添加权限、角色
+ * */
+function addSelTo(id, type){
+	 var checkbox = $("input[type='checkbox']:checked");
+	 
+	 removeAllSel(id, type);
+	 if(checkbox.length == 0){
+		 quitRolePer();
+		 return;
+	 }
+	 
+	 var object = {};
+	 
+	 for(var i = 0; i < checkbox.length; i++){
+		 object[i] = checkbox[i].value;
+	 }
+
+	$.ajax({
+		type:'post',
+		async:false,
+		url:'../servlet/'+type+'Servlet',
+		data:{
+			'info':'add'+type+'To', 'id':id, 'object': JSON.stringify(object)
+		},
+		success:function(data){
+			alert('添加成功！');					
+			quitRolePer();
+		},
+		error:function(data){
+			alert('服务器访问失败！');
+		},
+	});
+}
+
+/**
+ * 清除所有权限
+ * */
+function removeAllSel(id, type){
+	$.ajax({
+		type:'post',
+		async:false,
+		url:'../servlet/'+type+'Servlet',
+		data:{
+			'info':'removeAll', 'id':id
+		},
+		success:function(data){			
+		},
+		error:function(data){
+			alert('服务器访问失败！');
+		},
+	});
+}
 
 /**
  * 删除按钮

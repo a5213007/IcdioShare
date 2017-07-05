@@ -73,6 +73,43 @@ public class PermissionsServlet extends HttpServlet {
 				JSONArray json = JSONArray.fromObject(list);
 				SendToHtml.send(json, response);
 			}
+		}else if("getAllPermissions".equals(request.getParameter("info"))){
+			PermissionsService permissionsService = new PermissionsService();
+			List<Map<String, Object>> list = permissionsService.getAllInfo();
+			if(list != null){
+				JSONArray json = JSONArray.fromObject(list);
+				SendToHtml.send(json, response);
+			}
+		}else if("getPermissionsById".equals(request.getParameter("info"))){
+			Long id = Long.parseLong(request.getParameter("id"));
+			PermissionsService permissionsService = new PermissionsService();
+			List<Map<String, Object>> list = permissionsService.getPerssionsByRoleId(id);
+			
+			if(list != null){
+				JSONArray json = JSONArray.fromObject(list);
+				SendToHtml.send(json, response);
+			}
+		}else if("addPermissionsTo".equals(request.getParameter("info"))){
+			Long roleId = Long.parseLong(request.getParameter("id"));
+			JSONArray json = JSONArray.fromObject("["+request.getParameter("object")+"]");
+			
+			PermissionsService permissionsService = new PermissionsService();
+			try {
+				permissionsService.addPermissionsToRole(roleId, json);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new ServletException();
+			}
+		}else if("removeAll".equals(request.getParameter("info"))){
+			Long roleId = Long.parseLong(request.getParameter("id"));
+			PermissionsService permissionsService = new PermissionsService();
+			
+			try {
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new ServletException();
+			}
 		}
 	}
 

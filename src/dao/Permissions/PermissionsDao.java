@@ -60,7 +60,7 @@ public class PermissionsDao extends CommonDAO implements IBaseDao{
 	}
 	
 	public List<Map<String, Object>> hasPermissions(Long userId){
-		String sql = "select * from v_user where id = "+ userId;
+		String sql = "select * from v_user where id = "+ userId + " and sign is not NULL";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
@@ -86,5 +86,26 @@ public class PermissionsDao extends CommonDAO implements IBaseDao{
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
+	}
+	
+	public List<Map<String, Object>> getPerssionsByRoleId(Long roleId)throws Exception{
+		String sql = "SELECT role.id, perssions_role.perssionsID from role INNER JOIN perssions_role ON perssions_role.roleID = role.id INNER JOIN permissions ON perssions_role.perssionsID = permissions.id where roleID = " + roleId;
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
+	}
+	
+	public void addPermissionsToRole(String id, String perssions, Long roleID)throws Exception{
+		String sql = "insert into perssions_role(id,perssionsID,roleID) values('"+id+"','"+perssions+"','"+roleID+"')";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		executeSql(sql);
+	}
+	
+	public void removeAllPermissions(Long roleId) throws Exception{
+		String sql = "delete from perssions_role where roleID = " + roleId;
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		executeSql(sql);
 	}
 }
