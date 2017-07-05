@@ -7,22 +7,22 @@ public class User{
 	@Column(name="id", chineseName="用户信息id",nullAble=false, note="id", type="String", length=14,editAble=false)
 	private String id;
 
-	@Column(name="name", chineseName="姓名", nullAble=true, note="姓名", type="String", length=-1)
+	@Column(name="name", chineseName="姓名", nullAble=false, note="姓名", type="String", length=-1)
 	private String name;
 	 
-	@Column(name="account", chineseName="账号", nullAble=true, note="账号", type="String", length=-1)
+	@Column(name="account", chineseName="账号", nullAble=false, note="账号", type="String", length=-1)
 	private String account;
 	 
-	@Column(name="password", chineseName="密码", nullAble=true, note="密码", type="String", length=-1)
+	@Column(name="password", chineseName="密码", nullAble=false, note="密码", type="String", length=-1)
 	private String password;
 	 
-	@Column(name="sex", chineseName="性别", nullAble=false, note="性别", type="String", length=-1)
+	@Column(name="sex", chineseName="性别", nullAble=true, note="性别", type="String", length=-1)
 	private String sex;
 	 
-	@Column(name="age", chineseName="年龄", nullAble=false, note="年龄", type="Integer", length=-1)
+	@Column(name="age", chineseName="年龄", nullAble=true, note="年龄", type="Integer", length=-1)
 	private Integer age;
 	 
-	@Column(name="phoneNum", chineseName="电话号码", nullAble=false, note="电话号码", type="String", length=11)
+	@Column(name="phoneNum", chineseName="电话号码", nullAble=true, note="电话号码", type="String", length=11)
 	private String phoneNum;
 	 
 	public void setName(String name){

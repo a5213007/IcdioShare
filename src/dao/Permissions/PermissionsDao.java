@@ -22,19 +22,19 @@ public class PermissionsDao extends CommonDAO implements IBaseDao{
 	}
 	
 	public List<Map<String, Object>> getAllInfo() throws Exception{
-		String sql = "select * from perssions";
+		String sql = "select * from permissions";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	}
 	
 	public List<Map<String, Object>> getInfoById(Long id) throws Exception{
-		String sql = "select * from perssions where id = " + id;
+		String sql = "select * from permissions where id = " + id;
 		return excuteQuery(sql, null);
 	}
 	
 	public int delete(Long id) throws Exception{
-		String sql = "delete from perssions where id = " + id;
+		String sql = "delete from permissions where id = " + id;
 		executeSql(sql);
 		return 1;
 	}
@@ -43,7 +43,7 @@ public class PermissionsDao extends CommonDAO implements IBaseDao{
 	 * 跳页
 	 * */
 	public List<Map<String, Object>> getPageInfo(int page) throws Exception{
-		String sql = "select * from perssions limit " + (page - 1) * 10 + ", 10";
+		String sql = "select * from permissions limit " + (page - 1) * 10 + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
@@ -53,20 +53,20 @@ public class PermissionsDao extends CommonDAO implements IBaseDao{
 	 * 获取页数
 	 * */
 	public List<Map<String, Object>> getAllInfoPage() throws Exception{
-		String sql = "select count(*) / 10 as page from perssions";
+		String sql = "select count(*) / 10 as page from permissions";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	}
 	
-	public List<Map<String, Object>> hasPerssions(Long userId){
+	public List<Map<String, Object>> hasPermissions(Long userId){
 		String sql = "select * from v_user where id = "+ userId;
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	}
 	
-	public List<Map<String, Object>> hasPerssions(String signName, Long userId){
+	public List<Map<String, Object>> hasPermissions(String signName, Long userId){
 		String sql = "select * from v_user where id = "+ userId + 
 				" and sign = '" + signName + "'";
 		System.out.println("----------------------------------------");
@@ -75,14 +75,14 @@ public class PermissionsDao extends CommonDAO implements IBaseDao{
 	}
 	
 	public List<Map<String, Object>> findByKeyAndValue(String key, String value, int page){
-		String sql = "select * from perssions where " + key + " = " + value + " limit " + (page - 1) * 10 + ", 10";
+		String sql = "select * from permissions where " + key + " = " + value + " limit " + (page - 1) * 10 + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	}
 	
 	public List<Map<String, Object>> findByKeyAndValuePage(String key, String value, int page){
-		String sql = "select count(*) / 10 as page from perssions where " + key + " = " + value + " limit " + (page - 1) * 10 + ", 10";
+		String sql = "select count(*) / 10 as page from permissions where " + key + " = " + value + " limit " + (page - 1) * 10 + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);

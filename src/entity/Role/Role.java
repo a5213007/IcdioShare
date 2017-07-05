@@ -7,7 +7,7 @@ public class Role{
 	@Column(name="id", chineseName="角色信息id",nullAble=false, note="id", type="String", length=14,editAble=false)
 	private String id;
 
-	@Column(name="roleName", chineseName="角色名称", nullAble=true, note="角色名称", type="String", length=-1)
+	@Column(name="roleName", chineseName="角色名称", nullAble=false, note="角色名称", type="String", length=-1)
 	private String roleName;
 	 
 	public void setRoleName(String roleName){

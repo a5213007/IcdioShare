@@ -13,12 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
 import util.operateObject.ColumnToJson;
+import util.operateObject.JsonToObject;
 import util.sendToHtml.SendToHtml;
 
 /**
  * Servlet implementation class DisplayIndexServlet
  */
-@WebServlet("/DisplayIndexServlet")
+@WebServlet("/CommonOperateServlet")
 public class CommonOperateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -96,6 +97,20 @@ public class CommonOperateServlet extends HttpServlet {
 				e.printStackTrace();
 				throw new ServletException();
 			}
+		}else if("edit".equals(request.getParameter("info"))){
+			String className = request.getParameter("className");
+			JSONArray json= JSONArray.fromObject("["+request.getParameter("object")+"]");
+			try {
+				Class clazz = Class.forName("service." + className + "." + className  +"Service");
+				Object object = clazz.newInstance();
+				Method method = clazz.getMethod("update", Object.class);
+				Object obj = JsonToObject.jsonToObj(className, json);
+				method.invoke(object, obj);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new ServletException();
+			}
+			
 		}
 	}
 

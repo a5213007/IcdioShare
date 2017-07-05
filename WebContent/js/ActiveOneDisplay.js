@@ -6,7 +6,7 @@ function loadActive(){
 	
 		$.ajax({
 			type:'post',
-			async:'false',
+			async:false,
 			url:'../servlet/ActiveServlet',
 			data:{
 				'activeId' : activeId['id'] , 'info':'withEvaluation'

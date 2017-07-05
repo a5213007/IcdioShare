@@ -47,6 +47,9 @@ function loadBackManagement(){
 	}	
 }
 
+/**
+ * 根据权限展示左边模块按钮
+ * */
 function setItem(){
 	if(!isDisplay('PermissionsCtr') && !isDisplay('PermissionsCtr_display'))
 		$("#permissionsCtr").remove();
@@ -59,6 +62,9 @@ function setItem(){
 	$("div.item").css('display','block');
 }
 
+/**
+ * 是否展示
+ * */
 function isDisplay(type){
 	if(eval(sessionStorage.permissions) == undefined || sessionStorage.permissions == "[]")
 		return true;
@@ -72,11 +78,17 @@ function isDisplay(type){
 	return true;
 }
 
+/**
+ * 设置查找下拉菜单的值
+ * */
 function setFindBt(type){
 	for(var i = 0; i < tableTh2[type].length - 1;i++)
 		$('#findSel').append('<option value="'+tableTh[type][i] + '">'+ tableTh2[type][i] +'</option>');
 }
 
+/**
+ * 初始化新增模板
+ * */
 function setAddModel(type){
 	var column = eval(sessionStorage.column);
 	
@@ -95,38 +107,45 @@ function setAddModel(type){
 		} 
 			
 	}
-	var dis = '<div class="tail"><button class="btSure">确定</button><button class="btRe" onclick="addReBt(\''+type+'\')">返回</button>'+
+	var dis = '<div class="tail"><button class="btSure" onclick="submitAdd()">确定</button><button class="btRe" onclick="addReBt(\''+type+'\')">返回</button>'+
 			'</div>'
 	$("#addEdit").append(dis);
 	
 }
 
+/**
+ * 初始化编辑模板
+ * */
 function setEditModel(type, infoId){
 	var column = eval(sessionStorage.column);
 	
 	for(var i = 0; i < column.length; i++){
 		var index = (i % 2 == 0 ? 1 : 2);
-		if(column[i]['length'] < 100){
-			var display = '<div class="addInput'+index+'"><label class="lab'+index+'">'+column[i]['chineseName']+'</label>'+
-			'<input class="input'+index+'" type="text" id="addModel_'+column[i]['name']+'" />'+
+		if(column[i]['name'].endsWith('content') || column[i]['name'].endsWith('Content')){
+			var display = '<div class="TextDiv"><label class="labText">'+column[i]['chineseName']+'</label>'+
+			'<textarea class="inputText" id="addModel_'+column[i]['name']+'" ></textarea>'+
 			'<div class="tip'+index+'"></div></div>';
 			$("#addEdit").append(display);
+					
 		} else {
-			
 			var display = '<div class="addInput'+index+'"><label class="lab'+index+'">'+column[i]['chineseName']+'</label>'+
 			'<input class="input'+index+'" type="text" id="addModel_'+column[i]['name']+'" />'+
 			'<div class="tip'+index+'"></div></div>';
 			$("#addEdit").append(display);
+			
 		}
 			
 	}
-	var dis = '<div class="tail"><button class="btSure">确定</button><button class="btRe" onclick="addReBt(\''+type+'\')">返回</button>'+
+	var dis = '<div class="tail"><button class="btSure" onclick="submitEdit()">确定</button><button class="btRe" onclick="addReBt(\''+type+'\')">返回</button>'+
 			'</div>'
 	$("#addEdit").append(dis);
 	restoreEdit(type, infoId);
 	
 }
 
+/**
+ * 还原用于编辑的数据
+ * */
 function restoreEdit(type, infoId){
 	var column = eval(sessionStorage.column);
 	if(type == "Active" || type == "Technology")
@@ -157,6 +176,9 @@ function restoreEdit(type, infoId){
 	})
 }
 
+/**
+ * 获取编辑、新增的实体属性
+ * */
 function getColumnInfo(block){
 	if(block == "Active" || block == "Technology")
 		block = "Tel_And_Act";
@@ -210,6 +232,9 @@ function displayInfo(){
 	
 }
 
+/**
+ * 展示表格
+ * */
 function displayTable(info){
 	var url = GetRequest();
 	var display = '<table id="table" class="table" cellspacing="0" cellpadding="5"><tr class="controlTh controlTh2">';
@@ -264,8 +289,9 @@ function displayTable(info){
 	display += '</table>'
 	$('#displayTable').append(display);
 }
-
-
+/**
+ * 数据为null的不展示
+ * */
 function isNull(info){
 	if(info == null)
 		return "";
@@ -317,10 +343,9 @@ function backAddClasses() { //右边不能点
 
 }
 
-function submitEdit(){
-	
-}
-
+/**
+ * 展示表格操作列展示
+ * */
 function getOperate(type, info){
 	var display = "";
 		
@@ -352,10 +377,18 @@ function getOperate(type, info){
 				&& (info['state'] == '已撤回' || info['state'] == '已驳回')){
 			display += '<span class="control">提交</span>';
 		}
+	}else if(type == 'UserCtr'){
+		display += '<span class="control">分配角色</span>';
+	}else if(type == 'RoleCtr'){
+		display += '<span class="control">分配权限</span>';
 	}
+	
 	return display;
 }
 
+/**
+ * 删除按钮
+ * */
 function del(type, id){
 	if(confirm("确定删除？")){
 		if(type == "ActiveCtr" || type == "TechnologyCtr")
@@ -380,10 +413,16 @@ function del(type, id){
 }
 
 
+/**
+ * 模块返回点击
+ * */
 function addReBt(tip){
 	window.location.href = "BackManagement.html?page=1&block=" + tip;
 }
 
+/**
+ * 模块查询按钮点击
+ * */
 function loadFind(){
 	if($('#findSel').val() == '' || $('#findSel').val() == '请选择') {
 		alert('下拉框未选择！');
@@ -396,7 +435,9 @@ function loadFind(){
 	var url = GetRequest();
 	window.location.href = "BackManagement.html?page=1&block=" + url['block'] + "&type=find&key=" + $('#findSel').val() + "&value='" + $('#findbyKeyAndValue').val() + "'";
 }
-
+/**
+ * 查询页面加载
+ * */
 function find() {
 	var url = GetRequest();
 	$.ajax({
@@ -418,16 +459,30 @@ function find() {
 	});
 }
 
+/**
+ * 模块点击事件
+ * */
 function goBlock(tip){
 	window.location.href = "BackManagement.html?page=1&block=" + control[tip];
 }
+
+/**
+ * 回首页按钮
+ * */
 function Return(){
 	window.location.href = "ManagerIndex.html?activeIndex=1&technologyIndex=1";
 }
+
+/**
+ * 后台展示首页
+ * */
 function goMain() {
 	window.location.href = "BackManagement.html?block=main";
 }
 
+/**
+ * 表格展示首页点击
+ * */
 function backGoFirstPg (){
 	var url = GetRequest();
 	var pages = sessionStorage.backPages;
@@ -436,6 +491,9 @@ function backGoFirstPg (){
 	}
 }
 
+/**
+ * 表格展示上一页点击
+ * */
 function backGoPreviousPg (){
 	var url = GetRequest();
 	var pages = sessionStorage.backPages;
@@ -444,6 +502,9 @@ function backGoPreviousPg (){
 	}
 }
 
+/**
+ * 表格展示下一页点击
+ * */
 function backGoNextPg (){
 	var url = GetRequest();
 	var pages = sessionStorage.backPages;
@@ -452,6 +513,9 @@ function backGoNextPg (){
 	}
 }
 
+/**
+ * 表格展示尾页点击
+ * */
 function backGoLastPg (){
 	var url = GetRequest();
 	var pages = sessionStorage.backPages;
@@ -460,16 +524,85 @@ function backGoLastPg (){
 	}
 }
 
+/**
+ * 模块新增按钮
+ * */
 function add() {
 	var url = GetRequest();
 	window.location.href = "BackManagement.html?block=" + url['block'] + "&type=add";
 }
 
+/**
+ * 编辑标签
+ * */
 function edit(id) {
 	var url = GetRequest();
 	window.location.href = "BackManagement.html?block=" + url['block'] + "&type=edit&id=" + id;
 }
 
+/**
+ * 新增按钮确定
+ * */
+function submitAdd(){
+	
+}
+
+/**
+ * 编辑按钮确定
+ * */
+function submitEdit(){
+	if(!yanzhen())
+		return ;
+	
+	var column = eval(sessionStorage.column);
+	var url = GetRequest();
+	var object = {};
+	for(var i = 0; i < column.length; i ++)
+		object[column[i]['name']] = $('#addModel_' + column[i]['name']).val();
+	
+	var type = url['block'];
+	if(type == "Active" || type == "Technology")
+		type = "Tel_And_Act";
+	
+	$.ajax({
+		type:'post',
+		url:'../servlet/CommonOperateServlet',
+		aysnc:false,
+		data:{
+			'info':'edit','object': JSON.stringify(object), 'className': type
+		},
+		success:function(data){
+			alert('编辑成功！');
+			addReBt(url['block']);
+		},
+		error:function(data){
+			alert('服务器访问失败！');
+		},
+	})
+
+}
+
+function yanzhen(){
+	var column = eval(sessionStorage.column);
+	
+	for(var i = 0; i < column.length; i ++){
+		if(column[i]['nullAble'] == false){
+			if($('#addModel_' + column[i]['name']).val() == ""){
+				alert(column[i]['chineseName'] + '不能为空！');
+				return false;
+			}else if(column[i]['length'] != -1 && $('#addModel_' + column[i]['name']).val().length > column[i]['length']){
+				alert(column[i]['chineseName'] + '最大长度为：' + column[i]['length']);
+				return false;
+			}			
+		}else {
+			if(column[i]['length'] != -1 && $('#addModel_' + column[i]['name']).val().length > column[i]['length']){
+				alert(column[i]['chineseName'] + '最大长度为：' + column[i]['length']);
+				return false;
+			}	
+		}
+	}
+	return true;
+}
 
 
 

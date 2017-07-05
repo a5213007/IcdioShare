@@ -19,6 +19,8 @@ public class Tel_And_ActDao extends CommonDAO implements IBaseDao{
 	
 	public int update(Object object) throws Exception{
 		String sql = ObjectToSQL.toSqlForUpdate(object);
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
 		executeSql(sql);
 		return 1;
 	}

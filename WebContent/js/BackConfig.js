@@ -9,20 +9,19 @@ control['权限管理'] = "Permissions";
 control2['Permissions'] = "权限管理";
 tableTh['Permissions'] = ['id','perssionsName','sign','operate'];
 tableTh2['Permissions'] = ['权限ID','权限名称','权限标识','操作'];
-addModel['Permissions'] = [];
+
 
 //角色
 control['角色管理'] = "Role";
 control2['Role'] = "角色管理";
 tableTh['Role'] = ['id','roleName','operate'];
 tableTh2['Role'] = ['角色ID','角色名称','操作'];
-addModel['Role'] = [];
 
 //人员信息
 control['人员信息管理'] = "User";
 control2['User'] = "人员信息管理";
-tableTh['User'] = ['id','name','account','sex','age','phoneNum','operate'];
-tableTh2['User'] = ['用户ID','姓名','账号','性别','年龄','电话','操作'];
+tableTh['User'] = ['name','account','phoneNum','operate'];
+tableTh2['User'] = ['姓名','账号','电话','操作'];
 
 //流程
 control['流程管理'] = "Process";

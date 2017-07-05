@@ -438,4 +438,30 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 .canClick {
     cursor: default;
 }
-
+.inputText{
+    width: 55%;
+    height: 83%;
+    margin-left: 20.9%;
+    line-height: 1;
+    margin-top: 1.8%;
+    font-size: 0.9vw;
+    padding: 0 0.2%;
+    border: 0.01em solid rgba(0, 0, 0, 0.45);
+	padding-top: 0.4%;
+	resize: none;
+}
+.labText{
+	position: absolute;
+    margin-left: 15%;
+    margin-top: 2%;
+    font-size: 0.9vw;
+    height: 40%;
+    line-height: 2;
+}
+.TextDiv{
+	position: relative;
+	width: 100%;
+    float: left;
+    height: 22%;
+    margin-bottom: 1%;
+}
