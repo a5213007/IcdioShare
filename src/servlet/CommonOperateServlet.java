@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,6 +50,33 @@ public class CommonOperateServlet extends HttpServlet {
 				
 				e.printStackTrace();
 				throw new ServletException();
+			}
+		}
+		else if("delete".equals(request.getParameter("info"))) {
+			Long id = Long.parseLong(request.getParameter("id"));
+			String className = request.getParameter("className");
+			try {
+				Class service = Class.forName("service." + className + "." + className  +"Service");
+				Object object = service.newInstance();
+				@SuppressWarnings("unchecked")
+				Method method = service.getMethod("delete", Long.class);
+				method.invoke(object, id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if("find".equals(request.getParameter("info"))) {
+			String key = request.getParameter("key");
+			String value = request.getParameter("value");
+			String className = request.getParameter("className");
+			try {
+				Class service = Class.forName("service." + className + "." + className  +"Service");
+				Object object = service.newInstance();
+				@SuppressWarnings("unchecked")
+				Method method = service.getMethod("findByKeyAndValue", String.class, String.class);
+				method.invoke(object, key, value);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 	}

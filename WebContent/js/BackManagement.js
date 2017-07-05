@@ -236,7 +236,7 @@ function getOperate(type, info){
 			display += '<span class="control">同意</span>';
 			display += '<span class="control">驳回</span>';
 		}else {
-			display += '<span class="control">删除</span>';
+			display += '<span class="control" onclick="del(\''+type+'\',\''+info['id']+'\')">删除</span>';
 		}
 		return display;
 	}
@@ -265,14 +265,18 @@ function getOperate(type, info){
 
 function del(type, id){
 	if(confirm("确定删除？")){
+		if(type == "ActiveCtr" || type == "TechnologyCtr")
+			type = "Tel_And_ActCtr";
 		$.ajax({
 			type:'post',
-			url:'../servlet/'+type.substring(0, type.length - 3)+'Servlet',
+			url:'../servlet/CommonOperateServlet',
 			aysnc:false,
 			data:{
-				'info':'delete', 'id':id
+				'info':'delete', 'id':id, 'className':type.substring(0, type.length - 3)
 			},
 			success:function(data){
+				var url = GetRequest();
+				window.location.href = "BackManagement.html?page=1&block=" + url['block'];
 				alert("删除成功！");
 			},
 			error:function(data){
@@ -282,6 +286,27 @@ function del(type, id){
 	}
 }
 
+function find(type, key, value){
+	if(confirm("确定删除？")){
+		if(type == "ActiveCtr" || type == "TechnologyCtr")
+			type = "Tel_And_ActCtr";
+		$.ajax({
+			type:'post',
+			url:'../servlet/CommonOperateServlet',
+			aysnc:false,
+			data:{
+				'info':'find', 'key':key, 'value':value, 'className':type.substring(0, type.length - 3)
+			},
+			success:function(data){
+				var url = GetRequest();
+				window.location.href = "BackManagement.html?page=1&block=" + url['block'];
+			},
+			error:function(data){
+				alert("服务器访问失败！");
+			},
+		});
+	}
+}
 
 function goBlock(tip){
 	window.location.href = "BackManagement.html?page=1&block=" + control[tip];
