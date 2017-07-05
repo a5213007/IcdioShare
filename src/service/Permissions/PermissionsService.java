@@ -72,7 +72,7 @@ public class PermissionsService implements IBaseService{
 	
 	public List<Map<String, Object>> hasPerssions(Long userId){
 		try {
-			List<Map<String, Object>> list = perssionsDao.hasPerssions(userId);
+			List<Map<String, Object>> list = perssionsDao.hasPermissions(userId);
 			List<Map<String, Object>> temList = new ArrayList<Map<String,Object>>();
 			
 			if(list.size() != 0){
@@ -99,7 +99,7 @@ public class PermissionsService implements IBaseService{
 	 * */
 	public boolean hasPerssions(String signName, Long userId){
 		try {
-			if(perssionsDao.hasPerssions(signName, userId).size() != 0)
+			if(perssionsDao.hasPermissions(signName, userId).size() != 0)
 				return true;
 		} catch (Exception e) {
 			e.printStackTrace();
