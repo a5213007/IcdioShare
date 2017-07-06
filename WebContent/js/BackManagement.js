@@ -43,6 +43,12 @@ function loadBackManagement(){
 			$('#displayModel').css('display','block');
 			$('#addEditModel').css('display','none');
 			return;
+		}else if(url['type'] == 'display') {
+			$('#addEditModel').css('display','block');
+			$('#displayModel').css('display','none');
+			getColumnInfo(url['block']);
+			setDisplaytModel(url['block'], url['id']);
+			return ;
 		}
 
 		$('#displayModel').css('display','block');
@@ -185,7 +191,7 @@ function restoreEdit(type, infoId){
 			if(data != undefined){
 				for(var i = 0; i < column.length; i++){
 					if(column[i]['editAble'] == undefined || column[i]['editAble'] == true);
-					else
+					else 
 						$('#addModel_' + column[i]['name']).attr("disabled","false");
 					$('#addModel_' + column[i]['name']).val(info[0][column[i]['name']]);
 				}
@@ -198,7 +204,70 @@ function restoreEdit(type, infoId){
 }
 
 /**
- * 获取编辑、新增的实体属性
+ * 初始化查看模板
+ * */
+function setDisplaytModel(type, infoId){
+	var column = eval(sessionStorage.column);
+	
+	for(var i = 0; i < column.length; i++){
+		var index = (i % 2 == 0 ? 1 : 2);
+		if(column[i]['name'].endsWith('content') || column[i]['name'].endsWith('Content')){
+			var display = '<div class="TextDiv"><label class="labText">'+column[i]['chineseName']+'</label>'+
+			'<textarea class="inputText" id="addModel_'+column[i]['name']+'" ></textarea>'+
+			'<div class="tip'+index+'"></div></div>';
+			$("#addEdit").append(display);
+					
+		} else {
+			var display = '<div class="addInput'+index+'"><label class="lab'+index+'">'+column[i]['chineseName']+'</label>'+
+			'<input class="input'+index+'" type="text" id="addModel_'+column[i]['name']+'" />'+
+			'<div class="tip'+index+'"></div></div>';
+			$("#addEdit").append(display);
+			
+		}
+			
+	}
+	var dis = '<div class="tail"><button class="btRe" onclick="addReBt(\''+type+'\')">返回</button>'+
+			'</div>'
+	$("#addEdit").append(dis);
+	restoreDisplay(type, infoId);
+	
+}
+
+/**
+ * 还原用于查看的数据
+ * */
+function restoreDisplay(type, infoId){
+	var column = eval(sessionStorage.column);
+	if(type == "Active" || type == "Technology")
+		type = "Tel_And_Act";
+	
+	$.ajax({
+		type:'post',
+		url:'../servlet/CommonOperateServlet',
+		async:false,
+		data:{
+			'info':'restore','id': infoId, 'className':type,
+		},
+		success:function(data){
+			var info = eval(data);
+			
+			if(data != undefined){
+				for(var i = 0; i < column.length; i++){
+					$('#addModel_' + column[i]['name']).attr("disabled","false");
+					$('#addModel_' + column[i]['name']).addClass('displayCantEdit');
+					$('#addModel_' + column[i]['name']).val(info[0][column[i]['name']]);
+				}
+			}
+		},
+		error:function(data){
+			
+		},
+	})
+}
+
+
+/**
+ * 获取编辑、新增、查看的实体属性
  * */
 function getColumnInfo(block){
 	if(block == "Active" || block == "Technology")
@@ -381,7 +450,7 @@ function getOperate(type, info){
 	}
 	
 	if((hasPerssions(type) || hasPerssions(type +"_display")) || isTheBlock(type))
-		display += '<span class="control">查看</span>';
+		display += '<span class="control" onclick="display(' + info['id'] + ')">查看</span>';
 	if(type != "QuestionCtr" && type != "AnswerCtr" && type != "Evaluation"){
 		if((hasPerssions(type) || hasPerssions(type +"_edit")) || isTheBlock(type))
 			display += '<span class="control" onclick="edit('+info['id']+')">编辑</span>';
@@ -398,9 +467,9 @@ function getOperate(type, info){
 				&& (info['state'] == '已撤回' || info['state'] == '已驳回')){
 			display += '<span class="control">提交</span>';
 		}
-	}else if(type == 'UserCtr' && hasPerssions('UserCtr')){
+	}else if(type == 'UserCtr' && hasPerssions('PermissionsCtr')){
 		display += '<span class="control" onclick="Assign(\''+info['id']+'\',\'Role\',\'选择角色('+info['name']+')\')">分配角色</span>';
-	}else if(type == 'RoleCtr' && hasPerssions('RoleCtr')){
+	}else if(type == 'RoleCtr' && hasPerssions('PermissionsCtr')){
 		display += '<span class="control" onclick="Assign(\''+info['id']+'\',\'Permissions\',\'选择权限('+info['roleName']+')\')">分配权限</span>';
 	}
 	
@@ -553,6 +622,7 @@ function addSelTo(id, type){
 		success:function(data){
 			alert('添加成功！');					
 			quitRolePer();
+			window.location.reload();
 		},
 		error:function(data){
 			alert('服务器访问失败！');
@@ -638,7 +708,7 @@ function find() {
 		url:'../servlet/'+ url['block'] + 'Servlet',
 		aysnc:false,
 		data:{
-			'info':'find', 'key':url['key'], 'value':decodeUnicode(url['value']), 'page':url['page']
+			'info':'find', 'key':url['key'], 'value':decodeUnicode(url['value']), 'page':url['page'],'type':url['block'], 'id' :eval(sessionStorage.user)[0]['id'] 
 		},
 		success:function(data){
 			var info = eval(data);
@@ -731,6 +801,14 @@ function add() {
 function edit(id) {
 	var url = GetRequest();
 	window.location.href = "BackManagement.html?block=" + url['block'] + "&type=edit&id=" + id;
+}
+
+/**
+ * 查看标签
+ * */
+function display(id) {
+	var url = GetRequest();
+	window.location.href = "BackManagement.html?block=" + url['block'] + "&type=display&id=" + id;
 }
 
 /**
