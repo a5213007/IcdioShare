@@ -105,7 +105,7 @@ public class PermissionsServlet extends HttpServlet {
 			PermissionsService permissionsService = new PermissionsService();
 			
 			try {
-				
+				permissionsService.removeAllPermissions(roleId);
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new ServletException();
