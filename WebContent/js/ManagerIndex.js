@@ -289,7 +289,7 @@ function submitTechnology(){
 }
 
 function submitActive(){
-	if($('#actTitle').val().length != 0 && $('#actContent').val().length != 0 && $('#actType').val() != "请选择"){
+	if($('#actTitle').val().length != 0 && $('#actContent').val().length != 0 && $('#actType').val() != "请选择" && $('#actPlace').val().length != 0 && $('#actTime').val().length != 0){
 		var object = {};
 		object['id'] = getId();
 		object['title'] = $('#actTitle').val();
