@@ -155,8 +155,13 @@ function setEditModel(type, infoId){
 			$("#addEdit").append(display);
 					
 		} else {
+			var date = "";
+			
+			if(column[i]['name'].endsWith('Date'))
+				date = 'onclick="laydate({elem: \'#addModel_' +column[i]['name'] + '\'});"'
+				
 			var display = '<div class="addInput'+index+'"><label class="lab'+index+'">'+column[i]['chineseName']+'</label>'+
-			'<input class="input'+index+'" type="text" id="addModel_'+column[i]['name']+'" />'+
+			'<input class="input'+index+'" type="text" id="addModel_'+column[i]['name']+'" '+date+'/>'+
 			'<div class="tip'+index+'"></div></div>';
 			$("#addEdit").append(display);
 			
@@ -191,8 +196,10 @@ function restoreEdit(type, infoId){
 			if(data != undefined){
 				for(var i = 0; i < column.length; i++){
 					if(column[i]['editAble'] == undefined || column[i]['editAble'] == true);
-					else 
+					else {
 						$('#addModel_' + column[i]['name']).attr("disabled","false");
+						$('#addModel_' + column[i]['name']).attr("onclick","");
+					}
 					$('#addModel_' + column[i]['name']).val(info[0][column[i]['name']]);
 				}
 			}
