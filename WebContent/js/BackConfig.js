@@ -2,14 +2,13 @@ var control = {};
 var control2 = {};
 var tableTh = {};
 var tableTh2 = {};
-var addModel = {};
+var find = {};
 
 //权限
 control['权限管理'] = "Permissions";
 control2['Permissions'] = "权限管理";
 tableTh['Permissions'] = ['id','perssionsName','sign','operate'];
 tableTh2['Permissions'] = ['权限ID','权限名称','权限标识','操作'];
-
 
 //角色
 control['角色管理'] = "Role";

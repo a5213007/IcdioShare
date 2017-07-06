@@ -22,7 +22,7 @@ public class RoleDao extends CommonDAO implements IBaseDao{
 	}
 	
 	public List<Map<String, Object>> getAllInfo() throws Exception{
-		String sql = "select * from role limit 0,10";
+		String sql = "select * from role";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
@@ -70,5 +70,26 @@ public class RoleDao extends CommonDAO implements IBaseDao{
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
+	}
+	
+	public List<Map<String, Object>> getRoleByUserId(Long userId)throws Exception{
+		String sql = "select user.id, user_role.roleID from user_role left join user on user_role.userID = user.id where userID = " + userId;
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		return excuteQuery(sql, null);
+	}
+	
+	public void addRoleToUser(String id, String perssions, Long userId)throws Exception{
+		String sql = "insert into user_role(id,userID,roleID) values('"+id+"','"+userId+"','"+perssions+"')";
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		executeSql(sql);
+	}
+	
+	public void removeAllRole(Long userId) throws Exception{
+		String sql = "delete * from user_role where userID = " + userId;
+		System.out.println("----------------------------------------");
+		System.out.println("SQL:" + sql);
+		executeSql(sql);
 	}
 }

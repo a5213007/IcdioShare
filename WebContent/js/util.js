@@ -12,6 +12,7 @@ function hasPerssions(type){
 }
 
 function getPermissions(){
+	sessionStorage.removeItem('permissions');
 	$.ajax({
 		type:'post',
 		url:'../servlet/PermissionsServlet',

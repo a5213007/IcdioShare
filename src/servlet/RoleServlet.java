@@ -46,7 +46,7 @@ public class RoleServlet extends HttpServlet {
 		response.setHeader("Content-type", "text/html;charset=UTF-8");
 		
 		if("display".equals(request.getParameter("info"))){
-			int page = Integer.parseInt(request.getParameter("page")+"");
+			int page = Integer.parseInt(request.getParameter("page") + "");
 			RoleService roleService = new RoleService();
 			List<Map<String, Object>> list = roleService.getInfoByPage(page);
 			
@@ -58,11 +58,55 @@ public class RoleServlet extends HttpServlet {
 			int page = Integer.parseInt(request.getParameter("page"));
 			String key = request.getParameter("key");
 			String value = request.getParameter("value");
+			
 			RoleService roleService = new RoleService();
 			List<Map<String, Object>> list = roleService.findByKeyAndValue(key, value, page);
+			
 			if(list != null){
 				JSONArray json = JSONArray.fromObject(list);
 				SendToHtml.send(json, response);
+			}
+			
+		}else if("getAllRole".equals(request.getParameter("info"))){
+			RoleService roleService = new RoleService();
+			List<Map<String, Object>> list = roleService.getAllInfo();
+			
+			if(list != null){
+				JSONArray json = JSONArray.fromObject(list);
+				SendToHtml.send(json, response);
+			}
+			
+		}else if("getRoleById".equals(request.getParameter("info"))){
+			Long id = Long.parseLong(request.getParameter("id"));
+			RoleService roleService = new RoleService();
+			List<Map<String, Object>> list = roleService.getRoleByUserId(id);
+			
+			if(list != null){
+				JSONArray json = JSONArray.fromObject(list);
+				SendToHtml.send(json, response);
+			}
+			
+		}else if("addRoleTo".equals(request.getParameter("info"))){
+			Long roleId = Long.parseLong(request.getParameter("id"));
+			JSONArray json = JSONArray.fromObject("["+request.getParameter("object")+"]");
+			
+			RoleService roleService = new RoleService();
+			try {
+				roleService.addRoleToUser(roleId, json);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new ServletException();
+			}
+			
+		}else if("removeAll".equals(request.getParameter("info"))){
+			Long roleId = Long.parseLong(request.getParameter("id"));
+			RoleService roleService = new RoleService();
+			
+			try {
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new ServletException();
 			}
 		}
 	}

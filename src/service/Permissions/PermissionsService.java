@@ -2,10 +2,14 @@ package service.Permissions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import net.sf.json.JSONArray;
 import service.baseService.IBaseService;
+import util.operateObject.Tool;
 import dao.Permissions.PermissionsDao;
 
 public class PermissionsService implements IBaseService{
@@ -29,13 +33,13 @@ public class PermissionsService implements IBaseService{
 		}
 	}
 	
-	public List<Map<String, Object>> getAllInfo() throws Exception{
+	public List<Map<String, Object>> getAllInfo(){
 		try {
 			return perssionsDao.getAllInfo();	
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new Exception();
 		}
+		return null;
 	}
 	
 	public List<Map<String, Object>> getInfoById(Long id) throws Exception{		
@@ -70,6 +74,9 @@ public class PermissionsService implements IBaseService{
 		}		
 	}
 	
+	/**
+	 * 获取所有权限
+	 * */
 	public List<Map<String, Object>> hasPerssions(Long userId){
 		try {
 			List<Map<String, Object>> list = perssionsDao.hasPermissions(userId);
@@ -117,5 +124,59 @@ public class PermissionsService implements IBaseService{
 			e.printStackTrace();
 		}	
 		return null;
+	}
+	
+	/**
+	 * 通过角色ID获取权限
+	 * */
+	public List<Map<String, Object>> getPerssionsByRoleId(Long roleId){
+		try {
+			List<Map<String, Object>> list = perssionsDao.getPerssionsByRoleId(roleId);
+			Set<String> permissionsSet = new HashSet<String>();
+			
+			for (int i = 0; i < list.size(); i++) 
+				permissionsSet.add(list.get(i).get("perssionsID") + "");
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("permissions", permissionsSet.toArray());
+			
+			list.clear();
+			list.add(map);
+			
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
+	 * 将权限分配给角色
+	 * */
+	public void addPermissionsToRole(Long roleId, JSONArray json) throws Exception{
+		try {
+			Map<String, Object> map = (Map<String, Object>) json.get(0);
+			
+			for(int i = 0; i < map.size(); i++){
+				perssionsDao.addPermissionsToRole(Tool.getID(), map.get(i+"")+"", roleId);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception();
+		}
+	}
+	
+	/**
+	 * 将角色权限移除
+	 * */
+	public void removeAllPermissions(Long roleId) throws Exception{
+		try {
+			perssionsDao.removeAllPermissions(roleId);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception();
+		}
 	}
 }

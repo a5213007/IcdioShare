@@ -25,7 +25,7 @@
 		<div class="item" onclick="goBlock('答案管理')"><span></span><span class="itemFr">答案管理</span></div>
 		<div class="item" onclick="goBlock('问题管理')"><span></span><span class="itemFr">问题管理</span></div>
 		<div class="item" onclick="goBlock('技术分享管理')"><span></span><span class="itemFr">技术分享管理</span></div>
-		<div class="item" onclick="goBlock('活动通知管理')"><span></span><span class="itemFr">活动通知管理</span></div>
+		<div id="activeCtr" class="item" onclick="goBlock('活动通知管理')"><span></span><span class="itemFr">活动通知管理</span></div>
 	</div>
 	
 	<div id="title" class="title">权限管理</div>
@@ -85,9 +85,9 @@
 	</div>
 	<div id="cover" class="cover"></div>
 	<div id="sel" class="sel">
-		<div class="selTitle">选择角色</div>
-		<div class="selBody">
-			<div class="itemSel">
+		<div id='selTitle' class="selTitle">选择角色</div>
+		<div id='selBody' class="selBody">
+			<!-- <div class="itemSel">
 				<input class="checkbox" type="checkbox" name="aa" value="1"/>
 				<span class="itemSpan" title="学生拥有xxx的权限">学生</span>
 			</div>
@@ -102,11 +102,11 @@
 			<div class="itemSel">
 				<input class="checkbox" type="checkbox" name="aa" value="4"/>
 				<span class="itemSpan" title="学生拥有xxx的权限">学生</span>
-			</div>
+			</div> -->
 		</div>
 		
-		<div class="selTail">
-			<button class="selSure" onclick="aa()">确定</button>
+		<div id='btSetTail' class="selTail">
+			<!-- <button class="selSure" onclick="aa()">确定</button>
 			<script>
 			function aa(){
 				 var a= $("input[type='checkbox']:checked");
@@ -121,7 +121,7 @@
 
 			}
 			</script>
-			<button class="selQuit">取消</button>
+			<button class="selQuit" onclick="quitRolePer()">取消</button> -->
 		</div>
 	</div>
 </body>

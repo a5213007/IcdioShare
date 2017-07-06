@@ -1,9 +1,14 @@
 package service.Role;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import net.sf.json.JSONArray;
 import service.baseService.IBaseService;
+import util.operateObject.Tool;
 import dao.Role.RoleDao;
 
 public class RoleService implements IBaseService{
@@ -80,5 +85,59 @@ public class RoleService implements IBaseService{
 			e.printStackTrace();
 		}	
 		return null;
+	}
+	
+	/**
+	 * 通过用户ID获取权限
+	 * */
+	public List<Map<String, Object>> getRoleByUserId(Long userId){
+		try {
+			List<Map<String, Object>> list = roleDao.getRoleByUserId(userId);
+			Set<String> roleSet = new HashSet<String>();
+			
+			for (int i = 0; i < list.size(); i++) 
+				roleSet.add(list.get(i).get("roleID") + "");
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("role", roleSet.toArray());
+			
+			list.clear();
+			list.add(map);
+			
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
+	 * 将角色分配给用户
+	 * */
+	public void addRoleToUser(Long userId, JSONArray json) throws Exception{
+		try {
+			Map<String, Object> map = (Map<String, Object>) json.get(0);
+			
+			for(int i = 0; i < map.size(); i++){
+				roleDao.addRoleToUser(Tool.getID(), map.get(i+"")+"", userId);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception();
+		}
+	}
+	
+	/**
+	 * 将用户角色移除
+	 * */
+	public void removeAllRole(Long userId) throws Exception{
+		try {
+			roleDao.removeAllRole(userId);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception();
+		}
 	}
 }

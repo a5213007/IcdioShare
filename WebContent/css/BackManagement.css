@@ -350,15 +350,15 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     background-color:rgba(0, 0, 0, 0.52);	
 }
 .sel{
-    top: 25%;
+    top: 17%;
     position: absolute;
     z-index: 1009;
     width: 50%;
-    height: 50%;
-    left: 25%;
+    height: 65%;
+    left: 26%;
     background-color: rgba(0, 0, 0, 0.47);
     color: #fff;
-    box-shadow: 1px 1px 20px 6px #fff	
+    box-shadow: 1px 1px 20px 6px #fff;
 }
 .selTitle{
     width: 100%;

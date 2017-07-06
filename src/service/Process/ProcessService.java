@@ -45,7 +45,7 @@ public class ProcessService implements IBaseService{
 		try {
 			//更新流程
 			Map<String, Object> map = (Map<String, Object>) json.get(0);
-			Long id = Long.parseLong( map.get("id") + "");		
+			Long id = Long.parseLong( map.get("processId") + "");		
 			List<Map<String, Object>> list = getInfoById(id);
 			String state = "";
 			if(judge.equals("true"))
@@ -54,14 +54,15 @@ public class ProcessService implements IBaseService{
 				state = "已驳回";
 				list.get(0).put("state", state);
 			
-			list.get(0).put("reviewID", map.get("reviewID"));
+			list.get(0).put("reviewID", map.get("userId"));
 			list.get(0).put("reviewDate", map.get("reviewDate"));
-			
+			JSONArray processJson = JSONArray.fromObject(list);
+			processDao.update(JsonToObject.jsonToObj("Process", processJson));
 			//更新活动通知
 			
 			List<Map<String, Object>> activeList = tel_And_ActService.getInfoById(Long.parseLong(list.get(0).get("telAndActID")+""));
-			list.get(0).put("state", state);
-			tel_And_ActService.update(JsonToObject.jsonToObj("Tel_And_Act", JSONArray.fromObject(list)));
+			activeList.get(0).put("state", state);
+			tel_And_ActService.update(JsonToObject.jsonToObj("Tel_And_Act", JSONArray.fromObject(activeList)));
 
 		} catch (Exception e) {
 			e.printStackTrace();
