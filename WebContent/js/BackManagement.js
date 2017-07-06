@@ -462,10 +462,10 @@ function getOperate(type, info){
 	if(type == "TechnologyCtr" || type == "ActiveCtr"){ 
 		if((hasPerssions(type) || (eval(sessionStorage.user)[0]['id'] == info['userID']))
 				&& info['state'] == '已提交'){
-			display += '<span class="control">撤回</span>';
+			display += '<span class="control" onclick="changeState(\'撤回\',\''+info['id']+'\')">撤回</span>';
 		}else if((hasPerssions(type) || (eval(sessionStorage.user)[0]['id'] == info['userID']))
 				&& (info['state'] == '已撤回' || info['state'] == '已驳回')){
-			display += '<span class="control">提交</span>';
+			display += '<span class="control" onclick="changeState(\'提交\',\''+info['id']+'\')">提交</span>';
 		}
 	}else if(type == 'UserCtr' && hasPerssions('PermissionsCtr')){
 		display += '<span class="control" onclick="Assign(\''+info['id']+'\',\'Role\',\'选择角色('+info['name']+')\')">分配角色</span>';
@@ -934,7 +934,29 @@ function yanzhen2(){
 	}
 	return true;
 }
+/**
+ * 撤回提交
+ * */
 
+function changeState(state, id){
+	if(confirm("确定" + state + "?")){
+		$.ajax({
+			type:'post',
+			async:false,
+			url:'../servlet/CommonOperateServlet',
+			data:{
+				'info':'changeState', 'id':id, 'state':'已' + state
+			},
+			success:function(data){
+				alert(state + "成功！");
+				window.location.reload();
+			},
+			error:function(data){
+				alert("服务器访问失败！");
+			},
+		})
+	}
+}
 
 
 

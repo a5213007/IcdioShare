@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -70,7 +71,7 @@ public class CommonDAO {
 			fillStatement(pstmt, o);
 
 			rs = pstmt.executeQuery();
-
+			System.out.println("SUBMIT TIME : " + new Date() + "\n");
 			return rsh.doHander(rs);
 
 		} catch (Exception e) {
@@ -98,7 +99,7 @@ public class CommonDAO {
 
 			pstmt = con.prepareStatement(sql);
 
-			System.out.println("SQL:" + sql + "; 参数:" + Arrays.deepToString(o));
+			System.out.println("SUBMIT TIME : " + new Date() + "\n");
 
 			fillStatement(pstmt, o);
 
@@ -143,7 +144,7 @@ public class CommonDAO {
 			while(rs.next()) {
 				count = rs.getInt(1);
 			}
-			
+			System.out.println("SUBMIT TIME : " + new Date() + "\n");
 			return count;
 			
 		}catch(Exception ex) {
@@ -257,7 +258,7 @@ public class CommonDAO {
 			con = this.getConnetion();
 			pstmt = con.prepareStatement(sql);	//执行一个语句
 			pstmt.executeUpdate();
-			
+			System.out.println("SUBMIT TIME : " + new Date() + "\n");
 		}catch(Exception e) {
 			throw e;
 		}

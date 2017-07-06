@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
+import service.Tel_And_Act.Tel_And_ActService;
 import util.operateObject.ColumnToJson;
 import util.operateObject.JsonToObject;
 import util.sendToHtml.SendToHtml;
@@ -120,6 +121,18 @@ public class CommonOperateServlet extends HttpServlet {
 				Method method = clazz.getMethod("save", Object.class);
 				Object obj = JsonToObject.jsonToObj(className, json);
 				method.invoke(object, obj);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new ServletException();
+			}
+		}else if("changeState".equals(request.getParameter("info"))){
+			Long id = Long.parseLong(request.getParameter("id"));
+			String state = request.getParameter("state");
+			
+			Tel_And_ActService tel_And_ActService = new Tel_And_ActService();
+			
+			try {
+				tel_And_ActService.changeState(state, id);
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new ServletException();

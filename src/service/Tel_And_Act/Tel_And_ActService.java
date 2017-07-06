@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import net.sf.json.JSONArray;
 import service.Answer.AnswerService;
 import service.Evaluation.EvaluationService;
 import service.Permissions.PermissionsService;
 import service.Process.ProcessService;
 import service.Question.QuestionService;
 import service.baseService.IBaseService;
+import util.operateObject.JsonToObject;
 import util.operateObject.Tool;
 import dao.Tel_And_Act.Tel_And_ActDao;
 import entity.Tel_And_Act.Tel_And_Act;
@@ -38,6 +40,23 @@ public class Tel_And_ActService implements IBaseService{
 			e.printStackTrace();
 			throw new Exception();
 		}				
+	}
+	
+	public void changeState(String state, Long id){
+		try {
+			List<Map<String, Object>> list = getInfoById(id);
+			
+			if(list.size() != 0){
+				list.get(0).put("state", state);
+				
+				JSONArray json = JSONArray.fromObject(list);
+				
+				update(JsonToObject.jsonToObj("Tel_And_Act", json));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public int update(Object object) throws Exception{		
