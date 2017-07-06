@@ -16,12 +16,13 @@ import service.baseService.IBaseService;
 import util.operateObject.JsonToObject;
 import util.operateObject.Tool;
 import dao.Tel_And_Act.Tel_And_ActDao;
+import entity.Process.Process;
 import entity.Tel_And_Act.Tel_And_Act;
 
 public class Tel_And_ActService implements IBaseService{
 	private Tel_And_ActDao tel_and_actDao = new Tel_And_ActDao();
 	private PermissionsService perssionsService = new PermissionsService();
-
+	
 	public int save(Object object) throws Exception{
 		try {
 			//将英文双引号转化为中文双引号		
@@ -42,7 +43,7 @@ public class Tel_And_ActService implements IBaseService{
 		}				
 	}
 	
-	public void changeState(String state, Long id){
+	public void changeState(String state, Long id, String  type, Map<String, Object> map){
 		try {
 			List<Map<String, Object>> list = getInfoById(id);
 			
@@ -52,7 +53,20 @@ public class Tel_And_ActService implements IBaseService{
 				JSONArray json = JSONArray.fromObject(list);
 				
 				update(JsonToObject.jsonToObj("Tel_And_Act", json));
+				
+				if(state.equals("已提交") && type.equals("活动通知")){
+					Process process = new Process();
+					process.setId(map.get("id") + "");
+					process.setTelAndActID(map.get("telAndActID") + "");
+					process.setReleaseDate(map.get("releaseDate") + "");
+					process.setSubmitID(map.get("userID") + "");
+					process.setState("已提交");
+					
+					ProcessService processService = new ProcessService();
+					processService.save(process);
+				}
 			}
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

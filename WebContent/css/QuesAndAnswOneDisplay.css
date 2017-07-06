@@ -97,6 +97,7 @@ body{
 	border:none;
 	outline:none;
     overflow: hidden;
+    resize:none;
 }
 .separate{
 	width:100%;

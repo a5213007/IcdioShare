@@ -57,6 +57,11 @@ function isLogin(){
 	}
 }
 
+function getCount(str){
+	var bbb = str.split("\n")
+	return bbb.length - 1 ;
+}
+
 function reManager(){
 	window.history.go(-1);
 }

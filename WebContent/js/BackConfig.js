@@ -25,7 +25,7 @@ tableTh2['User'] = ['姓名','账号','电话','操作'];
 //流程
 control['流程管理'] = "Process";
 control2['Process'] = "流程管理";
-tableTh['Process'] = ['id','telAndActID','submitName','releaseDate','state','operate'];
+tableTh['Process'] = ['id','telAndActID','name','releaseDate','state','operate'];
 tableTh2['Process'] = ['流程ID','活动ID','发布人','发布时间','状态','操作'];
 
 //评论

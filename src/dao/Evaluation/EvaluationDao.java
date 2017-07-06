@@ -106,7 +106,7 @@ public class EvaluationDao extends CommonDAO implements IBaseDao{
 		if(userId != null)
 			userArg = " and user.id = " + userId;
 		
-		String sql = "select evaluation.id,tel_and_act.title, user.id, user.name, evaluationContent," +
+		String sql = "select evaluation.id,tel_and_act.title, user.id, user.name as name, evaluationContent," +
 				"evalutionDate,evaluation.Type from evaluation LEFT JOIN user on(user.id = "+
 				"evaluation.userID)LEFT JOIN tel_and_act ON (evaluation.telAndActID = tel_and_act.id" +
 				") where " + key + "='" + value + "' "+userArg+" ORDER BY evalutionDate asc limit " + (page - 1) * 10 + ", 10";

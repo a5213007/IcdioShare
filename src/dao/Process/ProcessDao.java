@@ -36,7 +36,7 @@ public class ProcessDao extends CommonDAO implements IBaseDao{
 	 * 跳页
 	 * */
 	public List<Map<String, Object>> getPageInfo(int page) throws Exception{
-		String sql = "select process.id,submitID,user.name as submitName,reviewID,releaseDate"+
+		String sql = "select process.id,submitID,user.name,reviewID,releaseDate"+
 				",reviewDate,telAndActID,state from process left join user on(user.id "+
 				"= process.submitID) limit " + (page - 1) * 10  + ", 10";
 		System.out.println("----------------------------------------");
@@ -66,14 +66,14 @@ public class ProcessDao extends CommonDAO implements IBaseDao{
 	}
 	
 	public List<Map<String, Object>> findByKeyAndValue(String key, String value, int page){
-		String sql = "select * from process where " + key + " like '%" + value + "%' limit " + (page - 1) * 10 + ", 10";
+		String sql = "select process.id,submitID,user.name,reviewID,releaseDate,reviewDate,telAndActID,state from process left join user on(user.id = process.submitID) where " + key + " like '%" + value + "%' limit " + (page - 1) * 10 + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	}
 	
-	public List<Map<String, Object>> findByKeyAndValuePage(String key, String value, int page){
-		String sql = "select count(*) / 10 as page from process where " + key + " like '%" + value + "%' limit " + (page - 1) * 10 + ", 10";
+	public List<Map<String, Object>> findByKeyAndValuePage(String key, String value, int page){	
+		String sql = "select count(*) / 10 as page from process left join user on(user.id = process.submitID) where " + key + " like '%" + value + "%' limit " + (page - 1) * 10 + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);

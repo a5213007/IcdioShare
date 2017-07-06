@@ -128,11 +128,13 @@ public class CommonOperateServlet extends HttpServlet {
 		}else if("changeState".equals(request.getParameter("info"))){
 			Long id = Long.parseLong(request.getParameter("id"));
 			String state = request.getParameter("state");
+			String type = request.getParameter("type");
+			JSONArray json = JSONArray.fromObject("["+request.getParameter("object")+"]");
 			
 			Tel_And_ActService tel_And_ActService = new Tel_And_ActService();
 			
 			try {
-				tel_And_ActService.changeState(state, id);
+				tel_And_ActService.changeState(state, id, type,(Map<String, Object>)json.get(0));
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new ServletException();

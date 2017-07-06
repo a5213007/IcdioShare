@@ -12,7 +12,7 @@ import entity.Process.Process;
 
 public class ProcessService implements IBaseService{
 	private ProcessDao processDao = new ProcessDao();
-	private Tel_And_ActService tel_And_ActService = new Tel_And_ActService();
+	
 	
 	public int save(Object object) throws Exception{
 		try {
@@ -59,7 +59,7 @@ public class ProcessService implements IBaseService{
 			JSONArray processJson = JSONArray.fromObject(list);
 			processDao.update(JsonToObject.jsonToObj("Process", processJson));
 			//更新活动通知
-			
+			Tel_And_ActService tel_And_ActService = new Tel_And_ActService();
 			List<Map<String, Object>> activeList = tel_And_ActService.getInfoById(Long.parseLong(list.get(0).get("telAndActID")+""));
 			activeList.get(0).put("state", state);
 			tel_And_ActService.update(JsonToObject.jsonToObj("Tel_And_Act", JSONArray.fromObject(activeList)));
