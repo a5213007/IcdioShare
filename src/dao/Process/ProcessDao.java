@@ -66,6 +66,9 @@ public class ProcessDao extends CommonDAO implements IBaseDao{
 	}
 	
 	public List<Map<String, Object>> findByKeyAndValue(String key, String value, int page){
+		if (key.equals("id")) {
+			key = "process.id";
+		}
 		String sql = "select process.id,submitID,user.name,reviewID,releaseDate,reviewDate,telAndActID,state from process left join user on(user.id = process.submitID) where " + key + " like '%" + value + "%' limit " + (page - 1) * 10 + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
@@ -73,6 +76,9 @@ public class ProcessDao extends CommonDAO implements IBaseDao{
 	}
 	
 	public List<Map<String, Object>> findByKeyAndValuePage(String key, String value, int page){	
+		if (key.equals("id")) {
+			key = "process.id";
+		}
 		String sql = "select count(*) / 10 as page from process left join user on(user.id = process.submitID) where " + key + " like '%" + value + "%' limit " + (page - 1) * 10 + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);

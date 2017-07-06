@@ -108,6 +108,7 @@ public class EvaluationService implements IBaseService{
 				List<Map<String, Object>> list = evaluationDao.findByKeyAndValue(key, value,type, page,id);
 				List<Map<String, Object>> list1 = evaluationDao.findByKeyAndValuePage(key, value,type, page,id);
 				list.add(list1.get(0));
+				return list;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
