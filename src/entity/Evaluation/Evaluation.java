@@ -7,10 +7,10 @@ public class Evaluation{
 	@Column(name="id", chineseName="评价信息id",nullAble=false, note="id", type="String", length=14,editAble=false)
 	private String id;
 
-	@Column(name="telAndActID", chineseName="技术日常活动表ID", nullAble=true, note="技术日常活动表ID", type="String", length=14,editAble=false)
+	@Column(name="telAndActID", chineseName="活动表id", nullAble=true, note="技术日常活动表ID", type="String", length=14,editAble=false)
 	private String telAndActID;
 	 
-	@Column(name="userID", chineseName="人员ID", nullAble=true, note="人员ID", type="String", length=14,editAble=false)
+	@Column(name="userID", chineseName="人员id", nullAble=true, note="人员ID", type="String", length=14,editAble=false)
 	private String userID;
 	 	 
 	@Column(name="evalutionDate", chineseName="评价时间", nullAble=true, note="评价时间", type="String", length=-1,editAble=false)

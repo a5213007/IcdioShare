@@ -7,7 +7,7 @@ public class Question{
 	@Column(name="id", chineseName="问题信息id",nullAble=false, note="id", type="String", length=14,editAble=false)
 	private String id;
 
-	@Column(name="telAndActID", chineseName="活动表ID", nullAble=true, note="技术日常活动表ID", type="String", length=14,editAble=false)
+	@Column(name="telAndActID", chineseName="技术表ID", nullAble=true, note="技术日常活动表ID", type="String", length=14,editAble=false)
 	private String telAndActID;
 	 
 	@Column(name="userID", chineseName="人员ID", nullAble=true, note="人员ID", type="String", length=14,editAble=false)

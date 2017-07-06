@@ -114,7 +114,7 @@ public class AnswerDao extends CommonDAO implements IBaseDao{
 		if(userId != null)
 			userArg = " and user.id = " + userId;
 		
-		String sql = "select count(*) / 10 as page from answer left join user on(user.id = answer.userID) LEFT JOIN question ON (question.id = answer.questionID) where " + key + " like '%" + value + "%' "+userArg+"limit " + (page - 1) * 10 + ", 10";
+		String sql = "select count(*) / 10 as page from answer left join user on(user.id = answer.userID) LEFT JOIN question ON (question.id = answer.questionID) where " + key + " like '%" + value + "%' "+userArg+" limit " + (page - 1) * 10 + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
