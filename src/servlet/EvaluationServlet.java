@@ -74,8 +74,11 @@ public class EvaluationServlet extends HttpServlet {
 			int page = Integer.parseInt(request.getParameter("page"));
 			String key = request.getParameter("key");
 			String value = request.getParameter("value");
+			String type = request.getParameter("type");
+			Long userId = Long.parseLong(request.getParameter("id") + "");
+			
 			EvaluationService evaluationService = new EvaluationService();
-			List<Map<String, Object>> list = evaluationService.findByKeyAndValue(key, value, page);
+			List<Map<String, Object>> list = evaluationService.findByKeyAndValue(key, value,type, page, userId);
 			if(list != null){
 				JSONArray json = JSONArray.fromObject(list);
 				SendToHtml.send(json, response);
