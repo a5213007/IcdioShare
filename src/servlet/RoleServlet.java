@@ -99,11 +99,11 @@ public class RoleServlet extends HttpServlet {
 			}
 			
 		}else if("removeAll".equals(request.getParameter("info"))){
-			Long roleId = Long.parseLong(request.getParameter("id"));
+			Long userId = Long.parseLong(request.getParameter("id"));
 			RoleService roleService = new RoleService();
 			
 			try {
-				
+				roleService.removeAllRole(userId);
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new ServletException();

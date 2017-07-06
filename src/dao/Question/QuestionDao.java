@@ -93,16 +93,24 @@ public class QuestionDao extends CommonDAO implements IBaseDao{
 		return excuteQuery(sql, null);
 	}
 	
-	public List<Map<String, Object>> findByKeyAndValue(String key, String value, int page){
+	public List<Map<String, Object>> findByKeyAndValue(String key, String value,String type, int page, Long userId){
+		String userArg = "";
+		if(userId != null)
+			userArg = " and user.id = " + userId;
+		
 		String sql = "select question.id, tel_and_act.title, user.id as userID, telAndActID, user.name, questionContent, askDate from" + 
-				" question left join user on(user.id = question.userID) LEFT JOIN tel_and_act ON (tel_and_act.id = question.telAndActID) where " + key + " like '%" + value + "%' ORDER BY askDate asc limit " + (page - 1) * 10 + ", 10";
+				" question left join user on(user.id = question.userID) LEFT JOIN tel_and_act ON (tel_and_act.id = question.telAndActID) where " + key + " like '%" + value + "%' "+userArg+" ORDER BY askDate asc limit " + (page - 1) * 10 + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	}
 	
-	public List<Map<String, Object>> findByKeyAndValuePage(String key, String value, int page){
-		String sql = "select count(*) / 10 as page from question where " + key + " like '%" + value + "%' limit " + (page - 1) * 10 + ", 10";
+	public List<Map<String, Object>> findByKeyAndValuePage(String key, String value,String type, int page, Long userId){
+		String userArg = "";
+		if(userId != null)
+			userArg = " and user.id = " + userId;
+		
+		String sql = "select count(*) / 10 as page from question left join user on(user.id = question.userID) LEFT JOIN tel_and_act ON (tel_and_act.id = question.telAndActID) where " + key + " like '%" + value + "%' "+userArg+" limit " + (page - 1) * 10 + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);

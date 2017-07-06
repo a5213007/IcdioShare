@@ -87,7 +87,7 @@ public class RoleDao extends CommonDAO implements IBaseDao{
 	}
 	
 	public void removeAllRole(Long userId) throws Exception{
-		String sql = "delete * from user_role where userID = " + userId;
+		String sql = "delete from user_role where userID = " + userId;
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		executeSql(sql);
