@@ -150,7 +150,6 @@ function exitAnswer(){
 
 function resizeContent(){
 	var width = $(window).width();
-	console.log(width);
 	
 	if(width < 1000 && width >= 870){
 		var row = /*$("#content").val().toString().length / 30 + 1 +*/ getCount($("#content").val());

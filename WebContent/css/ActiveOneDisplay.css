@@ -105,7 +105,7 @@ body{
 	border:none;
 	outline:none;
     overflow: hidden;
-	resize:none;
+    resize:none;
 }
 .tail{
 	width:80%;
