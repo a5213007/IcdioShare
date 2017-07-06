@@ -2,6 +2,8 @@ function loadBackManagement(){
 	isLogin();
 	var url = GetRequest();
 	
+	$('#userName').html(eval(sessionStorage.user)[0]['name']);
+
 	if(url['block'] != undefined){
 		getPermissions();
 		setItem();
