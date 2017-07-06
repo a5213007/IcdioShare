@@ -78,8 +78,10 @@ public class UserDao extends CommonDAO implements IBaseDao{
 	}
 	
 	public int updateTo(Map<String, Object> map) throws Exception{
+		if(map.get("age").toString().length() == 0)
+			map.remove("age");
 		String sql = "update user set name='" + map.get("name") + "',sex = '" + 
-				map.get("sex") + "',age = '" + map.get("age") + "',phoneNum = '"
+				map.get("sex") + "',age = " + map.get("age") + ",phoneNum = '"
 				+map.get("phoneNum") + "' where account = '" + map.get("account") + "'";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);

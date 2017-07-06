@@ -465,3 +465,19 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 .displayCantEdit {
     background: #eaedf1;
 }
+
+.user {
+    position: absolute;
+    width: 8%;
+    height: 73%;
+    padding: 0.5% 0.5%;
+    background-color: #f9fafc;
+    font-size: 1.1vw;
+    line-height: 3;
+    text-align: center;
+    margin-left: 14%;
+    z-index: 1004;
+    cursor: default;
+    border: none;
+    color: grey;
+}
