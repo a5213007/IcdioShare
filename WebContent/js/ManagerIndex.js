@@ -8,6 +8,7 @@ function loadManager(){
 	if (!hasPerssions("ActiveCtr")) {
 		$('#activeAdd').remove();
 	}
+	sessionStorage.removeItem('permissions');
 	$.ajax ({
 		type:'post',
 		async:false,
