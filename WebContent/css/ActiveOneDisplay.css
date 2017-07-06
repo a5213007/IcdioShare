@@ -53,7 +53,7 @@ body{
     width: 40px;
     height: 20px;
     font-size: 20px;
-    color: yellow;
+    color: lightblue;
     cursor: pointer;
 }
 .exit{
@@ -64,7 +64,7 @@ body{
     width: 40px;
     height: 20px;
     font-size: 20px;
-    color: yellow;
+    color: lightblue;
     cursor: pointer;
 }
 .head{
@@ -146,7 +146,6 @@ body{
 	width: 80%;
     margin: 20px auto 0 auto;
     line-height: 25px;
-    font-family: "仿宋";
     font-size:16px;
     padding: 0 0 10px 0;
     padding-top: 10px;	
