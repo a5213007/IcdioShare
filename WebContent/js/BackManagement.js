@@ -398,9 +398,9 @@ function getOperate(type, info){
 				&& (info['state'] == '已撤回' || info['state'] == '已驳回')){
 			display += '<span class="control">提交</span>';
 		}
-	}else if(type == 'UserCtr' && hasPerssions('UserCtr')){
+	}else if(type == 'UserCtr' && hasPerssions('PermissionsCtr')){
 		display += '<span class="control" onclick="Assign(\''+info['id']+'\',\'Role\',\'选择角色('+info['name']+')\')">分配角色</span>';
-	}else if(type == 'RoleCtr' && hasPerssions('RoleCtr')){
+	}else if(type == 'RoleCtr' && hasPerssions('PermissionsCtr')){
 		display += '<span class="control" onclick="Assign(\''+info['id']+'\',\'Permissions\',\'选择权限('+info['roleName']+')\')">分配权限</span>';
 	}
 	
@@ -553,6 +553,7 @@ function addSelTo(id, type){
 		success:function(data){
 			alert('添加成功！');					
 			quitRolePer();
+			window.location.reload();
 		},
 		error:function(data){
 			alert('服务器访问失败！');
@@ -638,7 +639,7 @@ function find() {
 		url:'../servlet/'+ url['block'] + 'Servlet',
 		aysnc:false,
 		data:{
-			'info':'find', 'key':url['key'], 'value':decodeUnicode(url['value']), 'page':url['page']
+			'info':'find', 'key':url['key'], 'value':decodeUnicode(url['value']), 'page':url['page'],'type':url['block'], 'id' :eval(sessionStorage.user)[0]['id'] 
 		},
 		success:function(data){
 			var info = eval(data);

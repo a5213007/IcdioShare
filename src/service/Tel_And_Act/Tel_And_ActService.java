@@ -228,13 +228,26 @@ public class Tel_And_ActService implements IBaseService{
 		return null;
 	}
 	
-	public List<Map<String, Object>> findByKeyAndValue(String key, String value, int page){
+	public List<Map<String, Object>> findByKeyAndValue(String key, String value,String type, int page, Long id){
 		try {
-			Tel_And_ActDao tel_And_ActDao = new Tel_And_ActDao();
-			List<Map<String, Object>> list = tel_And_ActDao.findByKeyAndValue(key, value, page);
-			List<Map<String, Object>> list1 = tel_And_ActDao.findByKeyAndValuePage(key, value, page);
-			list.add(list1.get(0));
-			return list;
+			String Type = type.equals("Technology") ? "技术分享" : "活动通知";
+			
+			if((type.equals("Technology") && (perssionsService.hasPerssions("TechnologyCtr", id) || perssionsService.hasPerssions("TechnologyCtr_display", id))) ||
+					(type.equals("Active") && (perssionsService.hasPerssions("ActiveCtr", id) || perssionsService.hasPerssions("ActiveCtr_display", id)))){
+				Tel_And_ActDao tel_And_ActDao = new Tel_And_ActDao();
+				List<Map<String, Object>> list = tel_And_ActDao.findByKeyAndValue(key, value,Type, page, null);
+				List<Map<String, Object>> list1 = tel_And_ActDao.findByKeyAndValuePage(key, value,Type, page, null);
+				
+				list.add(list1.get(0));
+				return list;
+			}else{
+				Tel_And_ActDao tel_And_ActDao = new Tel_And_ActDao();
+				List<Map<String, Object>> list = tel_And_ActDao.findByKeyAndValue(key, value,Type, page,id);
+				List<Map<String, Object>> list1 = tel_And_ActDao.findByKeyAndValuePage(key, value,Type, page,id);
+				
+				list.add(list1.get(0));
+				return list;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	

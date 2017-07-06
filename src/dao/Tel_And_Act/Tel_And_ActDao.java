@@ -169,17 +169,31 @@ public class Tel_And_ActDao extends CommonDAO implements IBaseDao{
 		return excuteQuery(sql, null);
 	}
 	
-	public List<Map<String, Object>> findByKeyAndValue(String key, String value, int page){
-		String sql = "SELECT tel_and_act.id, user.id, user.name, releaseDate, title,"+
+	/**
+	 * 查找
+	 * */
+	public List<Map<String, Object>> findByKeyAndValue(String key, String value,String type, int page, Long userId){
+		String userArg = "";
+		if(userId != null)
+			userArg = " and userID = " + userId;
+		
+		String sql = "SELECT tel_and_act.id, user.id, user.name as name, releaseDate, title,"+
 				" content, contentType, type, state, activeDate, activePlace from "+
-				"tel_and_act LEFT JOIN user on(user.id = tel_and_act.userID) where " + key + " like '%" + value + "%' and state = '已同意' limit " + (page - 1) * 10 + ", 10";
+				"tel_and_act LEFT JOIN user on(user.id = tel_and_act.userID) where " + key + " like '%" + value + "%' and type = '"+type+"' "+userArg+" limit " + (page - 1) * 10 + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);
 	}
 	
-	public List<Map<String, Object>> findByKeyAndValuePage(String key, String value, int page){
-		String sql = "select count(*) / 10 as page from tel_and_act where " + key + " like '%" + value + "%' limit " + (page - 1) * 10 + ", 10";
+	/**
+	 * 查找分页
+	 * */
+	public List<Map<String, Object>> findByKeyAndValuePage(String key, String value,String type, int page, Long userId){
+		String userArg = "";
+		if(userId != null)
+			userArg = " and userID = " + userId;
+		
+		String sql = "select count(*) / 10 as page from tel_and_act LEFT JOIN user on(user.id = tel_and_act.userID) where " + key + " like '%" + value + "%' and type = '"+type+"' "+userArg+" limit " + (page - 1) * 10 + ", 10";
 		System.out.println("----------------------------------------");
 		System.out.println("SQL:" + sql);
 		return excuteQuery(sql, null);

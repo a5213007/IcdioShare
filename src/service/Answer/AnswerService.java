@@ -103,12 +103,19 @@ public class AnswerService implements IBaseService{
 		return null;
 	}
 	
-	public List<Map<String, Object>> findByKeyAndValue(String key, String value, int page){
+	public List<Map<String, Object>> findByKeyAndValue(String key, String value,String type, int page, Long id){
 		try {
-			List<Map<String, Object>> list = answerDao.findByKeyAndValue(key, value, page);
-			List<Map<String, Object>> list1 = answerDao.findByKeyAndValuePage(key, value, page);
-			list.add(list1.get(0));
-			return list;
+			if(permissionsService.hasPerssions("QuestionCtr", id) || permissionsService.hasPerssions("QuestionCtr_display", id)){
+				List<Map<String, Object>> list = answerDao.findByKeyAndValue(key, value,type, page,null);
+				List<Map<String, Object>> list1 = answerDao.findByKeyAndValuePage(key, value,type, page,null);
+				list.add(list1.get(0));
+				return list;
+			}else {
+				List<Map<String, Object>> list = answerDao.findByKeyAndValue(key, value,type, page,id);
+				List<Map<String, Object>> list1 = answerDao.findByKeyAndValuePage(key, value,type, page,id);
+				list.add(list1.get(0));
+				return list;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
