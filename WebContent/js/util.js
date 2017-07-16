@@ -97,8 +97,16 @@ function GetRequest() {
 function getId(){
 	var date = new Date();
 	var ID = date.toString().substring(11, 15);
-	ID += parseInt(date.getMonth()) + 1; //月
-	ID += date.getDate();  //天
+	
+	if(parseInt(date.getMonth()) + 1 < 10)
+		ID += '0' + parseInt(date.getMonth()) + 1; //月
+	else 
+		ID += parseInt(date.getMonth()) + 1; //月
+	
+	if(parseInt(date.getDate()) < 10)
+		ID += '0' + date.getDate();  //天
+	else 
+		ID += date.getDate();
 	ID += date.toString().substring(16,18) + date.toString().substring(19,21);
 	ID += date.toString().substring(22,24);
 	return ID;
