@@ -15,7 +15,7 @@ function Submit() {
 		url : "../servlet/LoginServlet",
 		async : false,
 		data :{
-			'account' : account, 'password' : password
+			'account' : account, 'password' : password,'info':'login'
 		},
 		success: function(data) {
 			if(data == undefined || data == '') {

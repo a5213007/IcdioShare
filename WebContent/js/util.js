@@ -54,6 +54,26 @@ function isLogin(){
 	if(sessionStorage.user == undefined){
 		alert('请先登录！');
 		window.location.href = "login.html";
+	}else{
+		$.ajax({
+			type : "post",
+			url : "../servlet/LoginServlet",
+			async : false,
+			data :{
+				'info':'lo'
+			},
+			success: function(data) {
+				if(data == ""){
+					alert('请先登录！');
+					sessionStorage.removeItem('user');
+					window.location.href = "login.html";
+				}
+			},
+			error : function(data){
+				alert('请先登录！');
+				window.location.href = "login.html";
+			},
+		});
 	}
 }
 

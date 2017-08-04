@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import util.sendToHtml.SendToHtml;
+
 /**
  * Servlet implementation class ExitLogin
  */
@@ -40,9 +42,10 @@ public class ExitLogin extends HttpServlet {
 		response.setHeader("Content-type", "text/html;charset=UTF-8");
 		
 		HttpSession session = request.getSession();
+		String ip = SendToHtml.getIpAddress(request);
 		
-		if(session != null && session.getAttribute("user") != null)
-			session.removeAttribute("user");
+		if(session != null && session.getAttribute("user_" + ip) != null)
+			session.removeAttribute("user_" + ip);
 	}
 
 }

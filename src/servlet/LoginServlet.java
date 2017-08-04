@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -44,23 +45,37 @@ public class LoginServlet extends HttpServlet {
 		response.setContentType("textml;charset=utf-8");		
 		response.setContentType("text/html");
 		response.setHeader("Content-type", "text/html;charset=UTF-8");
-	
-		String account = request.getParameter("account");
-		String password = request.getParameter("password");
+			
+		String info = request.getParameter("info");
 		
-		List<Map<String, Object>> list = new UserService().login(account, password);
-		
-		if(list != null){
-			try {
-				JSONArray json = JSONArray.fromObject(list);
-				SendToHtml.send(json, response);
-				HttpSession session = request.getSession();
-				session.setAttribute("user", list.get(0));
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new ServletException();
-			}			
+		if("login".equals(info)){
+			String account = request.getParameter("account");
+			String password = request.getParameter("password");
+			
+			List<Map<String, Object>> list = new UserService().login(account, password);
+			HttpSession session = request.getSession();
+					
+			if(list != null){
+				try {
+					JSONArray json = JSONArray.fromObject(list);
+					SendToHtml.send(json, response);
+					
+					String ip = SendToHtml.getIpAddress(request);
+					session.setAttribute("user_" + ip, list.get(0));
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+					throw new ServletException();
+				}			
+			}
+		}else if("getLoginIngo".equals(info)){
+			
+		}else if("lo".equals(info)){
+			OutputStream write = response.getOutputStream();
+			
+			write.write("true".getBytes());
+			write.flush();
+			write.close();
 		}
 		
 	}

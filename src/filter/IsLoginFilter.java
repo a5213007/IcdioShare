@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import util.sendToHtml.SendToHtml;
+
 /**
  * Servlet Filter implementation class IsLogin
  */
@@ -46,16 +48,22 @@ public class IsLoginFilter implements Filter {
 		// 静态资源直接放行
 		
 		HttpSession session = httpServletRequest.getSession();
+		String ip = SendToHtml.getIpAddress(httpServletRequest);
 		
-		if(url.equals("/servlet/LoginServlet")){
-			chain.doFilter(request, response);
-		}else if(url.indexOf("/servlet/") == 0){
+		
+		if(url.indexOf("/servlet/") == 0){
+			if(url.equals("/servlet/LoginServlet") && !"lo".equals(request.getParameter("info"))){
+				System.out.println("IP地址：" + ip + ",请求路径：" + url);
+				chain.doFilter(request, response);
+			}
 			
-//			if(session == null || session.getAttribute("user") == null)
-//				return ;
-			
-			chain.doFilter(request, response);
+			System.out.println("IP地址：" + ip + ",请求路径：" + url);
+			if(session == null || session.getAttribute("user_" + ip) == null)
+				return ;
+			else
+				chain.doFilter(request, response);
 		}else {
+			System.out.println("IP地址：" + ip + ",请求路径：" + url);
 			chain.doFilter(request, response);
 		}
 	}
